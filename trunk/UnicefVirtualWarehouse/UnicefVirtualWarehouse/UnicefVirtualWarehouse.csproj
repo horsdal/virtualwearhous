@@ -33,16 +33,7 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="Castle.Core">
-      <HintPath>..\..\Tools\NHibernate-3.0.0.CR1\Required_For_LazyLoading\Castle\Castle.Core.dll</HintPath>
-    </Reference>
     <Reference Include="Microsoft.CSharp" />
-    <Reference Include="NHibernate">
-      <HintPath>..\..\Tools\NHibernate-3.0.0.CR1\Required_Bins\NHibernate.dll</HintPath>
-    </Reference>
-    <Reference Include="NHibernate.ByteCode.Castle">
-      <HintPath>..\..\Tools\NHibernate-3.0.0.CR1\Required_For_LazyLoading\Castle\NHibernate.ByteCode.Castle.dll</HintPath>
-    </Reference>
     <Reference Include="System" />
     <Reference Include="System.Data" />
     <Reference Include="System.Drawing" />
@@ -88,35 +79,9 @@
     <Compile Include="Models\ManufacturerPresentation.cs" />
     <Compile Include="Models\ProductPresentation.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="SessionHelper.cs" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="Global.asax" />
-    <Content Include="hibernate.cfg.xml">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </Content>
-    <Content Include="Models\Mappings\Consumer.hbm.xml">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </Content>
-    <Content Include="Models\Mappings\Contact.hbm.xml">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </Content>
-    <Content Include="Models\Mappings\Product.hbm.xml">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </Content>
-    <Content Include="Models\Mappings\Package.hbm.xml">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </Content>
-    <Content Include="Models\Mappings\CountryOffer.hbm.xml">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </Content>
-    <Content Include="Models\Mappings\Country.hbm.xml">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </Content>
-    <Content Include="Models\Mappings\Supplier.hbm.xml">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </Content>
-    <Content Include="Models\Mappings\SupplierProduct.hbm.xml" />
     <Content Include="Models\sql\CreateTabels.sql" />
     <Content Include="Models\sql\UnicefDB.sql" />
     <Content Include="Web.config" />
