@@ -2,11 +2,9 @@
 <asp:Content runat="server" ID="Title" ContentPlaceHolderID="TitleContent"></asp:Content>
 <asp:Content runat="server" ID="Main" ContentPlaceHolderID="MainContent">
 <% if(Model.Any()) { %>
-<ul>
     <% foreach(var p in Model){%>
-    <li><%=p.Name%></li>
+    <a href=/Products/Details/<%=p.Id %>><%=p.Name %></a><br />
     <%}%>
-</ul>
 <%}else{%>
     <p>No products available</p>
 <%}%>
