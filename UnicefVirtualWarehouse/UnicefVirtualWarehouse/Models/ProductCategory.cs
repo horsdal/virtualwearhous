@@ -7,7 +7,8 @@ namespace UnicefVirtualWarehouse.Models
 {
     public class ProductCategory
     {
-        public int ID { get; set; }
+        public int Id { get; set; }
         public string Name { get; set; }
+        public ICollection<Product> Products { get; set; }
     }
 }

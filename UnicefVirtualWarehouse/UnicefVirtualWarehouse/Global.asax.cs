@@ -45,6 +45,7 @@ namespace UnicefVirtualWarehouse
             UnicefContext uc = new UnicefContext();
             //uc.Database.Connection.ConnectionString("Data Source=.\SQLEXPRESS;Initial Catalog=UnicefVirtualWarehouse;Integrated Security=SSPI;");    
             uc.Database.Connection.ConnectionString = @"Data Source=.\SQLEXPRESS;Initial Catalog=UnicefVirtualWarehouse.UnicefContext;Integrated Security=SSPI;";
+
             uc.Database.CreateIfNotExists();
 
             HttpContext.Current.Items[unicefContext] = uc;
