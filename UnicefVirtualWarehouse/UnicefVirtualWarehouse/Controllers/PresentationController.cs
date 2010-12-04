@@ -13,7 +13,15 @@ namespace UnicefVirtualWarehouse.Controllers
 
         public ActionResult Index()
         {
-            return View();
+            var presentations = MvcApplication.CurrentUnicefContext.Presentations.ToList();
+            return View(presentations);
+        }
+
+        public ActionResult Product(int id)
+        {
+            var product = MvcApplication.CurrentUnicefContext.Product.Include("Presentations").SingleOrDefault(p => p.Id == id);
+
+            return View("index", product.Presentations.ToList());
         }
 
         //

@@ -4,7 +4,6 @@ using System.Linq;
 using System.Text;
 using NUnit.Framework;
 using UnicefVirtualWarehouse;
-using NHibernate;
 using UnicefVirtualWarehouse.Models;
 
 namespace UnicefVirtualWarehouseTest

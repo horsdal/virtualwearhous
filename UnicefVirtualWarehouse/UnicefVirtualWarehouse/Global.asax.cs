@@ -14,11 +14,11 @@ namespace UnicefVirtualWarehouse
 
     public class MvcApplication : System.Web.HttpApplication
     {
-        private static readonly string unicefcontext = "UnicefContext";
+        private static readonly string unicefContext = "UnicefContext";
 
         public static UnicefContext CurrentUnicefContext
         {
-            get { return HttpContext.Current.Items[unicefcontext] as UnicefContext;}
+            get { return HttpContext.Current.Items[unicefContext] as UnicefContext;}
         }
 
         public static void RegisterRoutes(RouteCollection routes)
@@ -44,14 +44,15 @@ namespace UnicefVirtualWarehouse
         {
             UnicefContext uc = new UnicefContext();
             //uc.Database.Connection.ConnectionString("Data Source=.\SQLEXPRESS;Initial Catalog=UnicefVirtualWarehouse;Integrated Security=SSPI;");    
-            uc.Database.Connection.ConnectionString = @"Data Source=.;Initial Catalog=UnicefVirtualWarehouse.UnicefContext;Integrated Security=SSPI;";
+            uc.Database.Connection.ConnectionString = @"Data Source=.\SQLEXPRESS;Initial Catalog=UnicefVirtualWarehouse.UnicefContext;Integrated Security=SSPI;";
+            uc.Database.CreateIfNotExists();
 
-            HttpContext.Current.Items[unicefcontext] = uc;
+            HttpContext.Current.Items[unicefContext] = uc;
         }
 
         protected void Application_EndRequest(object sender, EventArgs e)
         {
-            var context = HttpContext.Current.Items[unicefcontext] as UnicefContext;
+            var context = HttpContext.Current.Items[unicefContext] as UnicefContext;
             context.Dispose();
         }
 
