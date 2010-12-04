@@ -74,6 +74,7 @@
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\ManufacturerController.cs" />
     <Compile Include="Controllers\PresentationController.cs" />
+    <Compile Include="Controllers\ProductCategoryController.cs" />
     <Compile Include="Controllers\ProductController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
@@ -85,8 +86,7 @@
     <Compile Include="Models\Product.cs" />
     <Compile Include="Models\Manufacturer.cs" />
     <Compile Include="Models\ManufacturerPresentation.cs" />
-    <Compile Include="Models\ProductCatagory.cs" />
-    <Compile Include="Models\ProductPresentation.cs" />
+    <Compile Include="Models\ProductCategory.cs" />
     <Compile Include="Models\UnicefContext.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
@@ -94,6 +94,7 @@
     <Content Include="Global.asax" />
     <Content Include="Models\sql\CreateTabels.sql" />
     <Content Include="Models\sql\UnicefDB.sql" />
+    <Content Include="Views\ProductCategory\Index.aspx" />
     <Content Include="Views\Product\Index.aspx" />
     <Content Include="Web.config" />
     <Content Include="Web.Debug.config">
