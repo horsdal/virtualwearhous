@@ -36,17 +36,17 @@ namespace UnicefVirtualWarehouse
         protected void Application_Start()
         {
             AreaRegistration.RegisterAllAreas();
-            UnicefContext uc = new UnicefContext();
-            //uc.Database.Connection.ConnectionString("Data Source=.\SQLEXPRESS;Initial Catalog=UnicefVirtualWarehouse;Integrated Security=SSPI;");    
-            uc.Database.Connection.ConnectionString = @"Data Source=.\SQLEXPRESS;Initial Catalog=UnicefVirtualWarehouse.UnicefContext;Integrated Security=SSPI;";
-            uc.Database.CreateIfNotExists();
 
             RegisterRoutes(RouteTable.Routes);
         }
 
         protected void Application_BeginRequest(object sender, EventArgs e)
         {
-            HttpContext.Current.Items[unicefcontext] = new UnicefContext();
+            UnicefContext uc = new UnicefContext();
+            //uc.Database.Connection.ConnectionString("Data Source=.\SQLEXPRESS;Initial Catalog=UnicefVirtualWarehouse;Integrated Security=SSPI;");    
+            uc.Database.Connection.ConnectionString = @"Data Source=.;Initial Catalog=UnicefVirtualWarehouse.UnicefContext;Integrated Security=SSPI;";
+
+            HttpContext.Current.Items[unicefcontext] = uc;
         }
 
         protected void Application_EndRequest(object sender, EventArgs e)
