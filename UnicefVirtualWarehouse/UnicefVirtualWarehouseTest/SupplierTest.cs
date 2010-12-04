@@ -15,10 +15,7 @@ namespace UnicefVirtualWarehouseTest
 		[Test]
 		public void GetSupplierTest()
         {
-			ISessionFactory sessionFactory = SessionHelper.GetNHibernateSessionFactory();
-			ISession session = sessionFactory.OpenSession();
-
-			session.Get(typeof(Supplier), 1);
+			
         }
 	}
 }
