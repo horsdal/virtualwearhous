@@ -14,16 +14,9 @@ namespace UnicefVirtualWarehouse.Controllers
 
         public ActionResult Index()
         {
-<<<<<<< .mine
-            UnicefContext uc = new UnicefContext();
-            uc.Database.Connection.ConnectionString = "Data Source=.;Initial Catalog=UnicefVirtualWarehouse;Integrated Security=SSPI;";
-            IList<Product> pro = uc.Product.ToList();
-            return RenderView
-=======
             IList<Product> products = MvcApplication.CurrentUnicefContext.Product.ToList();
 
-            return View();
->>>>>>> .r33
+            return View(products);
         }
 
         //
