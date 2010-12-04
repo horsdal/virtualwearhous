@@ -1,0 +1,9 @@
+#summary Basic developement setup.
+
+= Introduction =
+
+To setup a basic development environment follow the steps below:
+ * Install Visual Web Developer 2010 Express from  http://www.microsoft.com/express/Downloads/# 
+ * From the installer choose Web Server, Frameworks and Runtime, Database and Tools and then click install
+ * Install a subversion client, e.g. TortoiseSVN from http://tortoisesvn.net/downloads
+ * Checkout the code from 
