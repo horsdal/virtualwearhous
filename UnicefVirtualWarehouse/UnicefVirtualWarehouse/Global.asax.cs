@@ -35,7 +35,7 @@ namespace UnicefVirtualWarehouse
 
             RegisterRoutes(RouteTable.Routes);
 
-            nhibernateSessionFactory = GetNHibernateSessionFactory();
+            nhibernateSessionFactory = SessionHelper.GetNHibernateSessionFactory();
 
             BeginRequest += BeginRequestHandler;
             EndRequest += EndRequestHandler;
@@ -43,28 +43,12 @@ namespace UnicefVirtualWarehouse
 
         private void EndRequestHandler(object sender, EventArgs e)
         {
-            nhibernateSessionFactory.GetCurrentSession().Close();
+			nhibernateSessionFactory.GetCurrentSession().Close();
         }
 
         private void BeginRequestHandler(object sender, EventArgs e)
         {
-            nhibernateSessionFactory.OpenSession();
-        }
-
-
-        private ISessionFactory GetNHibernateSessionFactory()
-        {
-            NHibernate.Cfg.Configuration configuration = new NHibernate.Cfg.Configuration();
-            configuration.Configure();
-            configuration.Properties.Add("proxyfactory.factory_class", "NHibernate.ByteCode.Castle.ProxyFactoryFactory, NHibernate.ByteCode.Castle");
-            //configuration.AddResource("Models/Mappings/Consumer.hbm.xml", Assembly.GetAssembly(typeof(Models.Consumer))); 
-            
-            ConnectionStringSettings connectionSettings = ConfigurationManager.ConnectionStrings["UnicefVirtualWarehouse"];
-            if (connectionSettings == null || String.IsNullOrEmpty(connectionSettings.ConnectionString)) 
-                throw new ApplicationException("The database connection string was not set in the configuration file.", new Exception());
-            configuration.Properties["connection.connection_string"] = connectionSettings.ConnectionString;;
-
-            return configuration.BuildSessionFactory();
-        }
+			nhibernateSessionFactory.OpenSession();
+        }        
     }
 }
