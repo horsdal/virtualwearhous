@@ -74,10 +74,24 @@
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
     <Compile Include="Models\AccountModels.cs" />
+    <Compile Include="Models\Consumer.cs" />
+    <Compile Include="Models\Contact.cs" />
+    <Compile Include="Models\Country.cs" />
+    <Compile Include="Models\CountryOffer.cs" />
+    <Compile Include="Models\Package.cs" />
+    <Compile Include="Models\Product.cs" />
+    <Compile Include="Models\Supplier.cs" />
+    <Compile Include="Models\SupplierProduct.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="Global.asax" />
+    <Content Include="hibernate.cfg.xml">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Models\Mappings\Country.hbm.xml">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
     <Content Include="Web.config" />
     <Content Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
