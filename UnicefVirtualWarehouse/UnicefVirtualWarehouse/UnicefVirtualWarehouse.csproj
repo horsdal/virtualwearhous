@@ -34,6 +34,9 @@
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="Microsoft.CSharp" />
+    <Reference Include="Microsoft.Data.Entity.CTP">
+      <HintPath>..\..\Tools\EntityFramework4\Microsoft.Data.Entity.CTP.dll</HintPath>
+    </Reference>
     <Reference Include="System" />
     <Reference Include="System.Data" />
     <Reference Include="System.Drawing" />
@@ -78,6 +81,7 @@
     <Compile Include="Models\Manufacturer.cs" />
     <Compile Include="Models\ManufacturerPresentation.cs" />
     <Compile Include="Models\ProductPresentation.cs" />
+    <Compile Include="Models\UnicefContext.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
