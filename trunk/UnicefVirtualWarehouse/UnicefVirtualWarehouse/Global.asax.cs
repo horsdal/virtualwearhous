@@ -14,6 +14,13 @@ namespace UnicefVirtualWarehouse
 
     public class MvcApplication : System.Web.HttpApplication
     {
+        private static readonly string unicefcontext = "UnicefContext";
+
+        public static UnicefContext CurrentUnicefContext
+        {
+            get { return new UnicefContext();/* HttpContext.Current.Items[unicefcontext] as UnicefContext;  */}
+        }
+
         public static void RegisterRoutes(RouteCollection routes)
         {
             routes.IgnoreRoute("{resource}.axd/{*pathInfo}");
@@ -31,10 +38,26 @@ namespace UnicefVirtualWarehouse
             AreaRegistration.RegisterAllAreas();
             UnicefContext uc = new UnicefContext();
             //uc.Database.Connection.ConnectionString("Data Source=.\SQLEXPRESS;Initial Catalog=UnicefVirtualWarehouse;Integrated Security=SSPI;");    
-            uc.Database.Connection.ConnectionString = "Data Source=.;Initial Catalog=UnicefVirtualWarehouse;Integrated Security=SSPI;";
+            uc.Database.Connection.ConnectionString = @"Data Source=.\SQLEXPRESS;Initial Catalog=UnicefVirtualWarehouse;Integrated Security=SSPI;";
             uc.Database.CreateIfNotExists();
+
+            BeginRequest += BeginRequestHandler;
+            EndRequest += EndRequestHandler;
 
             RegisterRoutes(RouteTable.Routes);
         }
+
+        private void BeginRequestHandler(object sender, EventArgs e)
+        {
+            HttpContext.Current.Items[unicefcontext] = new UnicefContext();
+        }
+
+        private void EndRequestHandler(object sender, EventArgs e)
+        {
+            var context = HttpContext.Current.Items[unicefcontext] as UnicefContext;
+            context.Dispose();
+        }
+
+
     }
 }
