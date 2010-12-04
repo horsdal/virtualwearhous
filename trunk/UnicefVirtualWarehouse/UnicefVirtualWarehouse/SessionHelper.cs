@@ -16,7 +16,7 @@ namespace UnicefVirtualWarehouse
 			configuration.Configure();
 			configuration.Properties.Add("proxyfactory.factory_class", "NHibernate.ByteCode.Castle.ProxyFactoryFactory, NHibernate.ByteCode.Castle");
 			
-			configuration.AddResource("Models/Mappings/Supplier.hbm.xml", Assembly.GetAssembly(typeof(Models.Supplier))); 
+			configuration.AddResource("Models/Mappings/Supplier.hbm.xml", Assembly.GetAssembly(typeof(Models.Manufacturer))); 
 
 			ConnectionStringSettings connectionSettings = ConfigurationManager.ConnectionStrings["UnicefVirtualWarehouse"];
 			

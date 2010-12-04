@@ -82,12 +82,11 @@
     <Compile Include="Models\AccountModels.cs" />
     <Compile Include="Models\Consumer.cs" />
     <Compile Include="Models\Contact.cs" />
-    <Compile Include="Models\Country.cs" />
-    <Compile Include="Models\CountryOffer.cs" />
-    <Compile Include="Models\Package.cs" />
+    <Compile Include="Models\Presentation.cs" />
     <Compile Include="Models\Product.cs" />
-    <Compile Include="Models\Supplier.cs" />
-    <Compile Include="Models\SupplierProduct.cs" />
+    <Compile Include="Models\Manufacturer.cs" />
+    <Compile Include="Models\ManufacturerPresentation.cs" />
+    <Compile Include="Models\ProductPresentation.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="SessionHelper.cs" />
   </ItemGroup>
