@@ -18,5 +18,12 @@ namespace UnicefVirtualWarehouse.Controllers
 
             return View(products);
         }
+
+        public ActionResult ProductCategory(int id)
+        {
+            var productCategory = MvcApplication.CurrentUnicefContext.ProductCatagories.Include("Products").SingleOrDefault(p => p.Id == id);
+
+            return View("index", productCategory.Products.ToList());
+        }
     }
 }
