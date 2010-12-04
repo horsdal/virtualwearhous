@@ -10,6 +10,6 @@ namespace UnicefVirtualWarehouse.Models
         public int Id { get; private set; }
         public string Name { get; set; }
         public ICollection<Presentation> Presentations { get; set; }
-        public int PrductCatagory_ID { get; set; }
+        public ProductCategory Catagory { get; set; }
     }
 }
