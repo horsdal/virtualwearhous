@@ -3,6 +3,8 @@ Microsoft Visual Studio Solution File, Format Version 11.00
 # Visual Studio 2010
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "UnicefVirtualWarehouse", "UnicefVirtualWarehouse\UnicefVirtualWarehouse.csproj", "{9498EC8C-630C-4BE8-AAD0-4BA570A2EFCF}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "UnicefVirtualWarehouseTest", "UnicefVirtualWarehouseTest\UnicefVirtualWarehouseTest.csproj", "{BE2DCDD9-83AE-438A-A54C-83ABA6F0C3B1}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -13,6 +15,10 @@ Global
 		{9498EC8C-630C-4BE8-AAD0-4BA570A2EFCF}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{9498EC8C-630C-4BE8-AAD0-4BA570A2EFCF}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{9498EC8C-630C-4BE8-AAD0-4BA570A2EFCF}.Release|Any CPU.Build.0 = Release|Any CPU
+		{BE2DCDD9-83AE-438A-A54C-83ABA6F0C3B1}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{BE2DCDD9-83AE-438A-A54C-83ABA6F0C3B1}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{BE2DCDD9-83AE-438A-A54C-83ABA6F0C3B1}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{BE2DCDD9-83AE-438A-A54C-83ABA6F0C3B1}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
