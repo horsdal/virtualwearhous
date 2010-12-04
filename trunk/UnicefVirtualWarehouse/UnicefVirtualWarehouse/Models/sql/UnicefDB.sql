@@ -1,276 +1,102 @@
-﻿/****** Object:  Table [dbo].[Package]    Script Date: 12/04/2010 16:13:36 ******/
-SET ANSI_NULLS ON
+﻿USE [master]
 GO
 
-SET QUOTED_IDENTIFIER ON
+/****** Object:  Database [UnicefVirtualWarehouse]    Script Date: 12/04/2010 16:38:12 ******/
+CREATE DATABASE [UnicefVirtualWarehouse] ON  PRIMARY 
+( NAME = N'UnicefVirtualWarehouse', FILENAME = N'C:\Dev\DATA\UnicefVirtualWarehouse.mdf' , SIZE = 3072KB , MAXSIZE = UNLIMITED, FILEGROWTH = 1024KB )
+ LOG ON 
+( NAME = N'UnicefVirtualWarehouse_log', FILENAME = N'C:\Dev\DATA\UnicefVirtualWarehouse_log.ldf' , SIZE = 1024KB , MAXSIZE = 2048GB , FILEGROWTH = 10%)
 GO
 
-SET ANSI_PADDING ON
+ALTER DATABASE [UnicefVirtualWarehouse] SET COMPATIBILITY_LEVEL = 100
 GO
 
-CREATE TABLE [dbo].[Package](
-	[ID] [int] IDENTITY(1,1) NOT NULL,
-	[Name] [varchar](200) NOT NULL,
-	[MinUnit] [int] NOT NULL,
-	[Size] [int] NOT NULL,
-	[Price] [int] NOT NULL,
- CONSTRAINT [PK_Packages] PRIMARY KEY CLUSTERED 
-(
-	[ID] ASC
-)WITH (PAD_INDEX  = OFF, STATISTICS_NORECOMPUTE  = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS  = ON, ALLOW_PAGE_LOCKS  = ON) ON [PRIMARY]
-) ON [PRIMARY]
-
+IF (1 = FULLTEXTSERVICEPROPERTY('IsFullTextInstalled'))
+begin
+EXEC [UnicefVirtualWarehouse].[dbo].[sp_fulltext_database] @action = 'enable'
+end
 GO
 
-SET ANSI_PADDING OFF
+ALTER DATABASE [UnicefVirtualWarehouse] SET ANSI_NULL_DEFAULT OFF 
 GO
 
-USE [UnicefVirtualWarehouse]
+ALTER DATABASE [UnicefVirtualWarehouse] SET ANSI_NULLS OFF 
 GO
 
-/****** Object:  Table [dbo].[Product]    Script Date: 12/04/2010 16:15:00 ******/
-SET ANSI_NULLS ON
+ALTER DATABASE [UnicefVirtualWarehouse] SET ANSI_PADDING OFF 
 GO
 
-SET QUOTED_IDENTIFIER ON
+ALTER DATABASE [UnicefVirtualWarehouse] SET ANSI_WARNINGS OFF 
 GO
 
-SET ANSI_PADDING ON
+ALTER DATABASE [UnicefVirtualWarehouse] SET ARITHABORT OFF 
 GO
 
-CREATE TABLE [dbo].[Product](
-	[ID] [int] IDENTITY(1,1) NOT NULL,
-	[Name] [varchar](200) NOT NULL,
-	[Package_ID] [int] NOT NULL,
- CONSTRAINT [PK_Product] PRIMARY KEY CLUSTERED 
-(
-	[ID] ASC
-)WITH (PAD_INDEX  = OFF, STATISTICS_NORECOMPUTE  = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS  = ON, ALLOW_PAGE_LOCKS  = ON) ON [PRIMARY]
-) ON [PRIMARY]
-
+ALTER DATABASE [UnicefVirtualWarehouse] SET AUTO_CLOSE OFF 
 GO
 
-SET ANSI_PADDING OFF
+ALTER DATABASE [UnicefVirtualWarehouse] SET AUTO_CREATE_STATISTICS ON 
 GO
 
-ALTER TABLE [dbo].[Product]  WITH CHECK ADD  CONSTRAINT [FK_Product_Package] FOREIGN KEY([Package_ID])
-REFERENCES [dbo].[Package] ([ID])
+ALTER DATABASE [UnicefVirtualWarehouse] SET AUTO_SHRINK OFF 
 GO
 
-ALTER TABLE [dbo].[Product] CHECK CONSTRAINT [FK_Product_Package]
+ALTER DATABASE [UnicefVirtualWarehouse] SET AUTO_UPDATE_STATISTICS ON 
 GO
 
-USE [UnicefVirtualWarehouse]
+ALTER DATABASE [UnicefVirtualWarehouse] SET CURSOR_CLOSE_ON_COMMIT OFF 
 GO
 
-
-/****** Object:  Table [dbo].[Country]    Script Date: 12/04/2010 16:15:16 ******/
-SET ANSI_NULLS ON
+ALTER DATABASE [UnicefVirtualWarehouse] SET CURSOR_DEFAULT  GLOBAL 
 GO
 
-SET QUOTED_IDENTIFIER ON
+ALTER DATABASE [UnicefVirtualWarehouse] SET CONCAT_NULL_YIELDS_NULL OFF 
 GO
 
-SET ANSI_PADDING ON
+ALTER DATABASE [UnicefVirtualWarehouse] SET NUMERIC_ROUNDABORT OFF 
 GO
 
-CREATE TABLE [dbo].[Country](
-	[ID] [int] IDENTITY(1,1) NOT NULL,
-	[Name] [varchar](200) NOT NULL,
- CONSTRAINT [PK_Country] PRIMARY KEY CLUSTERED 
-(
-	[ID] ASC
-)WITH (PAD_INDEX  = OFF, STATISTICS_NORECOMPUTE  = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS  = ON, ALLOW_PAGE_LOCKS  = ON) ON [PRIMARY]
-) ON [PRIMARY]
-
+ALTER DATABASE [UnicefVirtualWarehouse] SET QUOTED_IDENTIFIER OFF 
 GO
 
-SET ANSI_PADDING OFF
+ALTER DATABASE [UnicefVirtualWarehouse] SET RECURSIVE_TRIGGERS OFF 
 GO
 
-USE [UnicefVirtualWarehouse]
+ALTER DATABASE [UnicefVirtualWarehouse] SET  DISABLE_BROKER 
 GO
 
-/****** Object:  Table [dbo].[Contact]    Script Date: 12/04/2010 16:15:23 ******/
-SET ANSI_NULLS ON
+ALTER DATABASE [UnicefVirtualWarehouse] SET AUTO_UPDATE_STATISTICS_ASYNC OFF 
 GO
 
-SET QUOTED_IDENTIFIER ON
+ALTER DATABASE [UnicefVirtualWarehouse] SET DATE_CORRELATION_OPTIMIZATION OFF 
 GO
 
-SET ANSI_PADDING ON
+ALTER DATABASE [UnicefVirtualWarehouse] SET TRUSTWORTHY OFF 
 GO
 
-CREATE TABLE [dbo].[Contact](
-	[ID] [int] IDENTITY(1,1) NOT NULL,
-	[Address] [varchar](200) NOT NULL,
-	[ZIP] [varchar](50) NOT NULL,
-	[Country_ID] [int] NOT NULL,
-	[City] [varchar](200) NOT NULL,
-	[Fax] [varchar](50) NULL,
-	[Email] [varchar](100) NULL,
-	[Phone] [varchar](50) NULL,
- CONSTRAINT [PK_Contact] PRIMARY KEY CLUSTERED 
-(
-	[ID] ASC
-)WITH (PAD_INDEX  = OFF, STATISTICS_NORECOMPUTE  = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS  = ON, ALLOW_PAGE_LOCKS  = ON) ON [PRIMARY]
-) ON [PRIMARY]
-
+ALTER DATABASE [UnicefVirtualWarehouse] SET ALLOW_SNAPSHOT_ISOLATION OFF 
 GO
 
-SET ANSI_PADDING OFF
+ALTER DATABASE [UnicefVirtualWarehouse] SET PARAMETERIZATION SIMPLE 
 GO
 
-ALTER TABLE [dbo].[Contact]  WITH CHECK ADD  CONSTRAINT [FK_Contact_Country] FOREIGN KEY([Country_ID])
-REFERENCES [dbo].[Country] ([ID])
+ALTER DATABASE [UnicefVirtualWarehouse] SET READ_COMMITTED_SNAPSHOT OFF 
 GO
 
-ALTER TABLE [dbo].[Contact] CHECK CONSTRAINT [FK_Contact_Country]
+ALTER DATABASE [UnicefVirtualWarehouse] SET HONOR_BROKER_PRIORITY OFF 
 GO
 
-USE [UnicefVirtualWarehouse]
+ALTER DATABASE [UnicefVirtualWarehouse] SET  READ_WRITE 
 GO
 
-/****** Object:  Table [dbo].[Consumer]    Script Date: 12/04/2010 16:13:18 ******/
-SET ANSI_NULLS ON
+ALTER DATABASE [UnicefVirtualWarehouse] SET RECOVERY FULL 
 GO
 
-SET QUOTED_IDENTIFIER ON
+ALTER DATABASE [UnicefVirtualWarehouse] SET  MULTI_USER 
 GO
 
-SET ANSI_PADDING ON
+ALTER DATABASE [UnicefVirtualWarehouse] SET PAGE_VERIFY CHECKSUM  
 GO
 
-CREATE TABLE [dbo].[Consumer](
-	[ID] [int] IDENTITY(1,1) NOT NULL,
-	[Name] [varchar](200) NOT NULL,
-	[Contact_ID] [int] NOT NULL,
- CONSTRAINT [PK_Consumer] PRIMARY KEY CLUSTERED 
-(
-	[ID] ASC
-)WITH (PAD_INDEX  = OFF, STATISTICS_NORECOMPUTE  = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS  = ON, ALLOW_PAGE_LOCKS  = ON) ON [PRIMARY]
-) ON [PRIMARY]
-
-GO
-
-SET ANSI_PADDING OFF
-GO
-
-ALTER TABLE [dbo].[Consumer]  WITH CHECK ADD  CONSTRAINT [FK_Consumer_Contact] FOREIGN KEY([Contact_ID])
-REFERENCES [dbo].[Contact] ([ID])
-GO
-
-ALTER TABLE [dbo].[Consumer] CHECK CONSTRAINT [FK_Consumer_Contact]
-GO
-
-USE [UnicefVirtualWarehouse]
-GO
-
-/****** Object:  Table [dbo].[Supplier]    Script Date: 12/04/2010 16:14:50 ******/
-SET ANSI_NULLS ON
-GO
-
-SET QUOTED_IDENTIFIER ON
-GO
-
-SET ANSI_PADDING ON
-GO
-
-CREATE TABLE [dbo].[Supplier](
-	[ID] [int] IDENTITY(1,1) NOT NULL,
-	[Name] [varchar](200) NOT NULL,
-	[Contact_ID] [int] NOT NULL,
- CONSTRAINT [PK_Supplier] PRIMARY KEY CLUSTERED 
-(
-	[ID] ASC
-)WITH (PAD_INDEX  = OFF, STATISTICS_NORECOMPUTE  = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS  = ON, ALLOW_PAGE_LOCKS  = ON) ON [PRIMARY]
-) ON [PRIMARY]
-
-GO
-
-SET ANSI_PADDING OFF
-GO
-
-ALTER TABLE [dbo].[Supplier]  WITH CHECK ADD  CONSTRAINT [FK_Supplier_Contact] FOREIGN KEY([Contact_ID])
-REFERENCES [dbo].[Contact] ([ID])
-GO
-
-ALTER TABLE [dbo].[Supplier] CHECK CONSTRAINT [FK_Supplier_Contact]
-GO
-
-USE [UnicefVirtualWarehouse]
-GO
-
-
-/****** Object:  Table [dbo].[CountryOffer]    Script Date: 12/04/2010 16:15:29 ******/
-SET ANSI_NULLS ON
-GO
-
-SET QUOTED_IDENTIFIER ON
-GO
-
-CREATE TABLE [dbo].[CountryOffer](
-	[Country_ID] [int] NOT NULL,
-	[Package_ID] [int] NOT NULL,
-	[PriceFactor] [float] NULL,
-	[AuthorizedForSelling] [bit] NOT NULL,
- CONSTRAINT [PK_CountryOffer] PRIMARY KEY CLUSTERED 
-(
-	[Country_ID] ASC,
-	[Package_ID] ASC
-)WITH (PAD_INDEX  = OFF, STATISTICS_NORECOMPUTE  = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS  = ON, ALLOW_PAGE_LOCKS  = ON) ON [PRIMARY]
-) ON [PRIMARY]
-
-GO
-
-ALTER TABLE [dbo].[CountryOffer]  WITH CHECK ADD  CONSTRAINT [FK_CountryOffer_Country] FOREIGN KEY([Country_ID])
-REFERENCES [dbo].[Country] ([ID])
-GO
-
-ALTER TABLE [dbo].[CountryOffer] CHECK CONSTRAINT [FK_CountryOffer_Country]
-GO
-
-ALTER TABLE [dbo].[CountryOffer]  WITH CHECK ADD  CONSTRAINT [FK_CountryOffer_Package] FOREIGN KEY([Package_ID])
-REFERENCES [dbo].[Package] ([ID])
-GO
-
-ALTER TABLE [dbo].[CountryOffer] CHECK CONSTRAINT [FK_CountryOffer_Package]
-GO
-
-
-/****** Object:  Table [dbo].[SupplierProduct]    Script Date: 12/04/2010 16:15:10 ******/
-SET ANSI_NULLS ON
-GO
-
-SET QUOTED_IDENTIFIER ON
-GO
-
-CREATE TABLE [dbo].[SupplierProduct](
-	[Supplier_ID] [int] NOT NULL,
-	[Product_ID] [int] NOT NULL,
-	[Licensed] [bit] NOT NULL,
- CONSTRAINT [PK_SupplierProduct] PRIMARY KEY CLUSTERED 
-(
-	[Supplier_ID] ASC,
-	[Product_ID] ASC
-)WITH (PAD_INDEX  = OFF, STATISTICS_NORECOMPUTE  = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS  = ON, ALLOW_PAGE_LOCKS  = ON) ON [PRIMARY]
-) ON [PRIMARY]
-
-GO
-
-ALTER TABLE [dbo].[SupplierProduct]  WITH CHECK ADD  CONSTRAINT [FK_SupplierProduct_Product] FOREIGN KEY([Product_ID])
-REFERENCES [dbo].[Product] ([ID])
-GO
-
-ALTER TABLE [dbo].[SupplierProduct] CHECK CONSTRAINT [FK_SupplierProduct_Product]
-GO
-
-ALTER TABLE [dbo].[SupplierProduct]  WITH CHECK ADD  CONSTRAINT [FK_SupplierProduct_Supplier] FOREIGN KEY([Supplier_ID])
-REFERENCES [dbo].[Supplier] ([ID])
-GO
-
-ALTER TABLE [dbo].[SupplierProduct] CHECK CONSTRAINT [FK_SupplierProduct_Supplier]
-GO
-
-USE [UnicefVirtualWarehouse]
+ALTER DATABASE [UnicefVirtualWarehouse] SET DB_CHAINING OFF 
 GO
