@@ -9,6 +9,6 @@ namespace UnicefVirtualWarehouse.Models
     {
         public int Id { get; private set; }
         public string Name { get; set; }
-        public Package Package { get; set; }
+        public IEnumerable<Package> Packages { get; set; }
     }
 }
