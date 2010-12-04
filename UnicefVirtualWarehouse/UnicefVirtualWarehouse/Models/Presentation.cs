@@ -5,9 +5,9 @@ using System.Web;
 
 namespace UnicefVirtualWarehouse.Models
 {
-    public class Product
+    public class Presentation
     {
         public int Id { get; private set; }
-        public string Name { get; set; }
+        public string Name { get; set; }        
     }
 }
