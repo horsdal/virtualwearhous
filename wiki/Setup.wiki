@@ -8,4 +8,5 @@ To setup a basic development environment follow the steps below:
  * Install a subversion client, e.g. TortoiseSVN from http://tortoisesvn.net/downloads
  * Checkout with your SVN client. With a commandline client use this: 
         svn checkout https://virtualwearhous.googlecode.com/svn/trunk/ virtualwearhous --username <your email address>
- * Open the UnicefVirtualWarehouse/UnicefVirtualWarehouse.sln file in Visual Studio
+ * Open the UnicefVirtualWarehouse\UnicefVirtualWarehouse.sln file in Visual Studio
+ * To run and debug the web app in locally press F5
