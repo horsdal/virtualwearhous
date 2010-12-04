@@ -14,7 +14,7 @@ namespace UnicefVirtualWarehouse.Models
         public string City { get; set; }
         public string Fax { get; set; }
         public string Email { get; set; }
-        public Uri  Website { get; set; }
+        public string Website { get; set; }
         public string Phone { get; set; }
     }
 }

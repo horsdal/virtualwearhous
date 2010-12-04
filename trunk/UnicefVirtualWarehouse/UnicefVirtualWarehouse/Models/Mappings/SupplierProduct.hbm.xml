@@ -3,13 +3,14 @@
                    assembly="FirstSolution"
                    namespace="FirstSolution.Domain">
 
-  <class name="Consumer">
+  <class name="Contact">
     <id name="Id">
       <generator class="native" />
     </id>
     <property name="Supplier" />
     <property name="Product" />
     <property name="Licensed" />
+	<property name="Contact" class="Contact"/>
   </class>
 
 </hibernate-mapping>
