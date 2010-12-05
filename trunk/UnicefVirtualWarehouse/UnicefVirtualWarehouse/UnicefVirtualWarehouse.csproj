@@ -95,7 +95,9 @@
   <ItemGroup>
     <Content Include="Content\unicef_logo.gif" />
     <Content Include="Global.asax" />
+    <Content Include="Views\Contact\Create.aspx" />
     <Content Include="Views\Contact\Index.aspx" />
+    <Content Include="Views\Presentation\Create.aspx" />
     <Content Include="Views\Presentation\Index.aspx" />
     <Content Include="Views\ManufacturerPresentation\Index.aspx" />
     <Content Include="Views\Presentation\Index.aspx" />
