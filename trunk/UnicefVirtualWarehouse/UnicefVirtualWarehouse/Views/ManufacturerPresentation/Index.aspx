@@ -8,7 +8,7 @@
 				<th>Manufacturer</th>
 				<th>Presentation</th>
 				<th>Size</th>
-				<th>Price</th>
+				<th>Price in USD</th>
 				<th>Minimal Unit</th>
 				<th>Licensed</th>
 				<th>CPP</th>
@@ -26,16 +26,16 @@
 					<%=p.Size %>
 				</td>
 				<td>
-					<%=p.Price %>
+					<%=p.Price / 100 %>
 				</td>
 				<td>
 					<%=p.MinUnit %>
 				</td>
 				<td>
-					<%=p.Licensed %>
+                <img src="../../Content/<%=p.Licensed ? "check_16.png": "delete_16.png" %>" />
 				</td>
 				<td>
-					<%=p.CPP %>
+                <img src="../../Content/<%=p.CPP ? "check_16.png": "delete_16.png" %>" />
 				</td>
 			</tr>
 			<%}%>
