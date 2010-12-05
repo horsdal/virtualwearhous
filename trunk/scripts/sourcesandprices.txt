@@ -1,0 +1,643 @@
+P18 DIARRHOEA Fluid and electrolyte replacement
+GLUCOSE / DEXTROSE MONOHYDRATE (3)
+Injectable solution 5% (isotonic)	10-ml amp	0,140	0,340	0,178	0,159	3/3	
+Injectable solution 10% (hypertonic)	10-ml amp	0,186	0,380	0,283	0,235	2/2	
+Injectable solution 50% (hypertonic)	10-ml amp	0,420	0,420	0,420	0,420	1/1	
+
+GLUCOSE WITH SODIUM CHLORIDE (1)
+Injectable solution 5% glucose, 0.45% sodium chloride (equivalent to 75 mmol/L Na+ and 75	mmol/L Cl-)	1000 ml	1,730	1,730	1,730	1,730	1/1
+Injectable solution 5% glucose, 0.9% sodium chloride (equivalent to 150 mmol/L Na+ and 150	mmol/L Cl-)	1000 ml	n.a.	 n.a.	 n.a.	 n.a.	0/0
+Injectable solution 10% glucose, 0.9% sodium chloride (equivalent to 150 mmol/L Na+ and 150	mmol/L Cl-)	1000 ml	1,880	1,880	1,880	1,880	1/1
+
+ORAL REHYDRATION SALTS (10)
+Powder for reconstitution 200ml		1 sachet	0,850	0,850	0,850	0,850	1/1	
+Powder for reconstitution 500ml		1 sachet	0,100	1,000	0,293	0,196	3/3	
+Powder for reconstitution 1000ml	1 sachet	0,012	1,800	0,125	0,083	6/5		
+
+POTASSIUM CHLORIDE (4)
+Solution for dilution 7.5% (equivalent to K 1 mmol/ml and Cl 1 mmol/ml)	20-ml amp	0,387	0,387	0,387	0,387	1/1	
+Solution for dilution 15% (equivalent to K 2 mmol/ml and Cl 2 mmol/ml) 	10-ml amp	0,150	1,120	0,243	0,196	3/2	
+
+SODIUM CHLORIDE (2)
+Injectable solution 0.9% isotonic (equivalent to Na+ 154 mmol/L, Cl- 154 mmol/L)	100 ml	0,650	0,873	0,762	0,706	2/2
+
+SODIUM HYDROGEN CARBONATE (0)
+Injectable solution: 1.4% isotonic (equivalent to Na+ 167mmol/L, HCO3 167mmol/L)	ml	n.a.	n.a.	n.a.	n.a.	0/0	
+Solution: 8.4% (equivalent to Na+ 1000mmol/L, HCO3- 1000mmol/L)                 	amp	n.a.	n.a.	n.a.	n.a.	0/0	
+
+SODIUM LACTATE COMPOUND (3)
+Injectable solution	1000 ml	1,177	1,400	1,288	1,233	2/2
+
+ZINC SULFATE (11)
+Oral liquid 10 mg/ 5 mli	5 ml	0,021	0,021	0,021	0,021	1/1	
+Tablet 10mg (dispersable)	1 tab	0,008	0,019	0,010	0,009	3/2	
+Tablet 20mg (scored)	1 tab	0,011	0,060	0,020	0,018	4/3	
+
+---
+P19 HIV/AIDS
+PRODUCT (NR OF MANUFACTURERS)
+
+ABACAVIR (8)
+Oral liquid 20mg/ml (as sulfate)	3 ml	0,099	0,172	0,135	0,117	2/1	
+Tablet 60mg (as sulfate)		1 tab	0,092	0,324	0,100	0,096	3/1		
+Tablet 300mg (as sulfate)		1 tab	0,325	0,417	0,350	0,333	5/1	
+
+ABACAVIR + LAMIVUDINE (4)
+Tablet 60mg + 30mg	1 tab	0,125	0,125	0,125	0,125	1/1	
+Tablet 600mg + 300mg	1 tab	0,767	0,767	0,767	0,767	1/1	
+
+ABACAVIR + LAMIVUDINE + ZIDOVUDINE (3)
+Tablet 60mg + 30mg + 60mg	1 tab	0,192	0,192	0,192	0,192	1/1	
+Tablet 300mg + 150mg + 300mg	1 tab	0,325	0,325	0,325	0,325	1/1	
+
+ATAZANAVIR (3)
+Capsule 100mg	1 cap	n.a.	n.a.	n.a.	n.a.	0/0	
+Capsule 150mg	1 cap	n.a.	n.a.	n.a.	n.a.	0/0	
+Capsule 300mg	1 cap	n.a.	n.a.	n.a.	n.a.	0/0	
+
+DIDANOSINE (4)
+Buffered powder for oral liquid: 100mg pacet	1 pack	12,590	12,590	 12,590	12,590	1/1	
+Buffered powder for oral liquid: 167mg pack	1 pack	n.a.	n.a.	 n.a.	n.a.	0/0	
+Buffered powder for oral liquid: 250mg pack	1 pack	n.a.	n.a.	 n.a.	n.a.	0/0	
+Capsule 125mg (unbuffered enteric-coated)	1 cap	n.a.	n.a.	 n.a.	n.a.	0/0	
+Capsule 200mg (unbuffered enteric-coated)	1 cap	n.a.	n.a.	 n.a.	n.a.	0/0	
+Capsule 250mg (unbuffered enteric-coated)	1 cap	0,330	0,611	 0,471	0,400	2/2	
+Capsule 400mg (unbuffered enteric-coated)	1 cap	n.a.	n.a.	 n.a.	n.a.	0/0	
+Powder for reconstitution 2g	                1 bottle	n.a.	n.a.	 n.a.	n.a.	0/0	
+Powder for reconstitution 4g	                1 bottle	n.a.	n.a.	 n.a.	n.a.	0/0	
+Tablet 25mg (buffered chewable, dispersible)	1 tab	0,052	0,052	 0,052	0,052	1/1	
+Tablet 50mg (buffered chewable, dispersible)	1 tab	0,092	0,092	 0,092	0,092	1/1	
+Tablet 100mg (buffered chewable, dispersible)	1 tab	0,150	0,220	 0,213	0,181	3/2	
+Tablet 150mg (buffered chewable, dispersible)	1 tab	0,225	0,308	 0,267	0,246	2/2	
+Tablet 200mg (buffered chewable, dispersible)	1 tab	0,308	0,425	 0,367	0,338	2/2	
+
+EFAVIRENZ (10)
+Capsule 50mg		1 cap	0,075	0,083	0,079	0,077	2/1	
+Capsule 100mg	                1 cap	0,042	0,042	0,042	0,042	1/1	
+Capsule 200mg	                1 cap	0,094	0,133	0,119	0,110	4/1	
+Oral liquid 150mg/5ml	1 ml	0,094	0,094	0,094	0,094	1/1	
+Tablet 50mg	                1 tab	n.a.	n.a.	n.a.	n.a.	0/0	
+Tablet 100mg	                1 tab	n.a.	n.a.	n.a.	n.a.	0/0	
+Tablet 200mg	                1 tab	0,100	0,100	0,100	0,100	1/1	
+Tablet (scored) 600mg	1 tab	0,200	0,350	0,292	0,246	3/1	
+
+EFAVIRENZ + EMTRICITABINE (0)
+Tablet 100mg + 35mg	1 tab	n.a.	n.a.	n.a.	n.a.	0/0
+
+EMTRICITABINE (4)
+Capsule 200 mg		1 cap	0,250	0,250	0,250	0,250	1/1	
+Oral liquid 10mg/ml	1 ml	n.a.	n.a.	n.a.	n.a.	0/0	
+
+P20 
+LAMIVUDINE (8)
+Granules 25mg pack	1 pack	n.a.	n.a.	n.a.	n.a.	0/0	
+Oral liquid 50 mg/5ml	5 ml	0,040	0,053	0,046	0,043	2/1	
+Tablet: 150 mg	                1 tab	0,042	0,058	0,050	0,047	6/1	
+
+LAMIVUDINE + NEVIRAPINE + STAVUDINE (8)
+Tablet (dispersible) 30mg + 50mg + 6mg	1 tab	0,033	0,040	0,037	0,035	2/1	
+Tablet (dispersible) 60mg + 100mg + 12mg        1 tab	0,042	0,076	0,059	0,050	2/1	
+Tablet 150mg + 200mg + 30mg                     1 tab	0,092	0,173	0,102	0,100	5/2	
+
+LAMIVUDINE + NEVIRAPINE + ZIDOVUDINE (9)
+Tablet (dispersible) 30mg + 50mg + 60mg	1 tab	0,142	0,142	0,142	0,142	1/1	
+Tablet 150mg + 200mg + 300mg		1 tab	0,203	0,372	0,207	0,204	5/2	
+
+LAMIVUDINE + STAVUDINE (1)
+Tablet (dispersible) 30 mg + 6 mg	1 tab	0,032	0,032	0,032	0,032	1/1
+
+LAMIVUDINE + ZIDOVUDINE (9)
+Tablet (dispersible) 30mg + 60mg	1 tab	0,060	0,060	0,060	0,060	1/1	
+Tablet 150mg + 300mg	                1 tab	0,150	0,283	0,158	0,153	5/2	
+
+LOPINAVIR + RITONAVIR (5)
+Oral liquid 400mg + 100mg/5ml		5 ml	0,603	0,710	0,656	0,630	2/2	
+Tablet (heat stable) 100mg + 25mg	1 tab	0,151	0,204	0,177	0,164	2/2	
+Tablet (heat stable) 200mg + 50mg	1 tab	0,301	0,341	0,330	0,320	4/2	
+
+NEVIRAPINE (9)
+Oral liquid 50 mg/5ml	5 ml	0,043	0,260	0,053	0,048	3/2	
+Tablet 50mg		1 tab	0,022	0,022	0,022	0,022	1/1	
+Tablet 200mg		1 tab	0,047	0,300	0,052	0,048	6/2	
+
+RITONAVIR (2)
+Capsule 100mg		1 cap	0,114	0,583	0,349	0,231	2/2	
+Oral liquid 400 mg/5ml          5 ml	0,457	0,457	0,457	0,457	1/1	
+Tablet (heat stable) 25mg       1 tab	n.a.	n.a.	n.a.	n.a.	0/0	
+Tablet (heat stable) 100mg      1 tab	0,114	0,114	0,114	0,114	1/1	
+
+SAQUINAVIR (1)
+Capsule 200mg		1 cap	n.a.	n.a.	n.a.	n.a.	0/0	
+
+STAVUDINE (9)
+Capsule 15mg			1 cap	0,025	0,027	0,026	0,025	2/1	
+Capsule 20mg			1 cap	0,025	0,028	0,026	0,026	2/1	
+Capsule 30mg			1 cap	0,027	0,042	0,032	0,028	4/1	
+Powder for oral liquid 5 mg/5ml		5 ml	0,038	0,038	0,038	0,038	1/1	
+
+ZIDOVUDINE (10)				
+Capsule 100mg			1 cap	0,050	0,058	0,053	0,051	3/1	
+Capsule 250mg	                                1 cap	n.a.            n.a.	n.a. 	n.a.	0/0	 
+Oral liquid 50mg/5ml	                1 ml	0,009           0,012	0,009           0,009	3/1	
+Solution for IV infusion/ injection: 10 mg/ml	1 ml	n.a.            n.a.	n.a.            n.a.	0/0	
+Tablet: 100mg	                                1 tab	n.a.            n.a.	n.a.            n.a.	0/0	
+Tablet: 250mg	                                1 tab	n.a.            n.a.	n.a.            n.a.	0/0	
+Tablet 300mg                                    1 tab	0,133           0,142	0,134           0,133	4/1	
+
+---                                                                                                
+P21 MALARIA
+ARTEMETHER (8)
+Oily injection 20mg/ml in 1-ml ampoule	1-ml amp	
+Oily injection 40 mg/ml in 1-ml ampoule	1-ml amp	
+Oily injection 40mg/ml in 2-ml ampoule	2-ml amp	
+Oily injection 80mg/ml in 1-ml ampoule	1-ml amp	
+
+ARTEMETHER + LUMEFANTRINE (11)
+Tablet 20mg + 120mg		1 tab	
+Tablet (dispersible) 20mg + 120mg	1 tab	
+
+ARTESUNATE (7)
+Injection 60 mg anhydrous artesunic acid with a separate ampoule of 5% sodium bicarbonate	1 vial	
+Rectal dosage form: 50 mg	                                                                1 dose	
+Rectal dosage form: 200mg	                                                                1 dose	
+
+ARTESUNATE + AMODIAQUINE (12)
+Tablet (fixed-dose) 25mg + 67.5mg	1 tab	
+Tablet (fixed-dose) 50mg + 135mg	1 tab	
+Tablet (fixed-dose) 50mg + 153mg	1 tab	
+Tablet (fixed-dose) 100mg + 270mg	1 tab	
+
+ARTESUNATE + MEFLOQUINE (1)
+Tablet (co-blister) 50mg + 250mg	1 tab	
+Tablet (co-blister) 100mg + 250mg	1 tab	
+
+ARTESUNATE + SULFADOXINE-PYRIMETHAMINE (5)
+Tablet 50mg + 525mg	1 tab
+
+CHLOROQUINE (10)
+Oral liquid 50mg/5ml (as phosphate or sulfate)	1 ml	
+Tablet: 100mg (as phosphate or sulfate)	1 tab	
+Tablet 150mg (as phosphate or sulfate)	1 tab	
+
+PRIMAQUINE (4)
+Tablet: 7.5 mg (as diphosphate)	1 tab	
+Tablet: 15 mg (as diphosphate)	1 tab	
+
+PROGUANIL (3)
+Tablet: 100mg (hydrochloride)	1 tab
+
+QUININE (20)
+Injection: 300 mg as hydrochloride/ml	2-ml amp	
+Tablet: 300 mg (as sulfate)		1 tab	
+
+SULFADOXINE + PYRIMETHAMINE (15)
+Tablet: 500mg + 25mg	1 tab
+
+---
+P22 MATERNAL AND NEWBORN CARE
+AMPICILLIN (12)			
+Capsule: 250mg			1 cap	
+Capsule: 500mg			1 cap	
+Oral Liquid: 125mg/5 ml		1 ml	
+Oral Liquid: 250mg/5 ml		1 ml	
+Powder for injection: 500mg (as sodium salt)	1 vial	
+Powder for injection: 1g (as sodium salt)	1 vial	
+
+CAFFEINE CITRATE (0)
+Injection: 20mg/ml (equivalent to 10 mg caffeine base/ml)	1 vial	
+Oral liquid: 20mg/ml (equivalent to 10 mg caffeine base /ml)	1 ml	
+
+CEFOTAXIME (17)
+Powder for injection: 250mg (as sodium salt)	1 vial	
+Powder for injection: 500mg (as sodium salt)	1 vial	
+
+CEFTRIAXONE (24)
+Powder for injection: 250mg (as sodium salt)	1 vial	
+Powder for injection: 1g (as sodium salt)	1 vial	
+
+CLOXACILLIN (9)
+Capsule: 250mg			1 cap	
+Capsule: 500mg			1 cap	
+Powder for injection: 500mg (as sodium salt)	1 vial	
+Powder for oral suspension: 250mg/5 ml	1 ml	
+Tablet (dispersible): 250mg		1 tab	
+
+FLUCLOXACILLIN (1)
+Powder for oral suspension: 250mg/5ml	1 ml
+
+GENTAMYCIN (14)
+Injection: 10mg/ml		2-ml vial	
+Injection: 40mg/ml		2-ml vial	
+Solution (eye drops): 0.3% (sulfate)	1 ml	
+		
+PHENOBARBITAL (7)
+Injection: 200mg/ml (as sodium salt)	1-ml amp	
+Oral liquid:15mg/5ml (phenobarbital)	1 ml	
+Tablet: 15mg			1 tab	
+Tablet: 30mg			1 tab	
+
+PHYTOMENADIONE / VITAMIN K (6)
+Injection: 1mg/ml	1-ml amp	
+Injection: 10mg/ml	5-ml amp	
+Tablet: 10mg	                1 tab	
+	
+P23
+PROSTAGLANDIN E (0)
+Solution for injection: Prostaglandin E1: 0.5mg/ml	1 ml	
+Solution for injection: Prostaglandin E2: 1mg/ml	1 ml	
+
+SURFACTANT (0)
+Suspension for intratracheal instillation: 25mg/ml	1 ml	
+Suspension for intratracheal instillation: 80mg/ml	1 ml	
+
+TETRACYCLINE (3)
+Eye ointment: 1%	1g
+
+---
+P24 NEGLECTED TROPICAL DISEASES
+
+BENZNIDAZOLE (0)
+Tablet: 100mg		1 tab
+	
+CLOFAZIMINE (1)
+Capsule: 50mg		1 cap	
+Capsule: 100mg		1 cap	
+
+DAPSONE (2)	
+Tablet: 25mg	1 tab	
+Tablet: 50mg	1 tab	
+Tablet: 100mg	1 tab	
+
+DILOXANIDE (2)	
+Tablet: 500mg (furoate)	1 tab	
+
+EFLORNITHINE (1)	
+Injection: 200mg (hydrochloride)/ml	1 ml	
+
+MELARSOPROL (0)	
+Injection: 3.6% solution in 5-ml ampoule (180mg of active compound)	5-ml amp	
+
+NIFURTIMOX (0)	
+Tablet: 30mg	1 tab	
+Tablet: 120mg	1 tab	
+Tablet: 250mg	1 tab	
+
+PAROMOMYCIN (0)	
+Solution for intramuscular injection: 750mg of paromomycin base present as the sulfate	1 ml	
+
+PENTAMIDINE (0)	
+Powder for injection: 200mg (pentamidine isetionate) in vial	1 vial	
+
+RIBAVIRIN (1)	
+Capsule: 200mg						1 cap               
+Capsule: 400mg						1 cap
+Capsule: 600mg						1 cap
+Injection for intravenous administration: 1g in	10-ml phosphate buffer solution		1 ml 
+Injection for intravenous administration: 800mg	in 10-ml phosphate buffer solution	1 ml 
+Tablet: 200mg						1 tab
+Tablet: 400mg						1 tab
+Tablet: 600mg						1 tab
+
+SODIUM STIBOGLUCONATE OR MEGLUMINE ANTIMONIATE (0)
+Injection: 100mg/ml, 1 vial = 30ml or 30%, equivalent to approximately 8.1% antimony	1 ml	
+
+SURAMIN SODIUM (0)	
+Powder for injection: 1g	1 vial	
+	
+P25 NUTRITION Vitamin and mineral supplementation
+
+F-75 THERAPEUTIC DIET (3)
+Sachet	1 sachet
+
+F-100 THERAPEUTIC DIET (3)
+Sachet	1 sachet
+
+READY TO USE THERAPEUTIC FOOD / RUTF (6)
+Paste, spread equivalent to 500kcal per dose	1g
+
+ALFACALCIDOL / 1α-HYDROXYCHOLECALCIFEROL (1)
+Capsule: 250 nanograms	1 cap	
+Capsule: 500 nanograms	1 cap	
+Capsule: 1 microgram	1 cap	
+Injection: 2 micrograms/ml	1 ml	
+Oral drops: 2 micrograms/ml	1 ml	
+
+ASCORBIC ACID / VITAMIN C (3)
+Tablet: 50mg		1 tab
+
+CHOLECALCIFEROL / VITAMIN D3 (0)
+Capsule: 400 IU		1 cap	
+Capsule: 1000 IU	1 cap	
+Oral liquid: 400 IU/ml	1 ml	
+Tablet: 400 IU		1 tab	
+Tablet: 1000 IU		1 tab	
+
+FERROUS SALT (5)
+Oral liquid: equivalent to 25mg elemental iron)/ml	1 ml	
+Tablet: equivalent to 60mg elemental iron		1 tab	
+
+FOLIC ACID (10)
+Tablet: 1mg	1 tab	
+Tablet: 5mg	1 tab	
+
+HYDROXOCOBALAMINE / VITAMIN B12 (4)
+Injection: 1mg	1-ml amp
+
+IODATE SALT MIXTURE (2)
+Salt mixture	1g
+
+IODINE (1)
+Capsule: 200mg				1 cap	
+Iodized oil: 0.5ml (240mg iodine) in ampoule (oral/injectable)	1 ml	
+Iodized oil: 0.57ml (308mg iodine) in dispenser bottle	1 ml	
+Iodized oil: 1ml (480mg iodine) in dispenser bottle	1 ml	
+
+MICRONUTRIENT TABLETS (1)
+Tablets, paediatric	1 tab
+
+P26
+MUTIPLE MICRONUTRIENT POWDER (5)
+1g sachet	1 sachet
+
+PYRIDOXINE / VITAMIN B6 (3)
+Tablet: 25mg (hydrochloride)	1 tab
+
+RETINOL / VITAMIN E (4)
+Capsule: 100 000 IU (as palmitate)		1 cap	
+Capsule: 200 000 IU (as palmitate)		1 cap	
+Oral oily solution: 100 000 IU/ml (as palmitate)	1 ml	
+Tablet (sugar coated): 10 000 IU (as palmitate)	                1 tab	
+
+RIBOFLAVIN / VITAMIN B2 (1)
+Tablet: 5mg	1 tab
+
+SODIUM FLUORIDE (0)
+in any appropriate topical formulation	x
+
+THIAMINE / VITAMIN B1 (2)
+Tablet: 50mg (hydrochloride)		1 tab
+
+---
+P27 OPPORTUNISTIC INFECTIONS
+
+ACETIC ACID (0)
+Topical: 2%, in alcohol	1 ml
+
+ACICLOVIR (11)
+Ointment: 3% W/W		1g	
+Oral liquid: 200mg/5ml	                1 ml	
+Powder for injection: 250mg (as sodium salt)	1 vial	
+Tablet (dispersible): 200mg	                1 tab	
+Tablet: 200mg	                                1 tab	
+
+ALBENDAZOLE (23)
+Suspension: 100mg/5 ml	1 ml	
+Tablet (chewable): 400mg	1 tab	
+
+AMPHOTERICIN B (6)
+Powder for injection: 50mg		1 vial	
+Powder for injection: 50mg (lipid formulation)	1 vial	
+
+AZITHROMYCIN (12)
+Oral liquid: 200mg/5ml	1 ml	
+Tablet (dispersible): 100mg	1 tab	
+Tablet (dispersible): 125mg	1 tab	
+Tablet (dispersible): 250mg	1 tab	
+
+BENZATHINE BENZYLPENICILLINE (3)
+Powder for injection: 900mg benzylpenicilline (=1.2 million IU)	5-ml vial	
+Powder for injection: 1.44g benzylpenicilline (=2.4 million IU)	5-ml vial	
+
+BENZOIC ACID + SALICYLIC ACID (2)
+Cream or ointment: 6% + 3%	1g
+
+BENZOYL PEROXIDE (0)
+Cream or lotion: 5%	1g
+
+BENZYL BENZOATE (2)
+Lotion: 25%	1 ml
+
+BETAMETHASONE (2)
+Cream or ointment: 0.1% (as valerate)	1g
+
+BLEOMYCIN (1)
+Powder for injection: 15mg (as sulfate)	1 vial
+
+CALAMINE LOTION (4)
+Lotion	1g
+
+P28
+CEFALEXIN (10)
+Capsule: 250mg			1 cap	
+Powder for oral suspension: 125mg/5 ml	1 ml	
+Powder for oral suspension: 250mg/5 ml	1 ml	
+Tablet: 250mg			1 tab	
+
+CEFAZOLIN (7)
+Powder for injection: 1g (as sodium salt)	1 vial
+
+CEFIXIME (7)
+Powder for oral suspension: 100mg/5 ml	1 ml	
+Tablet (dispersible): 100mg		1 tab	
+Tablet (dispersible): 200mg		1 tab	
+
+CEFTAZIDIME (8)
+Powder for injection: 250mg (as pentahydrate)	1 vial	
+Powder for injection: 1g (as pentahydrate)	1 vial	
+
+CHLORAMPHENICOL (10)
+Capsule: 250mg				1 cap	
+Oily suspension for injection: 0.5g (as sodium succinate)/ml	1 ml	
+Oral liquid: 150mg (as palmitate)/5 ml		1 ml	
+Powder for injection: 1g (sodium succinate) in vial	1 vial	
+
+CHLORPHENAMINE (11)
+Injection: 10mg (hydrogen maleate)	1-ml amp	
+Oral liquid: 2mg/5ml		1 ml	
+Tablet: 4mg (hydrogen maleate)		1 tab	
+
+CIPROFLOXACIN (17)
+Oral liquid: 250mg/5ml		1 ml	
+Solution for IV infusion: 2mg/ml	1 ml	
+Tablet: 250mg (as hydrochloride)	1 tab	
+Topical: 0.3% drops		1 ml	
+
+CLINDAMYCIN (5)
+Capsule: 150mg			1 cap	
+Injection: 150mg (as phosphate)/ml	1 vial	
+Oral liquid: 75mg/5ml		1 ml	
+
+COAL TAR (0)	
+Solution: 5%	1 ml
+
+DIETHYLCARBAMAZINE (1)
+Tablet: 50mg (dihydrogen citrate)	1 tab	
+Tablet: 100mg (dihydrogen citrate)	1 tab	
+
+DOXICYCLINE (22)
+Capsule. 100mg (as hydrochloride)	1 cap	
+Tablet (dispersible): 100mg (as monohydrate)	1 tab	
+
+P29
+FLUCONAZOLE (20)
+Capsule: 50mg		1 cap		
+Injection 2mg/ml	1 vial	
+Oral liquid: 50mg/5ml	1 ml	
+
+FLUCYTOSINE (1)	
+Capsule: 250mg		1 cap	
+Infusion:10mg/ml	1 ml		
+
+GRISEOFULVIN (8)	
+Capsule: 125mg		1 cap		
+Capsule: 250mg		1 cap	
+Oral liquid: 125mg/5ml	1 ml	
+Tablet: 125mg		1 tab	
+Tablet: 250mg		1 tab	
+
+HYDROCORTISONE (11)	
+Cream or ointment: 1% (acetate)			1g		
+Powder for injection: 100mg (as sodium succinate)	1 vial	
+Tablet: 5mg	                                                1 tab	
+Tablet: 10mg	                                                1 tab	
+Tablet: 20mg	                                                1 tab	
+
+IMIPENEM + CILASTATIN (2)	
+Powder for injection: 250mg (as monohydrate) + 250mg (as sodium salt)	1 vial	
+Powder for injection: 500mg (as monohydrate) + 500mg (as sodium salt)	1 vial	
+
+IVERMECTIN (1)	
+Tablet (scored): 3mg	1 tab	
+Tablet (scored): 6mg	1 tab	
+
+LEVAMISOLE (1)	
+Tablet: 50mg (as hydrochloride)		1 tab	
+Tablet: 150mg (as hydrochloride)	1 tab		
+
+MEBENDAZOLE (18)	
+Suspension: 100mg/5ml	1 ml	
+Tablet (chewable): 100mg	1 tab	
+Tablet (chewable): 500mg	1 tab	
+
+METHYLROSANILINIUM CHLORIDE / GENTIAN VIOLET (1)
+Aqueous solution: 0.5%	1 ml	
+Tincture: 0.5%	                1 ml	
+
+METRONIDAZOLE (17)	
+Injection: 500mg		100-ml vial		
+Oral liquid: 200mg (as benzoate)/5ml	1 ml		
+Tablet: 200mg			1 tab	
+Tablet: 500mg			1 tab	
+		
+P30	
+MICONAZOLE (5)
+Cream or ointment: 2% (nitrate)		1g
+
+NEOMYCIN SULFATE + BACITRACIN (2)
+Ointment: 5mg neomycin sulfate + 250 IU bacitracin/g	1g	
+Ointment: 5mg neomycin sulfate + 500 IU bacitracin/g	1g	
+
+NICLOSAMIDE (2)	
+Tablet (chewable): 500mg	1 tab	
+
+NITROFURANTOIN (3)	
+Oral liquid: 25mg/5ml	1 ml	
+Tablet: 100mg	                1 tab	
+
+NYSTATIN (6)	
+Drops 100,000 IU (suspension)		1 ml		
+Lozenge: 100 000 IU		1 ml	
+Oral liquid: 50mg/5ml; 100 000 IU/ml	1 ml	
+Tablet: 100 000 IU		1 tab	
+Tablet: 500 000 IU		1 tab	
+
+OXAMNIQUINE (0)	
+Capsule: 250mg		1 cap		
+Oral liquid: 250mg/5ml	1 ml	
+
+PERMETHRIN (0)	
+Cream 5%	1g	
+Lotion 1%	1 ml	
+
+PHENOXYMETHYLPENICILLIN (5)	
+Powder for oral liquid: 250mg (as potassium salt)/5 ml	1 ml	
+Tablet: 250mg (as potassium salt)		1 tab		
+
+PODOPHYLLUM RESIN (0)	
+Solution: 10%	1 ml	
+Solution: 25%	1 ml	
+
+
+POTASSIUM IODIDE (2)	
+Saturated solution	1 ml	
+
+POTASSIUM PERMANGANATE (0)	
+Aqueous solution: 1:10 000	1 ml	
+
+PRAZIQUANTEL (12)	
+Tablet: 150mg	1 tab	
+Tablet: 600mg	1 tab	
+
+PROCAINE BENZYLPENICILLINE (2)	
+Powder for injection: 1g (=1 million IU)	1 vial	
+Powder for injection: 3g (=3 million IU)	1 vial	
+
+P31		
+PYRANTEL (0)
+Oral liquid: 50mg (as embonate)/ml	1 ml	
+
+PYRIMETHAMINE (1)	
+Tablet: 25mg	1 tab	
+
+SALICYLIC ACID (0)	
+Solution: 5%	1 ml	
+
+SELENIUM SULFIDE (0)	
+Detergent-based suspension: 2%	1 ml	
+
+SILVER SULFADIAZINE (7)	
+Cream: 1%	1g	
+
+SULFAMETHOXAZOLE + TRIMETHOPRIM / COTRIMOXAZOLE (36)
+Injection: 80mg + 16mg/ml		1 ml		
+Oral suspension: 200mg + 40mg /5ml	1 ml	
+Powder for oral suspension: 200mg + 40mg/5ml	1 ml	
+Tablet (dispersible): 100mg + 20mg	1 tab	
+Tablet: 400mg + 80mg	                1 tab	
+Tablet 800mg + 160mg	                1 tab	
+
+TRICLABENDAZOLE (0)	
+Tablet: 250mg	1 tab	
+
+TRIMETHOPRIM (1)	
+Oral liquid: 50mg/5ml	1 ml	
+Tablet: 100mg	                1 tab	
+Tablet: 200mg	                1 tab	
+
+UREA (0)	
+Cream or ointment: 10%	1g
+
+VANCOMYCIN (2)	
+Powder for injection: 250mg (as hydrochloride)	1 vial	
+
+VINCRISTINE (2)	
+Powder for injection: 1mg (sulfate)	1 vial	
+Powder for injection: 5mg (sulfate)	1 vial	
+
+P32 PAIN AND PALLIATIVE CARE		
+P33	
+	
+P34 PNEUMONIA	
+	
+P35 TUBERCULOSIS	
+P36
+
+P37 OTHER CAUSES
+P38
+P39
+P40
+P41
+P42
+
+
+
