@@ -29,6 +29,9 @@ namespace UnicefVirtualWarehouse.Controllers
 
         public ActionResult Create()
         {
+            if (!Request.IsAuthenticated)
+                return RedirectToAction("Index");
+
             return View();
         } 
 
@@ -40,6 +43,8 @@ namespace UnicefVirtualWarehouse.Controllers
         {
             try
             {
+                if (!Request.IsAuthenticated)
+                    return RedirectToAction("Index");
                 // TODO: Add insert logic here
 
                 return RedirectToAction("Index");
@@ -55,6 +60,9 @@ namespace UnicefVirtualWarehouse.Controllers
  
         public ActionResult Edit(int id)
         {
+            if (!Request.IsAuthenticated)
+                return RedirectToAction("Index");
+            
             return View();
         }
 
@@ -66,6 +74,8 @@ namespace UnicefVirtualWarehouse.Controllers
         {
             try
             {
+                if (!Request.IsAuthenticated)
+                    return RedirectToAction("Index");
                 // TODO: Add update logic here
  
                 return RedirectToAction("Index");
@@ -81,6 +91,8 @@ namespace UnicefVirtualWarehouse.Controllers
  
         public ActionResult Delete(int id)
         {
+            if (!Request.IsAuthenticated)
+                return RedirectToAction("Index");
             return View();
         }
 
@@ -92,6 +104,8 @@ namespace UnicefVirtualWarehouse.Controllers
         {
             try
             {
+                if (!Request.IsAuthenticated)
+                    return RedirectToAction("Index");
                 // TODO: Add delete logic here
  
                 return RedirectToAction("Index");

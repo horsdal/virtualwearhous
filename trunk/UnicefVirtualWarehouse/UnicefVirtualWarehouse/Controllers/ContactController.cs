@@ -32,6 +32,9 @@ namespace UnicefVirtualWarehouse.Controllers
 
         public ActionResult Create()
         {
+            if (!Request.IsAuthenticated)
+                return RedirectToAction("Index");
+            
             return View();
         } 
 
@@ -41,7 +44,10 @@ namespace UnicefVirtualWarehouse.Controllers
 		[AcceptVerbs(HttpVerbs.Post)]
 		public ActionResult Create(FormCollection form)
 		{
-			var contact = new Contact 
+            if (!Request.IsAuthenticated)
+                return RedirectToAction("Index");
+            
+            var contact = new Contact 
 			{
 				Address = form["Address"],
 				Zip = form["Zip"],
