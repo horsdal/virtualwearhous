@@ -1,4 +1,4 @@
-﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Views/Shared/Site.Master" Inherits="System.Web.Mvc.ViewPage<UnicefVirtualWarehouse.Models.Product>" %>
+﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Views/Shared/Site.Master" Inherits="System.Web.Mvc.ViewPage<KeyValuePair<UnicefVirtualWarehouse.Models.Product, IEnumerable<UnicefVirtualWarehouse.Models.ProductCategory>>>" %>
 
 <asp:Content ID="Content1" ContentPlaceHolderID="TitleContent" runat="server">
 	Unicef Virtual Warehouse: Create Product
@@ -15,11 +15,19 @@
             <legend>Fields</legend>
             
             <div class="editor-label">
-                <%: Html.LabelFor(model => model.Name) %>
+                <%: Html.LabelFor(model => model.Key.Name) %>
             </div>
             <div class="editor-field">
-                <%: Html.TextBoxFor(model => model.Name) %>
-                <%: Html.ValidationMessageFor(model => model.Name) %>
+                <%: Html.TextBoxFor(model => model.Key.Name) %>
+                <%: Html.ValidationMessageFor(model => model.Key.Name) %>
+            </div>
+            <div class="display-label">
+                Category
+            </div>
+            <div class="editor-field">
+                <%:
+    Html.DropDownListFor(model => model.Value,
+                    Model.Value.Select(pc => new SelectListItem {Text = pc.Name, Value = pc.Id.ToString()}).ToList()) %>
             </div>
             
             <p>
@@ -27,7 +35,8 @@
             </p>
         </fieldset>
 
-    <% } %>
+    <%
+} %>
 
     <div>
         <%: Html.ActionLink("Back to List", "Index") %>

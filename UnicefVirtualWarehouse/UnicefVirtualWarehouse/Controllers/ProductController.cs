@@ -1,6 +1,8 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.Linq;
 using System.Web.Mvc;
+using System.Web.UI;
 using UnicefVirtualWarehouse.Models;
 
 namespace UnicefVirtualWarehouse.Controllers
@@ -36,7 +38,10 @@ namespace UnicefVirtualWarehouse.Controllers
         {
             if (!Request.IsAuthenticated)
                 return RedirectToAction("Index");
-            return View();
+
+            var categories = MvcApplication.CurrentUnicefContext.ProductCatagories.ToList();
+            var prod = new Product();
+            return View(new KeyValuePair<Product, IEnumerable<ProductCategory>>(prod, categories));
         }
 
         [AcceptVerbs(HttpVerbs.Post)]
@@ -45,9 +50,12 @@ namespace UnicefVirtualWarehouse.Controllers
             if (!Request.IsAuthenticated)
                 return RedirectToAction("Index");
 
-            var product = new Product { Name = form["Name"], Presentations = new List<Presentation>() };
+            var product = new Product {Name = form["Key.Name"], Presentations = new List<Presentation>()};
             var db = MvcApplication.CurrentUnicefContext;
             db.Product.Add(product);
+            var categoryId = int.Parse(form["Value"]);
+            var category = db.ProductCatagories.Include("Products").FirstOrDefault(cat => cat.Id == categoryId);
+            category.Products.Add(product);
             db.SaveChanges();
             
             return RedirectToAction("Index");
