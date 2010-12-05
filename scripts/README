@@ -1,0 +1,18 @@
+These bash scripts have been used to generate sql scripts to populate the product and presentation database tables.
+
+Below each file in the directory is briefly described
+
+SOURCES_AND_PRICES_2010.pdf	pdf from which data is taken from
+sourcesandprices.txt		text version of (some of) the data in the pdf
+
+med.sh				data extraction script
+				depending on the number of arguments different data is output
+				med.sh <CATEGORY> <PRODUCT> <PRESENTATION> <COLUMN>
+				for each argument '*' can be specified. Not all functionality is currently implemented
+
+products.sh			generates sql insert script of all products
+products.txt			output from products.sh
+presentations.sh		generates sql insert script of all presentations
+presentations.txt		output from presentations.sh
+
+README				this file
