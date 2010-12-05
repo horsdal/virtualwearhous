@@ -28,9 +28,8 @@ namespace UnicefVirtualWarehouse
             routes.MapRoute(
                 "Default", // Route name
                 "{controller}/{action}/{id}", // URL with parameters
-                new { controller = "Home", action = "Index", id = UrlParameter.Optional } // Parameter defaults
+                new { controller = "ProductCategory", action = "Index", id = UrlParameter.Optional } // Parameter defaults
             );
-
         }
 
         protected void Application_Start()
@@ -44,7 +43,7 @@ namespace UnicefVirtualWarehouse
         {
             UnicefContext uc = new UnicefContext();
             //uc.Database.Connection.ConnectionString("Data Source=.\SQLEXPRESS;Initial Catalog=UnicefVirtualWarehouse;Integrated Security=SSPI;");    
-            uc.Database.Connection.ConnectionString = @"Data Source=.\SQLEXPRESS;Initial Catalog=UnicefVirtualWarehouse.UnicefContext;Integrated Security=SSPI;";
+            uc.Database.Connection.ConnectionString = @"Data Source=.;Initial Catalog=UnicefVirtualWarehouse.UnicefContext;Integrated Security=SSPI;";
 
             uc.Database.CreateIfNotExists();
 
@@ -56,7 +55,6 @@ namespace UnicefVirtualWarehouse
             var context = HttpContext.Current.Items[unicefContext] as UnicefContext;
             context.Dispose();
         }
-
 
     }
 }
