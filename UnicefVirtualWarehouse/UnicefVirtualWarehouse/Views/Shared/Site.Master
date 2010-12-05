@@ -9,10 +9,10 @@
 
 <body>
     <div class="page">
-
+		<img src="../../Content/unicef_logo.gif" />
         <div id="header">
-            <div id="title">
-                <h1>UNICEF Virtual Warehouse</h1>
+            <div id="title">                
+				<h1>Virtual Warehouse</h1>
             </div>
               
             <div id="logindisplay">
