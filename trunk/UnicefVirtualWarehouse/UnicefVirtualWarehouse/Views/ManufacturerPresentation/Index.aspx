@@ -1,5 +1,5 @@
 ﻿<%@ Page Title="" Language="C#" Inherits="System.Web.Mvc.ViewPage<System.Collections.Generic.IList<UnicefVirtualWarehouse.Models.ManufacturerPresentation>>" MasterPageFile="~/Views/Shared/Site.Master" %>
-<asp:Content runat="server" ID="Title" ContentPlaceHolderID="TitleContent"></asp:Content>
+<asp:Content runat="server" ID="Title" ContentPlaceHolderID="TitleContent">Unicef Virtual Warehouse Product Presentations</asp:Content>
 <asp:Content runat="server" ID="Main" ContentPlaceHolderID="MainContent">
 <h3>Product Presentations from Manufacturers</h3>
 <% int counter = 0; %>
