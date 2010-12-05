@@ -7,7 +7,7 @@
 			<% foreach(var p in Model){%>
 			<tr>
 				<td>
-					<a  href="../ManfucaturerPresentation/"><%=p.Name%></a>
+					<a  href="../../ManufacturerPresentation/Details/<%=p.Id %>"><%=p.Name%></a>
 				</td>
 			</tr>
 			<%}%>
