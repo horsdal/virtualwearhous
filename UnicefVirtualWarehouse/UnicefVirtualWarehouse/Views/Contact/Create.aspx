@@ -17,6 +17,7 @@
             <div class="editor-label">
                 <%: Html.LabelFor(model => model.Address) %>
             </div>
+
             <div class="editor-field">
                 <%: Html.TextBoxFor(model => model.Address) %>
                 <%: Html.ValidationMessageFor(model => model.Address) %>
@@ -25,6 +26,7 @@
 			<div class="editor-label">
                 <%: Html.LabelFor(model => model.Zip) %>
             </div>
+
             <div class="editor-field">
                 <%: Html.TextBoxFor(model => model.Zip) %>
                 <%: Html.ValidationMessageFor(model => model.Zip) %>
