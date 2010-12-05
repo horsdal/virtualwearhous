@@ -12,8 +12,9 @@
 			<tr><td>Phone:</td><td> <%=p.Phone%></td></tr>
 			<tr><td>Fax:</td><td> <%=p.Fax%></td></tr>
 			<tr><td>Email:</td><td> <%=p.Email%></td></tr>
-			<tr><td>Website:</td><td> <%=p.Website%></td></tr>
+			<tr><td>Web Site:</td><td> <%=p.Website%></td></tr>
 		</table>
+
 	<%}%>
 <%}else{%>
     <p>No contacts available</p>
