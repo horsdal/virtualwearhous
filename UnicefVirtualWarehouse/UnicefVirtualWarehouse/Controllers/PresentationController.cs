@@ -38,6 +38,8 @@ namespace UnicefVirtualWarehouse.Controllers
 
         public ActionResult Create()
         {
+            if (!Request.IsAuthenticated)
+                return RedirectToAction("Index");
             return View();
         } 
 
@@ -47,7 +49,9 @@ namespace UnicefVirtualWarehouse.Controllers
 		[AcceptVerbs(HttpVerbs.Post)]
 		public ActionResult Create(FormCollection form)
 		{
-			var presentation = new Presentation { Name = form["Name"], Products = new List<Product>() };
+            if (!Request.IsAuthenticated)
+                return RedirectToAction("Index");
+            var presentation = new Presentation { Name = form["Name"], Products = new List<Product>() };
 			var db = MvcApplication.CurrentUnicefContext;
 
 			db.Presentations.Add(presentation);
@@ -61,6 +65,8 @@ namespace UnicefVirtualWarehouse.Controllers
  
         public ActionResult Edit(int id)
         {
+            if (!Request.IsAuthenticated)
+                return RedirectToAction("Index");
             return View();
         }
 
@@ -72,6 +78,8 @@ namespace UnicefVirtualWarehouse.Controllers
         {
             try
             {
+                if (!Request.IsAuthenticated)
+                    return RedirectToAction("Index");
                 // TODO: Add update logic here
  
                 return RedirectToAction("Index");
@@ -87,6 +95,8 @@ namespace UnicefVirtualWarehouse.Controllers
  
         public ActionResult Delete(int id)
         {
+            if (!Request.IsAuthenticated)
+                return RedirectToAction("Index");
             return View();
         }
 
@@ -98,6 +108,8 @@ namespace UnicefVirtualWarehouse.Controllers
         {
             try
             {
+                if (!Request.IsAuthenticated)
+                    return RedirectToAction("Index");
                 // TODO: Add delete logic here
  
                 return RedirectToAction("Index");

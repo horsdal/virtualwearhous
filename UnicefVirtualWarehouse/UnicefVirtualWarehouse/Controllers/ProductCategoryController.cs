@@ -21,7 +21,10 @@ namespace UnicefVirtualWarehouse.Controllers
 		[AcceptVerbs(HttpVerbs.Post)]
 		public ActionResult Create(FormCollection form)
 		{
-			var productCategory = new ProductCategory { Name = form["Name"] };
+            if (!Request.IsAuthenticated)
+                return RedirectToAction("Index");
+            
+            var productCategory = new ProductCategory { Name = form["Name"] };
 			var db = MvcApplication.CurrentUnicefContext;
 			
 			db.ProductCatagories.Add(productCategory);
