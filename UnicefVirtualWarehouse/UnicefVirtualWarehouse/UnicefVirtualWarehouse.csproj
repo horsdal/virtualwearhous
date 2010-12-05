@@ -92,8 +92,6 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="Global.asax" />
-    <Content Include="Models\sql\CreateTabels.sql" />
-    <Content Include="Models\sql\UnicefDB.sql" />
     <Content Include="Views\Presentation\Index.aspx" />
     <Content Include="Views\ProductCategory\Index.aspx" />
     <Content Include="Views\Product\Index.aspx" />
