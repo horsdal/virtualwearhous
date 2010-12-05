@@ -7,7 +7,7 @@
 		<th>Name</th>
 		<% int counter = 0; %>
 			<% foreach(var p in Model){%>
-			<tr>
+			<tr onMouseOver="this.bgColor='#FCEB8B'" onMouseOut="this.bgColor='#FFFFFF'">
 				<%=counter % 2 != 0 ? "<td style=\"background-color:#e8eef4\">" : "<td style=\"background-color:transparent\">"%>
 				<% counter++; %>
 					<a href="../../ManufacturerPresentation/Details/<%=p.Id %>"><%=p.Name%></a>
