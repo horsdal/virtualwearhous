@@ -2,12 +2,15 @@
 <asp:Content runat="server" ID="Title" ContentPlaceHolderID="TitleContent"></asp:Content>
 <asp:Content runat="server" ID="Main" ContentPlaceHolderID="MainContent">
 <% if(Model.Any()) { %>
-	<table>
-		<th> Presentation </th>
+	<h3>Presentation</h3>
+	<table width="100%">
+		<th>Name</th>
+		<% int counter = 0; %>
 			<% foreach(var p in Model){%>
 			<tr>
-				<td>
-					<a  href="../../ManufacturerPresentation/Details/<%=p.Id %>"><%=p.Name%></a>
+				<%=counter % 2 != 0 ? "<td style=\"background-color:#e8eef4\">" : "<td style=\"background-color:transparent\">"%>
+				<% counter++; %>
+					<a href="../../ManufacturerPresentation/Details/<%=p.Id %>"><%=p.Name%></a>
 				</td>
 			</tr>
 			<%}%>

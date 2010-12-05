@@ -27,6 +27,14 @@ namespace UnicefVirtualWarehouse.Controllers
             return View("index", productCategory.Products.ToList());
         }
 
+		public ActionResult Manufacturer(int id)
+		{
+			//IEnumerable<Presentation> manufacturerPresentations = 
+			//    MvcApplication.CurrentUnicefContext.ManufacturerPresentations.Include("Presentation").Where(man => man.Manufacturer.Id == id).Select(manPres => manPres.) ToList();
+
+			return View();
+		}
+
         public ActionResult Create()
         {
             return View();

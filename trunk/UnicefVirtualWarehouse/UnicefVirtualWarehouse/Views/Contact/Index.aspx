@@ -3,17 +3,18 @@
 <asp:Content runat="server" ID="Main" ContentPlaceHolderID="MainContent">
 <% if(Model.Any()) { %>
 	<%{%>
-	<ul>
 		<%var p = Model.FirstOrDefault();%>
-		<li>Address: <%=p.Address%></li>
-		<li>City: <%=p.City%></li>
-		<li>Email: <%=p.Email%></li>
-		<li>Fax: <%=p.Fax%></li>
-		<li>Phone: <%=p.Phone%></li>
-		<li>Website: <%=p.Website%></li>
-		<li>Zip: <%=p.Zip%></li>
+		<h3>Contact Details</h3>
+		<table>
+			<tr><td>Address:</td><td> <%=p.Address%></td></tr>
+			<tr><td>Zip:</td><td> <%=p.Zip%></td></tr>
+			<tr><td>City:</td><td> <%=p.City%></td></tr>
+			<tr><td>Phone:</td><td> <%=p.Phone%></td></tr>
+			<tr><td>Fax:</td><td> <%=p.Fax%></td></tr>
+			<tr><td>Email:</td><td> <%=p.Email%></td></tr>
+			<tr><td>Website:</td><td> <%=p.Website%></td></tr>
+		</table>
 	<%}%>
-	<ul>
 <%}else{%>
     <p>No contacts available</p>
 <%}%>

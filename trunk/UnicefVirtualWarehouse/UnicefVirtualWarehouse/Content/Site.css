@@ -59,6 +59,7 @@ h2
 }
 h3
 {
+	color: Gray;
     font-size: 1.2em;
 }
 h4
@@ -234,8 +235,9 @@ table th
 {
   padding: 6px 5px;
   text-align: left;
-  background-color: #e8eef4; 
-  border: solid 1px #e8eef4;   
+  background-color: #b0c4de; 
+  border: solid 1px #b0c4de; 
+  font-weight:bold;  
 }
 
 /* MISC  
