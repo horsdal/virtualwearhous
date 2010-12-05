@@ -8,5 +8,7 @@ To setup a basic development environment follow the steps below:
  * Install a subversion client, e.g. TortoiseSVN from http://tortoisesvn.net/downloads
  * Checkout with your SVN client. With a commandline client use this: 
         svn checkout https://virtualwearhous.googlecode.com/svn/trunk/ virtualwearhous --username <your email address>
+ * Open the Global.ascx and setup the connection string to your SQLExpress database (hint its probably called .\SQLExpress)
  * Open the UnicefVirtualWarehouse\UnicefVirtualWarehouse.sln file in Visual Studio
  * To run and debug the web app in locally press F5
+ * To seed the database with real data do a database restore from UnicefVirtualWarehouse\UnicefVirtualWarehouse\Models\Scripts\Demo data\DemoData.bak
