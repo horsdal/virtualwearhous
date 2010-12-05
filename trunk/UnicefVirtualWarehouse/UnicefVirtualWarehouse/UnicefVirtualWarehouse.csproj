@@ -73,6 +73,7 @@
     <Compile Include="Controllers\ConsumerController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\ManufacturerController.cs" />
+    <Compile Include="Controllers\ManufacturerPresentationController.cs" />
     <Compile Include="Controllers\PresentationController.cs" />
     <Compile Include="Controllers\ProductCategoryController.cs" />
     <Compile Include="Controllers\ProductController.cs" />
@@ -92,6 +93,8 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="Global.asax" />
+    <Content Include="Views\Presentation\Index.aspx" />
+    <Content Include="Views\ManufacturerPresentation\Index.aspx" />
     <Content Include="Views\Presentation\Index.aspx" />
     <Content Include="Views\ProductCategory\Index.aspx" />
     <Content Include="Views\Product\Index.aspx" />
