@@ -17,5 +17,17 @@ namespace UnicefVirtualWarehouse.Controllers
             IList<ProductCategory> products = MvcApplication.CurrentUnicefContext.ProductCatagories.ToList();
             return View(products);
         }
+
+		[AcceptVerbs(HttpVerbs.Post)]
+		public ActionResult Create(FormCollection form)
+		{
+			var productCategory = new ProductCategory { Name = form["Name"] };
+			var db = MvcApplication.CurrentUnicefContext;
+			
+			db.ProductCatagories.Add(productCategory);
+			db.SaveChanges();
+
+			return RedirectToAction("Index");
+		}
     }
 }
