@@ -14,7 +14,9 @@ namespace UnicefVirtualWarehouse.Controllers
 
         public ActionResult Index()
         {
-            return View();
+            var contacts = MvcApplication.CurrentUnicefContext.Contacts.ToList();
+
+            return View(contacts);
         }
 
         //

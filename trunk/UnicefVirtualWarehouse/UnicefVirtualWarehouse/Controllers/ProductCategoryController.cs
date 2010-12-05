@@ -18,6 +18,14 @@ namespace UnicefVirtualWarehouse.Controllers
             return View(products);
         }
 
+        public ActionResult Create()
+        {
+            if (!Request.IsAuthenticated)
+                return RedirectToAction("Index");
+
+            return View();
+        }
+
 		[AcceptVerbs(HttpVerbs.Post)]
 		public ActionResult Create(FormCollection form)
 		{

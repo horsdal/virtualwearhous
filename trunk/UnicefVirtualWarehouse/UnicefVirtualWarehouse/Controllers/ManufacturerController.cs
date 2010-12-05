@@ -13,7 +13,8 @@ namespace UnicefVirtualWarehouse.Controllers
 
         public ActionResult Index()
         {
-            return View();
+            var manufacturers = MvcApplication.CurrentUnicefContext.Manufacturers.ToList();
+            return View(manufacturers);
         }
 
         //

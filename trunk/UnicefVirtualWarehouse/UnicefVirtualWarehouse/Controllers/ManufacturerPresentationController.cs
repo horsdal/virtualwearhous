@@ -14,7 +14,9 @@ namespace UnicefVirtualWarehouse.Controllers
 
         public ActionResult Index()
         {
-			return View();
+            var manufacturerPresentations = MvcApplication.CurrentUnicefContext.ManufacturerPresentations.Include("Presentation").Include("Manufacturer").ToList();
+
+			return View(manufacturerPresentations);
         }
 
         //
