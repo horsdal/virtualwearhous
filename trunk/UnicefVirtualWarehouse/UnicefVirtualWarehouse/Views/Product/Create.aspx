@@ -6,7 +6,7 @@
 
 <asp:Content ID="Content2" ContentPlaceHolderID="MainContent" runat="server">
 
-    <h2>Create</h2>
+    <h3>Create</h3>
 
     <% using (Html.BeginForm()) {%>
         <%: Html.ValidationSummary(true) %>
