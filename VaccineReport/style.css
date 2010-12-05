@@ -1,0 +1,13 @@
+table {font-size:13px;}
+td {height:35px;}
+
+.descriptionfieldtop{border-left:1px solid black;border-top:1px solid black;border-right:1px solid black;}
+.descriptionfieldmiddle{border-left:1px solid black;border-top:1px solid black;border-right:1px solid black;}
+.descriptionfield{border:1px solid black;}
+.inputfieldtop{border-top:1px solid black;border-right:1px solid black;}
+.inputfieldmiddle{border-right:1px solid black;border-top:1px solid black;}
+.inputfield{border-top:1px solid black;border-right:1px solid black;border-bottom:1px solid black;}
+.inline_table {border:0px solid blue;}
+.spacer{width:20px;}
+
+#maintable{width:900px;}
