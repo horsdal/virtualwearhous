@@ -5,7 +5,7 @@
 <% int counter = 0; %>
 <% if(Model.Any()) { %>
 	<table width="100%">	
-			<th>Manufacturer</th>
+				<th>Manufacturer</th>
 				<th>Presentation</th>
 				<th>Size</th>
 				<th>Price</th>
@@ -14,7 +14,7 @@
 				<th>CPP</th>
 
 			<% foreach(var p in Model){%>
-				<%=counter % 2 != 0 ? "<tr style=\"background-color:#e8eef4\">" : "<tr style=\"background-color:transparent\">"%>
+				<%=counter % 2 != 0 ? "<tr onMouseOver=\"this.bgColor='#FCEB8B'\" onMouseOut=\"this.bgColor='#FFFFFF'\" style=\"background-color:#e8eef4\">" : "<tr onMouseOver=\"this.bgColor='#FCEB8B'\" onMouseOut=\"this.bgColor='#FFFFFF'\" style=\"background-color:transparent\">"%>
 				<% counter++; %>
 				<td>
 					<a  href="../../Contact/Details/<%=p.Manufacturer.Id %>"><%=p.Manufacturer.Name %></a>
