@@ -93,6 +93,7 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="Content\unicef_logo.gif" />
     <Content Include="Global.asax" />
     <Content Include="Views\Contact\Index.aspx" />
     <Content Include="Views\Presentation\Index.aspx" />
