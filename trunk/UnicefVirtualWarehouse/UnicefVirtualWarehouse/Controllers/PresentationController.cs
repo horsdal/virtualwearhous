@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
+using UnicefVirtualWarehouse.Models;
 
 namespace UnicefVirtualWarehouse.Controllers
 {
@@ -43,20 +44,17 @@ namespace UnicefVirtualWarehouse.Controllers
         //
         // POST: /Presentation/Create
 
-        [HttpPost]
-        public ActionResult Create(FormCollection collection)
-        {
-            try
-            {
-                // TODO: Add insert logic here
+		[AcceptVerbs(HttpVerbs.Post)]
+		public ActionResult Create(FormCollection form)
+		{
+			var presentation = new Presentation { Name = form["Name"], Products = new List<Product>() };
+			var db = MvcApplication.CurrentUnicefContext;
 
-                return RedirectToAction("Index");
-            }
-            catch
-            {
-                return View();
-            }
-        }
+			db.Presentations.Add(presentation);
+			db.SaveChanges();
+
+			return RedirectToAction("Index");
+		}
         
         //
         // GET: /Presentation/Edit/5
