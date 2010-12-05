@@ -37,12 +37,17 @@ namespace UnicefVirtualWarehouse.Controllers
 
         public ActionResult Create()
         {
+            if (!Request.IsAuthenticated)
+                return RedirectToAction("Index");
             return View();
         }
 
         [AcceptVerbs(HttpVerbs.Post)]
         public ActionResult Create(FormCollection form)
         {
+            if (!Request.IsAuthenticated)
+                return RedirectToAction("Index");
+
             var product = new Product { Name = form["Name"], Presentations = new List<Presentation>() };
             var db = MvcApplication.CurrentUnicefContext;
             db.Product.Add(product);
