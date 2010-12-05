@@ -46,7 +46,6 @@ namespace UnicefVirtualWarehouse
             uc.Database.Connection.ConnectionString = @"Data Source=.;Initial Catalog=UnicefVirtualWarehouse.UnicefContext;Integrated Security=SSPI;";
 			uc.Database.CreateIfNotExists();
 
-            uc.Database.CreateIfNotExists();
 
             HttpContext.Current.Items[unicefContext] = uc;
         }
