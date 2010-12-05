@@ -11,11 +11,11 @@
 
 	function initialize() {
 		var map = new GMap2(document.getElementById("map_canvas"));
-		map.setCenter(new GLatLng(37.4419, -122.1419), 13);
+		map.setCenter(new GLatLng(40.74933, -73.96863), 16);
 		map.setUIToDefault();
 	}
  
-    </script>
+	</script>
 
 </head>
 <body onload="initialize()">
@@ -34,7 +34,7 @@
 		</table>
 	<%}%>
 <%}else{%>
-    <p>No Contacts available.</p>
+	<p>No Contacts available.</p>
 <%}%>
 
 
