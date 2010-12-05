@@ -41,6 +41,6 @@
 			<%}%>
 	</table> 
 <%}else{%>
-    <p>No Manufacturer's presentations available</p>
+    <p>No Presentations from Manufacturers available.</p>
 <%}%>
 </asp:Content>

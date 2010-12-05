@@ -17,6 +17,6 @@
 
 	</table>
 <%}else{%>
-	<p>No productcategories available</p>
+	<p>No Product Categories available.</p>
 <%}%>
 </asp:Content>
