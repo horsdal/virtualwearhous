@@ -1,7 +1,7 @@
 ﻿<%@ Page Title="" Language="C#" Inherits="System.Web.Mvc.ViewPage<System.Collections.Generic.IList<UnicefVirtualWarehouse.Models.Presentation>>" MasterPageFile="~/Views/Shared/Site.Master" %>
 <asp:Content runat="server" ID="Title" ContentPlaceHolderID="TitleContent"></asp:Content>
 <asp:Content runat="server" ID="Main" ContentPlaceHolderID="MainContent">
-<h3>Presentation</h3>
+<h3>Product Presentation</h3>
 <% if(Model.Any()) { %>	
 	<table width="100%">
 		<th>Name</th>
