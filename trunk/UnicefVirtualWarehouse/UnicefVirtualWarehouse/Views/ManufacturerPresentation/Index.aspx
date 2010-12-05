@@ -26,7 +26,7 @@
 					<%=p.Size %>
 				</td>
 				<td>
-					<%=p.Price / 100 %>
+					<%=((decimal) p.Price) / 100 %>
 				</td>
 				<td>
 					<%=p.MinUnit %>
