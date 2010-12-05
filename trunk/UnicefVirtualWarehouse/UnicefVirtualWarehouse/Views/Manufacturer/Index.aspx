@@ -1,0 +1,20 @@
+<%@ Page Title="" Language="C#" Inherits="System.Web.Mvc.ViewPage<System.Collections.Generic.List<UnicefVirtualWarehouse.Models.Manufacturer>>" MasterPageFile="~/Views/Shared/Site.Master" %>
+<asp:Content runat="server" ID="Title" ContentPlaceHolderID="TitleContent"></asp:Content>
+<asp:Content runat="server" ID="Main" ContentPlaceHolderID="MainContent">
+<h3>Manufaturer</h3>
+<% if(Model.Any()) { %>	
+	<table width="100%">
+		<th>Name</th>
+		<% int counter = 0; %>
+			<% foreach(var m in Model){%>
+			<tr onMouseOver="this.bgColor='#FCEB8B'" onMouseOut="this.bgColor='#FFFFFF'">
+				<%=counter % 2 != 0 ? "<td style=\"background-color:#e8eef4\">" : "<td style=\"background-color:transparent\">"%>
+				<% counter++; %>
+					<%=m.Name%>
+				</td>
+			</tr>
+			<%}%>
+	</table> 
+<%}else{%>
+    <p>No Presentations available.</p>
+<%}%></asp:Content>
