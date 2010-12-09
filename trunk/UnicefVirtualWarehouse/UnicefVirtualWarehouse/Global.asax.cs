@@ -16,12 +16,14 @@ namespace UnicefVirtualWarehouse
 	{
 		private static readonly string unicefContext = "UnicefContext";
 
+        [ThreadStatic]
+	    private static UnicefContext currentContext;
 		public static UnicefContext CurrentUnicefContext
 		{
-			get { return HttpContext.Current.Items[unicefContext] as UnicefContext;}
+            get { return currentContext; }
 		}
 
-		public static void RegisterRoutes(RouteCollection routes)
+	    public static void RegisterRoutes(RouteCollection routes)
 		{
 			routes.IgnoreRoute("{resource}.axd/{*pathInfo}");
 
@@ -39,20 +41,17 @@ namespace UnicefVirtualWarehouse
 			RegisterRoutes(RouteTable.Routes);
 		}
 
-		protected void Application_BeginRequest(object sender, EventArgs e)
-		{
-			UnicefContext uc = new UnicefContext();
-			//uc.Database.Connection.ConnectionString("Data Source=.\SQLEXPRESS;Initial Catalog=UnicefVirtualWarehouse;Integrated Security=SSPI;");    
-			uc.Database.Connection.ConnectionString = @"Data Source=.;Initial Catalog=UnicefVirtualWarehouse.UnicefContext;Integrated Security=SSPI;";
-			uc.Database.CreateIfNotExists();
-
-			HttpContext.Current.Items[unicefContext] = uc;
+        protected void Application_BeginRequest(object sender, EventArgs e)
+        {
+            currentContext = new UnicefContext();
+            //uc.Database.Connection.ConnectionString("Data Source=.\SQLEXPRESS;Initial Catalog=UnicefVirtualWarehouse;Integrated Security=SSPI;");    
+            currentContext.Database.Connection.ConnectionString = @"Data Source=.\SQLEXPRESS;Initial Catalog=UnicefVirtualWarehouse.UnicefContext;Integrated Security=SSPI;";
+			currentContext.Database.CreateIfNotExists();
 		}
 
 		protected void Application_EndRequest(object sender, EventArgs e)
 		{
-			var context = HttpContext.Current.Items[unicefContext] as UnicefContext;
-			context.Dispose();
+		    currentContext.Dispose();
 		}
 
 	}

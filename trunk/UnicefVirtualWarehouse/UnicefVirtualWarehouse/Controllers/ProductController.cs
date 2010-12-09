@@ -4,19 +4,19 @@ using System.Linq;
 using System.Web.Mvc;
 using System.Web.UI;
 using UnicefVirtualWarehouse.Models;
+using UnicefVirtualWarehouse.Models.Repositories;
 
 namespace UnicefVirtualWarehouse.Controllers
 {
     public class ProductController : Controller
     {
+        private ProductRepository productRepo = new ProductRepository();
         //
         // GET: /Products/
 
         public ActionResult Index()
         {
-            IList<Product> products = MvcApplication.CurrentUnicefContext.Product.ToList();
-
-            return View(products);
+            return View(productRepo.GetAll());
         }
 
         public ActionResult ProductCategory(int id)
@@ -50,15 +50,18 @@ namespace UnicefVirtualWarehouse.Controllers
             if (!Request.IsAuthenticated)
                 return RedirectToAction("Index");
 
-            var product = new Product {Name = form["Key.Name"], Presentations = new List<Presentation>()};
-            var db = MvcApplication.CurrentUnicefContext;
-            db.Product.Add(product);
-            var categoryId = int.Parse(form["Value"]);
-            var category = db.ProductCatagories.Include("Products").FirstOrDefault(cat => cat.Id == categoryId);
-            category.Products.Add(product);
-            db.SaveChanges();
-            
+            CreateNewProduct(form);
+
             return RedirectToAction("Index");
+        }
+
+        private void CreateNewProduct(FormCollection form)
+        {
+            var product = new Product {Name = form["Key.Name"], Presentations = new List<Presentation>()};
+           
+            int categoryId;
+            if (int.TryParse(form["Value"], out categoryId))
+                productRepo.AddProduct(categoryId, product);
         }
     }
 }
