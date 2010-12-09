@@ -43,8 +43,15 @@
     <Reference Include="nunit.framework">
       <HintPath>..\..\Tools\NUnit-2.5.8.10295\bin\net-2.0\nunit.framework.dll</HintPath>
     </Reference>
+    <Reference Include="Rhino.Mocks">
+      <HintPath>..\..\Tools\Rhino.Mocks\Rhino.Mocks.dll</HintPath>
+    </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />
+    <Reference Include="System.Web" />
+    <Reference Include="System.Web.Abstractions" />
+    <Reference Include="System.Web.Mvc, Version=2.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL" />
+    <Reference Include="System.Web.Routing" />
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Data.DataSetExtensions" />
     <Reference Include="Microsoft.CSharp" />
@@ -52,6 +59,8 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="FakeApp.cs" />
+    <Compile Include="ProductControllerTest.cs" />
     <Compile Include="SupplierTest.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
