@@ -20,7 +20,7 @@ This actor is thougth of as member of the public who is interested in the statit
 || Use case                 || Implementattion status || Comments ||
 || List product categories       || Implemented ||  ||
 || Get contact info for supplier || Implemented ||  ||
-|| Register                      || Implemented || Just the user registratin facilities that come out of the box w. MVC. Might need to be cut down a bit ||
+|| Register                      || Implemented || Just the user registration facilities that come out of the box w. MVC. Might need to be cut down a bit ||
 
 ==Actor: Administrator==
 This actor acknowledges requests to register new Manufacturers, Consumers. Furthermore, it is the administrator's responsibility to create product categories and specific medicines.  
@@ -28,9 +28,8 @@ This actor acknowledges requests to register new Manufacturers, Consumers. Furth
 This is almost not supported at all in the current version, and is posponed to future a version. The creation of categories and such is done by manufacturers.
 Only two roles is present in the current implementation; the manufaturer role, and the consumer role (which does not require login)
 
-= Details =
-
-Add your content here.  Format your content with:
-  * Text in *bold* or _italic_
-  * Headings, paragraphs, and lists
-  * Automatic links to other wiki pages
+== Establish Production Environment ==
+|| Task || Status || Comment ||
+|| Acquire a server || not started || We need a single (virtual) Windows Server 2008. Can we find someone who will donate it. MS-DK? Or does Unicef have one? ||
+|| Acquire domain || not started || Unicef probably has a domain we can use, like medicineportal.unicef.com or something ||
+|| Setup server || not started || Install SQL Express on the server. Setup IIS ||
