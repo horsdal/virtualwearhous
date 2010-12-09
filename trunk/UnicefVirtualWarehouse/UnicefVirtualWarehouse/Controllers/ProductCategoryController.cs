@@ -2,11 +2,13 @@
 using System.Linq;
 using System.Web.Mvc;
 using UnicefVirtualWarehouse.Models;
+using UnicefVirtualWarehouse.Models.Repositories;
 
 namespace UnicefVirtualWarehouse.Controllers
 {
     public class ProductCategoryController : Controller
     {
+        private ProductCategoryRepository productCategoryRepo = new ProductCategoryRepository();
         //
         // GET: /ProductCategory/
 
@@ -31,10 +33,7 @@ namespace UnicefVirtualWarehouse.Controllers
                 return RedirectToAction("Index");
             
             var productCategory = new ProductCategory { Name = form["Name"] };
-			var db = MvcApplication.CurrentUnicefContext;
-			
-			db.ProductCatagories.Add(productCategory);
-			db.SaveChanges();
+		    productCategoryRepo.AddProductCategory(productCategory);
 
 			return RedirectToAction("Index");
 		}

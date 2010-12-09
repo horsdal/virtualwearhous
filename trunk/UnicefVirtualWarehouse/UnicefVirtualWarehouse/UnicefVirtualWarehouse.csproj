@@ -89,6 +89,7 @@
     <Compile Include="Models\Manufacturer.cs" />
     <Compile Include="Models\ManufacturerPresentation.cs" />
     <Compile Include="Models\ProductCategory.cs" />
+    <Compile Include="Models\Repositories\ProductCategoryRepository.cs" />
     <Compile Include="Models\Repositories\ProductRepository.cs" />
     <Compile Include="Models\UnicefContext.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

@@ -26,7 +26,7 @@ namespace UnicefVirtualWarehouseTest
             controllerUnderTest.Create(new FormCollection(new NameValueCollection {{"Key.Name", newProductName}, {"Value", catogoryId.ToString()}}));
 
             var products = repo.GetByName(newProductName);
-            Assert.That(products.Count, Is.EqualTo(catogoryId));
+            Assert.That(products.Count, Is.EqualTo(1));
             Assert.That(products[0].Name, Is.EqualTo(newProductName));
         }
     }
