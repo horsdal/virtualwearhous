@@ -59,6 +59,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="ControllerTestBase.cs" />
     <Compile Include="FakeApp.cs" />
     <Compile Include="ProductControllerTest.cs" />
     <Compile Include="SupplierTest.cs" />

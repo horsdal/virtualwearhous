@@ -13,43 +13,8 @@ using UnicefVirtualWarehouse.Models.Repositories;
 namespace UnicefVirtualWarehouseTest
 {
     [TestFixture]
-    public class ProductControllerTest
+    public class ProductControllerTest : ControllerTestBase<ProductController>
     {
-        private FakeApp app;
-        private MockRepository mocks;
-        private HttpContextBase mockedhttpContext;
-        private HttpRequestBase mockedHttpRequest;
-        private ProductController controllerUnderTest;
-
-        [TestFixtureSetUp]
-        public void FixtureSetup()
-        {
-            app = new FakeApp();
-
-            mocks = new MockRepository();
-            mockedhttpContext = mocks.DynamicMock<HttpContextBase>();
-            mockedHttpRequest = mocks.DynamicMock<HttpRequestBase>();
-            SetupResult.For(mockedhttpContext.Request).Return(mockedHttpRequest);
-            SetupResult.For(mockedHttpRequest.IsAuthenticated).Return(true); // acts as if locked in
-
-            mocks.ReplayAll();
-        }
-
-        [SetUp]
-        public void TestSetup()
-        {
-            app.BeginTest();
-
-            controllerUnderTest = new ProductController();
-            controllerUnderTest.ControllerContext = new ControllerContext(mockedhttpContext, new RouteData(), controllerUnderTest);
-        }
-
-        [TearDown]
-        public void TestTeardown()
-        {
-            app.EndTest();
-        }
-
         [Test]
         public void CanAddAndFindAProduct()
         {
