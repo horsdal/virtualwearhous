@@ -1,0 +1,36 @@
+#labels status
+#Status for the Virtual Warehouse
+
+= Status =
+
+This page summarizes the current status of the project.
+
+Actor: Manufacturer.
+This actor is thought of as a manifacturer of a specific medicine. His responsibility is to register data in the system. 
+
+* Register 
+* List products
+	implemented
+	comments: ...
+* Delete product
+* Add product
+* Add product presentation
+* Delete presentation
+
+Actor: Consumer.
+This actor is thougth of as member of the public who is interested in the statitcs in the pdf presentation. In the fully functional system he will be able to perform queries on the database
+
+* List product categories
+* Get contact info for supplier
+* Register
+
+Actor: Administrator
+This actor acknowledges requests to register new Manufacturers, Consumers. Furthermore, it is the administrator's responsibility to create product categories and specific medicines.  
+
+
+= Details =
+
+Add your content here.  Format your content with:
+  * Text in *bold* or _italic_
+  * Headings, paragraphs, and lists
+  * Automatic links to other wiki pages
