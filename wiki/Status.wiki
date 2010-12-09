@@ -10,7 +10,7 @@ This actor is thought of as a manifacturer of a specific medicine. His responsib
 || Register                 || implemented ||  ||
 || List products            ||  ||  ||
 || Delete product           ||  ||  || 
-|| Add product              ||  ||  || 
+|| Add product              ||  Almost implemented || but needs to be tied to a given login, such only the same login can delete or edit later  || 
 || Add product presentation ||  ||  ||
 || Delete presentation      ||  ||  ||
 
@@ -18,13 +18,15 @@ This actor is thought of as a manifacturer of a specific medicine. His responsib
 This actor is thougth of as member of the public who is interested in the statitcs in the pdf presentation. In the fully functional system he will be able to perform queries on the database
 
 || Use case                 || Implementattion status || Comments ||
-|| List product categories       ||  ||  ||
-|| Get contact info for supplier ||  ||  ||
-|| Register                      ||  ||  ||
+|| List product categories       || Implemented ||  ||
+|| Get contact info for supplier || Implemented ||  ||
+|| Register                      || Implemented || Just the user registratin facilities that come out of the box w. MVC. Might need to be cut down a bit ||
 
 ==Actor: Administrator==
 This actor acknowledges requests to register new Manufacturers, Consumers. Furthermore, it is the administrator's responsibility to create product categories and specific medicines.  
 
+This is almost not supported at all in the current version, and is posponed to future a version. The creation of categories and such is done by manufacturers.
+Only two roles is present in the current implementation; the manufaturer role, and the consumer role (which does not require login)
 
 = Details =
 
