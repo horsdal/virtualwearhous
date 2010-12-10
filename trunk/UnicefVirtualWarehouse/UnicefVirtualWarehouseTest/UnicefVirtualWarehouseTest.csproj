@@ -61,6 +61,7 @@
   <ItemGroup>
     <Compile Include="ControllerTestBase.cs" />
     <Compile Include="FakeApp.cs" />
+    <Compile Include="PresentationControllerTest.cs" />
     <Compile Include="ProductCategoryControllerTest.cs" />
     <Compile Include="ProductControllerTest.cs" />
     <Compile Include="SupplierTest.cs" />

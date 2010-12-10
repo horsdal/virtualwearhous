@@ -12,7 +12,7 @@ namespace UnicefVirtualWarehouseTest
     public class ProductCategoryControllerTest : ControllerTestBase<ProductCategoryController>
     {
         [Test]
-        public void CanAddAndFindAProduct()
+        public void CanAddAndFindAProductCategory()
         {
             var newProdcutCategoryName = string.Format("New test product category #{0}#", DateTime.Now.Ticks);
 

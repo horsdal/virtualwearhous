@@ -32,5 +32,10 @@ namespace UnicefVirtualWarehouse.Models.Repositories
         {
             return db.Product.Where(p => p.Name == name).ToList();
         }
+
+        public Product GetById(int productId)
+        {
+            return db.Product.Where(p => p.Id == productId).SingleOrDefault();
+        }
     }
 }
