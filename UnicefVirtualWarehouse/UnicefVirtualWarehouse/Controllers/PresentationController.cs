@@ -2,11 +2,13 @@
 using System.Linq;
 using System.Web.Mvc;
 using UnicefVirtualWarehouse.Models;
+using UnicefVirtualWarehouse.Models.Repositories;
 
 namespace UnicefVirtualWarehouse.Controllers
 {
     public class PresentationController : Controller
     {
+        private readonly ProductRepository productRepo = new ProductRepository();
         //
         // GET: /Presentation/
 
@@ -38,7 +40,9 @@ namespace UnicefVirtualWarehouse.Controllers
         {
             if (!Request.IsAuthenticated)
                 return RedirectToAction("Index");
-            return View();
+
+            var products = productRepo.GetAll();
+            return View(new KeyValuePair<Presentation, IEnumerable<Product>>(new Presentation(), products));
         } 
 
         //
@@ -49,15 +53,27 @@ namespace UnicefVirtualWarehouse.Controllers
 		{
             if (!Request.IsAuthenticated)
                 return RedirectToAction("Index");
-            var presentation = new Presentation { Name = form["Name"], Products = new List<Product>() };
-			var db = MvcApplication.CurrentUnicefContext;
-
-			db.Presentations.Add(presentation);
-			db.SaveChanges();
-
-			return RedirectToAction("Index");
+            
+            CreateAndSaveNewPresentation(form);
+		    return RedirectToAction("Index");
 		}
-        
+
+        private void CreateAndSaveNewPresentation(FormCollection form)
+        {
+            int productId;
+            if (int.TryParse(form["Value"], out productId))
+            {
+                var product = productRepo.GetById(productId);
+                var presentation = new Presentation {Name = form["Key.Name"], Products = new List<Product> {product}};
+
+                var db = MvcApplication.CurrentUnicefContext;
+
+                db.Presentations.Add(presentation);
+                product.Presentations.Add(presentation);
+                db.SaveChanges();
+            }
+        }
+
         //
         // GET: /Presentation/Edit/5
  
