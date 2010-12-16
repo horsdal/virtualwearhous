@@ -35,7 +35,7 @@ namespace UnicefVirtualWarehouse.Models.Repositories
 
         public Product GetById(int productId)
         {
-            return db.Product.Where(p => p.Id == productId).SingleOrDefault();
+            return db.Product.Include("Presentations").SingleOrDefault(p => p.Id == productId); ;
         }
     }
 }

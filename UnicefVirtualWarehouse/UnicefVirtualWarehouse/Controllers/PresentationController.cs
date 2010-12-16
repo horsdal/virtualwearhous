@@ -9,18 +9,19 @@ namespace UnicefVirtualWarehouse.Controllers
     public class PresentationController : Controller
     {
         private readonly ProductRepository productRepo = new ProductRepository();
+        private readonly PresentationRepository presentationRepo = new PresentationRepository();
         //
         // GET: /Presentation/
 
         public ActionResult Index()
         {
-            var presentations = MvcApplication.CurrentUnicefContext.Presentations.ToList();
+            var presentations = presentationRepo.GetAll();
             return View(presentations);
         }
 
         public ActionResult Product(int id)
         {
-            var product = MvcApplication.CurrentUnicefContext.Product.Include("Presentations").SingleOrDefault(p => p.Id == id);
+            var product = productRepo.GetById(id);
 
             return View("index", product.Presentations.ToList());
         }
@@ -68,9 +69,7 @@ namespace UnicefVirtualWarehouse.Controllers
 
                 var db = MvcApplication.CurrentUnicefContext;
 
-                db.Presentations.Add(presentation);
-                product.Presentations.Add(presentation);
-                db.SaveChanges();
+                presentationRepo.Add(presentation, product);
             }
         }
 
