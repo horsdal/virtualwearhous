@@ -15,10 +15,10 @@ namespace UnicefVirtualWarehouseTest
         [Test]
         public void CanAddAndFindAPresentation()
         {
-            var newPresentationName = string.Format("New test product #{0}#", DateTime.Now.Ticks);
+            var newPresentationName = string.Format("New test presentation #{0}#", DateTime.Now.Ticks);
 
             var repo = new PresentationRepository();
-            var productId = 1;
+            var productId = FakeApp.CurrentUnicefContext.Product.First().Id;
 
             controllerUnderTest.Create(new FormCollection(new NameValueCollection { { "Key.Name", newPresentationName }, { "Value", productId.ToString() } }));
 

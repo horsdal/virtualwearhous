@@ -37,6 +37,7 @@
     <Reference Include="Iesi.Collections">
       <HintPath>..\..\Tools\NHibernate-3.0.0.CR1\Required_Bins\Iesi.Collections.dll</HintPath>
     </Reference>
+    <Reference Include="Microsoft.Data.Entity.CTP, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL" />
     <Reference Include="NHibernate">
       <HintPath>..\..\Tools\NHibernate-3.0.0.CR1\Required_Bins\NHibernate.dll</HintPath>
     </Reference>
@@ -61,6 +62,7 @@
   <ItemGroup>
     <Compile Include="ControllerTestBase.cs" />
     <Compile Include="FakeApp.cs" />
+    <Compile Include="ManufacturerPresentationControllerTest.cs" />
     <Compile Include="PresentationControllerTest.cs" />
     <Compile Include="ProductCategoryControllerTest.cs" />
     <Compile Include="ProductControllerTest.cs" />

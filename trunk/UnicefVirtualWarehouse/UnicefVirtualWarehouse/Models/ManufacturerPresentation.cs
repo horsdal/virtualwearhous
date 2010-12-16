@@ -3,7 +3,7 @@
     public class ManufacturerPresentation
     {
         public int ID { get; set; }
-		public Manufacturer Manufacturer { get; private set; }
+		public Manufacturer Manufacturer { get; set; }
 		public Presentation Presentation { get; set; }
 		public Contact ManufacturingSite { get; set; }
         public bool Licensed { get; set; }
