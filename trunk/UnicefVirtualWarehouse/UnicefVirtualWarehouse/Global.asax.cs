@@ -3,9 +3,12 @@ using System.Collections.Generic;
 using System.Configuration;
 using System.Linq;
 using System.Reflection;
+using System.Security.Principal;
 using System.Web;
 using System.Web.Mvc;
 using System.Web.Routing;
+using System.Web.Security;
+using UnicefVirtualWarehouse.Models;
 
 namespace UnicefVirtualWarehouse
 {
@@ -54,5 +57,22 @@ namespace UnicefVirtualWarehouse
 		    currentContext.Dispose();
 		}
 
+        protected void Application_AuthenticateRequest(Object sender, EventArgs e)
+        {
+            HttpCookie authCookie = Request.Cookies[
+                     FormsAuthentication.FormsCookieName];
+            if (authCookie != null)
+            {
+                //Extract the forms authentication cookie
+                FormsAuthenticationTicket authTicket =
+                       FormsAuthentication.Decrypt(authCookie.Value);
+                // Create an Identity object
+                //CustomIdentity implements System.Web.Security.IIdentity
+                var id = new GenericIdentity(authTicket.Name);
+                //CustomPrincipal implements System.Web.Security.IPrincipal
+                var theUser = new GenericPrincipal(id, new [] { authTicket.UserData } );
+                Context.User = theUser;
+            }
+        }
 	}
 }

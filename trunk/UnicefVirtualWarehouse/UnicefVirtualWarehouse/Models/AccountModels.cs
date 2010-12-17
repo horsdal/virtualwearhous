@@ -12,6 +12,13 @@ namespace UnicefVirtualWarehouse.Models
 {
 
     #region Models
+    public enum UnicefRole
+    {
+        Manufacturer,
+        Unicef,
+        Administrator
+    }
+
     [PropertiesMustMatch("NewPassword", "ConfirmPassword", ErrorMessage = "The new password and confirmation password do not match.")]
     public class ChangePasswordModel
     {
@@ -69,6 +76,10 @@ namespace UnicefVirtualWarehouse.Models
         [DataType(DataType.Password)]
         [DisplayName("Confirm password")]
         public string ConfirmPassword { get; set; }
+
+        [Required]
+        [DisplayName("Role")]
+        public UnicefRole Role { get; set; }
     }
     #endregion
 
@@ -154,17 +165,21 @@ namespace UnicefVirtualWarehouse.Models
 
     public interface IFormsAuthenticationService
     {
-        void SignIn(string userName, bool createPersistentCookie);
         void SignOut();
+        void SignIn(string userName, bool createPersistentCookie, HttpResponseBase response);
     }
 
     public class FormsAuthenticationService : IFormsAuthenticationService
     {
-        public void SignIn(string userName, bool createPersistentCookie)
+        public void SignIn(string userName, bool createPersistentCookie, HttpResponseBase response)
         {
             if (String.IsNullOrEmpty(userName)) throw new ArgumentException("Value cannot be null or empty.", "userName");
 
-            FormsAuthentication.SetAuthCookie(userName, createPersistentCookie);
+            var userData =  UnicefRole.Manufacturer;
+            FormsAuthenticationTicket ticket = new FormsAuthenticationTicket(1, userName, DateTime.Now, DateTime.Now.AddDays(1), createPersistentCookie, userData.ToString());
+            string encTicket = FormsAuthentication.Encrypt(ticket);
+            HttpCookie faCookie = new HttpCookie(FormsAuthentication.FormsCookieName, encTicket);
+            response.Cookies.Add(faCookie);
         }
 
         public void SignOut()
