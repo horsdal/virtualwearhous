@@ -52,7 +52,9 @@ namespace UnicefVirtualWarehouse.Controllers
         {
             try
             {
-                if (!Request.IsAuthenticated)
+                var name = User.Identity.Name;
+
+                if (!Request.IsAuthenticated || !User.IsInRole(UnicefRole.Manufacturer.ToString()))
                     return RedirectToAction("Index");
                 var newManufacturerPresentation = CreateAndSaveNewManufacturePresentation(collection);
                 
