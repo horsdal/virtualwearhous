@@ -1,4 +1,6 @@
 ﻿<%@ Page Language="C#" MasterPageFile="~/Views/Shared/Site.Master" Inherits="System.Web.Mvc.ViewPage<UnicefVirtualWarehouse.Models.RegisterModel>" %>
+<%@ Import Namespace="UnicefVirtualWarehouse.Controllers" %>
+<%@ Import Namespace="UnicefVirtualWarehouse.Models" %>
 
 <asp:Content ID="registerTitle" ContentPlaceHolderID="TitleContent" runat="server">
     Register
@@ -50,7 +52,20 @@
                     <%: Html.PasswordFor(m => m.ConfirmPassword) %>
                     <%: Html.ValidationMessageFor(m => m.ConfirmPassword) %>
                 </div>
-                
+
+                <div class="editor-label">
+                   <%: Html.LabelFor(m => m.Role) %>
+                </div>
+                <div class="editor-field">
+                   <%: Html.DropDownListFor(m => m.Role, Enum.GetNames(typeof(UnicefRole)).Select(r => new SelectListItem { Text = r.ToString(), Value = r.ToString() })) %>
+                </div>                
+
+                <div class="editor-label">
+                   <%: Html.LabelFor(m => m.AssociatedManufacturerId) %>
+                </div>
+                <div class="editor-field">
+                   <%: Html.DropDownListFor(m => m.AssociatedManufacturerId, AccountController.AvailableManufacturers) %>
+                </div>                
                 <p>
                     <input type="submit" value="Register" />
                 </p>

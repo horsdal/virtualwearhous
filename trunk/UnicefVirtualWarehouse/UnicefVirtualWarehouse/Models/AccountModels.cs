@@ -7,6 +7,7 @@ using System.Linq;
 using System.Web;
 using System.Web.Mvc;
 using System.Web.Security;
+using UnicefVirtualWarehouse.Models.Repositories;
 
 namespace UnicefVirtualWarehouse.Models
 {
@@ -80,6 +81,9 @@ namespace UnicefVirtualWarehouse.Models
         [Required]
         [DisplayName("Role")]
         public UnicefRole Role { get; set; }
+
+        [DisplayName("Manufacturer")]
+        public int AssociatedManufacturerId { get; set; }
     }
     #endregion
 
@@ -94,7 +98,7 @@ namespace UnicefVirtualWarehouse.Models
         int MinPasswordLength { get; }
 
         bool ValidateUser(string userName, string password);
-        MembershipCreateStatus CreateUser(string userName, string password, string email);
+        MembershipCreateStatus CreateUser(string userName, string password, string email, UnicefRole role, int associatedManufacturer);
         bool ChangePassword(string userName, string oldPassword, string newPassword);
     }
 
@@ -128,7 +132,7 @@ namespace UnicefVirtualWarehouse.Models
             return _provider.ValidateUser(userName, password);
         }
 
-        public MembershipCreateStatus CreateUser(string userName, string password, string email)
+        public MembershipCreateStatus CreateUser(string userName, string password, string email, UnicefRole role, int associatedManufacturer)
         {
             if (String.IsNullOrEmpty(userName)) throw new ArgumentException("Value cannot be null or empty.", "userName");
             if (String.IsNullOrEmpty(password)) throw new ArgumentException("Value cannot be null or empty.", "password");
@@ -136,6 +140,23 @@ namespace UnicefVirtualWarehouse.Models
 
             MembershipCreateStatus status;
             _provider.CreateUser(userName, password, email, null, null, true, null, out status);
+            if (status == MembershipCreateStatus.Success)
+            {
+                var manufacturerRepository =new ManufacturerRepository();
+                var userRepo = new UserRepository();
+                var dbStatus = userRepo.Add(new User
+                                                {
+                                                    UserName = userName,
+                                                    Role = (int) role,
+                                                    AssociatedManufaturer = manufacturerRepository.GetById(associatedManufacturer)
+                                              });
+                if (!dbStatus)
+                {
+                    _provider.DeleteUser(userName, true);
+                    status = MembershipCreateStatus.DuplicateUserName;
+                }
+            }
+
             return status;
         }
 
