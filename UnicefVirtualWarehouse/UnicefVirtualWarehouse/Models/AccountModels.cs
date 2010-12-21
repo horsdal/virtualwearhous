@@ -196,7 +196,8 @@ namespace UnicefVirtualWarehouse.Models
         {
             if (String.IsNullOrEmpty(userName)) throw new ArgumentException("Value cannot be null or empty.", "userName");
 
-            var userData =  UnicefRole.Manufacturer;
+            var userRepo = new UserRepository();
+            var userData = (UnicefRole) userRepo.GetByName(userName).Role;
             FormsAuthenticationTicket ticket = new FormsAuthenticationTicket(1, userName, DateTime.Now, DateTime.Now.AddDays(1), createPersistentCookie, userData.ToString());
             string encTicket = FormsAuthentication.Encrypt(ticket);
             HttpCookie faCookie = new HttpCookie(FormsAuthentication.FormsCookieName, encTicket);
