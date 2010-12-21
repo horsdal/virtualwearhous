@@ -1,4 +1,5 @@
-﻿using System.Data.Entity;
+﻿using System;
+using System.Data.Entity;
 using UnicefVirtualWarehouse.Models;
 
 
@@ -13,5 +14,6 @@ namespace UnicefVirtualWarehouse
         public DbSet<Manufacturer> Manufacturers { get; set; }
         public DbSet<ManufacturerPresentation> ManufacturerPresentations { get; set; }
         public DbSet<Presentation> Presentations { get; set; }
+        public DbSet<User> Users { get; set; }
     }
 }

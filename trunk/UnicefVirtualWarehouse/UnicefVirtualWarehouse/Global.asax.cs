@@ -42,15 +42,30 @@ namespace UnicefVirtualWarehouse
 			AreaRegistration.RegisterAllAreas();
 
 			RegisterRoutes(RouteTable.Routes);
+
+            StartDatabaseContext();
 		}
 
-        protected void Application_BeginRequest(object sender, EventArgs e)
+	    protected void StartDatabaseContext()
+	    {
+	        var ctx = new UnicefContext();
+	        //uc.Database.Connection.ConnectionString("Data Source=.\SQLEXPRESS;Initial Catalog=UnicefVirtualWarehouse;Integrated Security=SSPI;");    
+	        ctx.Database.Connection.ConnectionString = @"Data Source=.\SQLEXPRESS;Initial Catalog=UnicefVirtualWarehouse.UnicefContext;Integrated Security=SSPI;";
+
+	        if (!ctx.Database.Exists() || !ctx.Database.ModelMatchesDatabase())
+	        {
+	            ctx.Database.DeleteIfExists();
+	            ctx.Database.Create();
+	        }
+	    }
+
+	    protected void Application_BeginRequest(object sender, EventArgs e)
         {
             currentContext = new UnicefContext();
             //uc.Database.Connection.ConnectionString("Data Source=.\SQLEXPRESS;Initial Catalog=UnicefVirtualWarehouse;Integrated Security=SSPI;");    
             currentContext.Database.Connection.ConnectionString = @"Data Source=.\SQLEXPRESS;Initial Catalog=UnicefVirtualWarehouse.UnicefContext;Integrated Security=SSPI;";
-			currentContext.Database.CreateIfNotExists();
-		}
+	        currentContext.Database.CreateIfNotExists();
+        }
 
 		protected void Application_EndRequest(object sender, EventArgs e)
 		{
@@ -59,8 +74,7 @@ namespace UnicefVirtualWarehouse
 
         protected void Application_AuthenticateRequest(Object sender, EventArgs e)
         {
-            HttpCookie authCookie = Request.Cookies[
-                     FormsAuthentication.FormsCookieName];
+            HttpCookie authCookie = Request.Cookies[FormsAuthentication.FormsCookieName];
             if (authCookie != null)
             {
                 //Extract the forms authentication cookie

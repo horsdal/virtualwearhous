@@ -11,6 +11,7 @@ namespace UnicefVirtualWarehouseTest
         public FakeApp()
         {
             this.Init();
+            this.StartDatabaseContext();
         }
 
         public void BeginTest()
