@@ -8,6 +8,7 @@ using System.Web.Mvc;
 using System.Web.Routing;
 using System.Web.Security;
 using UnicefVirtualWarehouse.Models;
+using UnicefVirtualWarehouse.Models.Repositories;
 
 namespace UnicefVirtualWarehouse.Controllers
 {
@@ -18,6 +19,18 @@ namespace UnicefVirtualWarehouse.Controllers
 
         public IFormsAuthenticationService FormsService { get; set; }
         public IMembershipService MembershipService { get; set; }
+
+        public static IEnumerable<SelectListItem> AvailableManufacturers
+        {
+            get
+            {
+                var manufacturerRepo = new ManufacturerRepository();
+                var manufacturers = manufacturerRepo.GetAll().Select(m => new SelectListItem { Text = m.Name, Value = m.Id.ToString() }).ToList();
+                manufacturers.Add(new SelectListItem { Text = string.Empty, Value = string.Empty });
+                return manufacturers;
+            }
+        }
+
 
         protected override void Initialize(RequestContext requestContext)
         {
@@ -90,7 +103,7 @@ namespace UnicefVirtualWarehouse.Controllers
             if (ModelState.IsValid)
             {
                 // Attempt to register the user
-                MembershipCreateStatus createStatus = MembershipService.CreateUser(model.UserName, model.Password, model.Email);
+                MembershipCreateStatus createStatus = MembershipService.CreateUser(model.UserName, model.Password, model.Email, model.Role, model.AssociatedManufacturerId);
 
                 if (createStatus == MembershipCreateStatus.Success)
                 {
