@@ -37,7 +37,7 @@ namespace UnicefVirtualWarehouse.Controllers
 
         public ActionResult Create()
         {
-            if (!Request.IsAuthenticated)
+            if (!Request.IsAuthenticated || !User.IsInRole(UnicefRole.Manufacturer.ToString()))
                 return RedirectToAction("Index");
 
             var presentations = new PresentationRepository().GetAll();
