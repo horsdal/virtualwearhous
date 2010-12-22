@@ -43,6 +43,44 @@ namespace UnicefVirtualWarehouseTest
     }
 
     [TestFixture]
+    class ManufacturerPresentationControllerTestLoggedInAsAdmin : ControllerTestBase<ManufacturerPresentationController>
+    {
+        protected override bool IsLoggedIn()
+        {
+            return true;
+        }
+
+        protected override string Role()
+        {
+            return UnicefRole.Administrator.ToString();
+        }
+
+        [Test]
+        public void CanAddAndFindAManufacturerPresentation()
+        {
+            var repo = new ManufacturerPresentationRepository();
+            var presentationId = 1;
+            var price = DateTime.Now.Ticks % int.MaxValue;
+
+            controllerUnderTest.Create(
+                new FormCollection(new NameValueCollection
+                                       {
+                                           {"Key.Licensed", "true"},
+                                           {"Key.CPP", "false"},
+                                           {"Key.MinUnit", "5"},
+                                           {"Key.Size", "100"},
+                                           {"Key.Price", price.ToString() },
+                                           {"Value", presentationId.ToString()}
+                                       }));
+            var manufacturerPresentations = repo.GetByPresentationId(presentationId);
+            Assert.That(manufacturerPresentations.Count, Is.GreaterThanOrEqualTo(1));
+            var createdManufacturerPresentation = manufacturerPresentations.FirstOrDefault(m => m.Price == price);
+            Assert.That(createdManufacturerPresentation, Is.Not.Null);
+            Assert.That(createdManufacturerPresentation.Presentation.Id, Is.EqualTo(presentationId));
+        }
+    }
+
+    [TestFixture]
     class ManufacturerPresentationControllerTestAsNotLoggedIn : ControllerTestBase<ManufacturerPresentationController>
     {
         [Test]
