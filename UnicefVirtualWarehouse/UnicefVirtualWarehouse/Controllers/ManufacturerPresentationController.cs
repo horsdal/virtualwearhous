@@ -37,7 +37,7 @@ namespace UnicefVirtualWarehouse.Controllers
 
         public ActionResult Create()
         {
-            if (!Request.IsAuthenticated || !User.IsInRole(UnicefRole.Manufacturer.ToString()))
+            if (!Request.IsAuthenticated || !(User.IsInRole(UnicefRole.Manufacturer.ToString()) || User.IsInRole(UnicefRole.Administrator.ToString())))
                 return RedirectToAction("Index");
 
             var presentations = new PresentationRepository().GetAll();
@@ -54,7 +54,7 @@ namespace UnicefVirtualWarehouse.Controllers
             {
                 var name = User.Identity.Name;
 
-                if (!Request.IsAuthenticated || !User.IsInRole(UnicefRole.Manufacturer.ToString()))
+                if (!Request.IsAuthenticated || !(User.IsInRole(UnicefRole.Manufacturer.ToString()) || User.IsInRole(UnicefRole.Administrator.ToString())))
                     return RedirectToAction("Index");
                 var newManufacturerPresentation = CreateAndSaveNewManufacturePresentation(collection);
                 
