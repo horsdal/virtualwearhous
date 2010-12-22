@@ -1,13 +1,9 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
+﻿using System.Security.Principal;
 using System.Web;
 using System.Web.Mvc;
 using System.Web.Routing;
 using NUnit.Framework;
 using Rhino.Mocks;
-using UnicefVirtualWarehouse.Controllers;
 
 namespace UnicefVirtualWarehouseTest
 {
@@ -27,10 +23,23 @@ namespace UnicefVirtualWarehouseTest
             mocks = new MockRepository();
             mockedhttpContext = mocks.DynamicMock<HttpContextBase>();
             mockedHttpRequest = mocks.DynamicMock<HttpRequestBase>();
+            var id = new GenericIdentity("FakeUser");
+            var theUser = new GenericPrincipal(id, new [] { Role() } );
             SetupResult.For(mockedhttpContext.Request).Return(mockedHttpRequest);
-            SetupResult.For(mockedHttpRequest.IsAuthenticated).Return(true); // acts as if locked in
+            SetupResult.For(mockedHttpRequest.IsAuthenticated).Return(IsLoggedIn());
+            SetupResult.For(mockedhttpContext.User).Return(theUser);
 
             mocks.ReplayAll();
+        }
+
+        protected virtual bool IsLoggedIn()
+        {
+            return false;
+        }
+
+        protected virtual string Role()
+        {
+            return "Manufacturer";
         }
 
         [SetUp]
