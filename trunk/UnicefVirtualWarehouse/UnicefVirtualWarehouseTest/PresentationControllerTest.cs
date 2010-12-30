@@ -12,6 +12,11 @@ namespace UnicefVirtualWarehouseTest
 {
     public class PresentationControllerTest : ControllerTestBase<PresentationController>
     {
+        protected override bool IsLoggedIn()
+        {
+            return true;
+        }
+
         [Test]
         public void CanAddAndFindAPresentation()
         {

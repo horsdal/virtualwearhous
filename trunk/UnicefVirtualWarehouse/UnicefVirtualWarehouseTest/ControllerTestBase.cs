@@ -23,7 +23,7 @@ namespace UnicefVirtualWarehouseTest
             mocks = new MockRepository();
             mockedhttpContext = mocks.DynamicMock<HttpContextBase>();
             mockedHttpRequest = mocks.DynamicMock<HttpRequestBase>();
-            var id = new GenericIdentity("FakeUser");
+            var id = new GenericIdentity("FakeNovoUser");
             var theUser = new GenericPrincipal(id, new [] { Role() } );
             SetupResult.For(mockedhttpContext.Request).Return(mockedHttpRequest);
             SetupResult.For(mockedHttpRequest.IsAuthenticated).Return(IsLoggedIn());

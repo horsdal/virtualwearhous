@@ -11,6 +11,11 @@ namespace UnicefVirtualWarehouseTest
 {
     public class ProductCategoryControllerTest : ControllerTestBase<ProductCategoryController>
     {
+        protected override bool IsLoggedIn()
+        {
+            return true;
+        }
+
         [Test]
         public void CanAddAndFindAProductCategory()
         {
