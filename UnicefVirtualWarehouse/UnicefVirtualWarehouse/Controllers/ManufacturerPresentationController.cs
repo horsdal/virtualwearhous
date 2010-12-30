@@ -69,6 +69,9 @@ namespace UnicefVirtualWarehouse.Controllers
         private ManufacturerPresentation CreateAndSaveNewManufacturePresentation(FormCollection collection)
         {
             var presentaionRepo = new PresentationRepository();
+            var manufacturerUser = new UserRepository().GetByName(User.Identity.Name);
+            if (manufacturerUser == null)
+                throw new ApplicationException("User not found");
 
             var manufacturerPresentation = new ManufacturerPresentation()
                                                {
@@ -79,7 +82,7 @@ namespace UnicefVirtualWarehouse.Controllers
                                                    Size = Convert.ToInt32(collection["Key.Size"]),
                                                    Presentation =
                                                        presentaionRepo.GetById(Convert.ToInt32(collection["Value"])),
-                                                    Manufacturer = MvcApplication.CurrentUnicefContext.Manufacturers.FirstOrDefault() // TODO: Find from login
+                                                    Manufacturer = manufacturerUser.AssociatedManufaturer
                                                };
             manufacturerPresentationRepo.Add(manufacturerPresentation);
 

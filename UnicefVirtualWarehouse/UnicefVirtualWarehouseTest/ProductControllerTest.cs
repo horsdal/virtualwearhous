@@ -15,6 +15,10 @@ namespace UnicefVirtualWarehouseTest
     [TestFixture]
     public class ProductControllerTest : ControllerTestBase<ProductController>
     {
+        protected override bool IsLoggedIn()
+        {
+            return true;
+        }
         [Test]
         public void CanAddAndFindAProduct()
         {

@@ -23,7 +23,7 @@ namespace UnicefVirtualWarehouse.Models.Repositories
 
         public User GetByName(string userName)
         {
-            return db.Users.FirstOrDefault(u => u.UserName == userName);
+            return db.Users.Include("AssociatedManufaturer").FirstOrDefault(u => u.UserName == userName);
         }
 
         public bool Delete(User user)
