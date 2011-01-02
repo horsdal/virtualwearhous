@@ -60,6 +60,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="ContactControllerTest.cs" />
     <Compile Include="ControllerTestBase.cs" />
     <Compile Include="FakeApp.cs" />
     <Compile Include="ManufacturerPresentationControllerTest.cs" />
