@@ -1,6 +1,7 @@
 ﻿using System.Linq;
 using System.Web.Mvc;
 using UnicefVirtualWarehouse.Models;
+using UnicefVirtualWarehouse.Models.Repositories;
 
 namespace UnicefVirtualWarehouse.Controllers
 {
@@ -31,7 +32,7 @@ namespace UnicefVirtualWarehouse.Controllers
 
         public ActionResult Create()
         {
-            if (!Request.IsAuthenticated)
+            if (!Request.IsAuthenticated || !(User.IsInRole(UnicefRole.Manufacturer.ToString()) || User.IsInRole(UnicefRole.Administrator.ToString())))
                 return RedirectToAction("Index");
             
             return View();
@@ -43,7 +44,7 @@ namespace UnicefVirtualWarehouse.Controllers
 		[AcceptVerbs(HttpVerbs.Post)]
 		public ActionResult Create(FormCollection form)
 		{
-            if (!Request.IsAuthenticated)
+            if (!Request.IsAuthenticated || !(User.IsInRole(UnicefRole.Manufacturer.ToString()) || User.IsInRole(UnicefRole.Administrator.ToString())))
                 return RedirectToAction("Index");
             
             var contact = new Contact 
@@ -57,9 +58,12 @@ namespace UnicefVirtualWarehouse.Controllers
 				Website = form["Website"],
 			};
 
+            var user = new UserRepository().GetByName(User.Identity.Name);
+
 			var db = MvcApplication.CurrentUnicefContext;
 			
 			db.Contacts.Add(contact);
+            user.AssociatedManufaturer.Contact = contact;
 			db.SaveChanges();
 
 			return RedirectToAction("Index", contact);
