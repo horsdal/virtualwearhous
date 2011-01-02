@@ -59,11 +59,16 @@ namespace UnicefVirtualWarehouse.Controllers
 			};
 
             var user = new UserRepository().GetByName(User.Identity.Name);
+            Manufacturer manufacturer;
+            if (User.IsInRole(UnicefRole.Administrator.ToString()))
+                manufacturer = new ManufacturerRepository().GetById(int.Parse(form["Manufacturer"]));
+            else
+                manufacturer = user.AssociatedManufaturer;
 
 			var db = MvcApplication.CurrentUnicefContext;
 			
 			db.Contacts.Add(contact);
-            user.AssociatedManufaturer.Contact = contact;
+            manufacturer.Contact = contact;
 			db.SaveChanges();
 
 			return RedirectToAction("Index", contact);

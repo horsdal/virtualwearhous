@@ -214,6 +214,11 @@ namespace UnicefVirtualWarehouseTest
         [Test]
         public void CanCreateContactInformationForLoggedInManufacturer()
         {
+            var user = new UserRepository().GetByName(FakeNovoUser);
+            Assert.That(user, Is.Not.Null);
+            Assert.That(user.Role, Is.EqualTo((int)UnicefRole.Manufacturer));
+            Assert.That(user.AssociatedManufaturer, Is.Not.Null);
+
             var address = "Address";
             var zip = "Zip";
             var city = "City";
@@ -221,6 +226,7 @@ namespace UnicefVirtualWarehouseTest
             var fax = "Fax";
             var email = "Email";
             var website = "Website";
+            var manufacturerId = user.AssociatedManufaturer.Id;
 
             controllerUnderTest.Create(
                 new FormCollection(
@@ -232,13 +238,10 @@ namespace UnicefVirtualWarehouseTest
                         { "Phone", phone },
                         { "Fax", fax },
                         { "Email", email },
-                        { "Website", website }
+                        { "Website", website },
+                        { "Manufacturer", manufacturerId.ToString() }
                     }));
 
-            var user = new UserRepository().GetByName(FakeNovoUser);
-            Assert.That(user, Is.Not.Null);
-            Assert.That(user.Role, Is.EqualTo((int)UnicefRole.Manufacturer));
-            Assert.That(user.AssociatedManufaturer, Is.Not.Null);
             var contact = user.AssociatedManufaturer.Contact;
             Assert.That(contact.Address, Is.EqualTo(address));
             Assert.That(contact.Zip, Is.EqualTo(zip));
