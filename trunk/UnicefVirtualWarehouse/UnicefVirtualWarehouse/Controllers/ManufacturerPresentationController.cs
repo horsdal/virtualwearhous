@@ -90,36 +90,6 @@ namespace UnicefVirtualWarehouse.Controllers
         }
 
         //
-        // GET: /ManufacturerPresentation/Edit/5
- 
-        public ActionResult Edit(int id)
-        {
-            if (!Request.IsAuthenticated)
-                return RedirectToAction("Index");
-            return View();
-        }
-
-        //
-        // POST: /ManufacturerPresentation/Edit/5
-
-        [HttpPost]
-        public ActionResult Edit(int id, FormCollection collection)
-        {
-            try
-            {
-                if (!Request.IsAuthenticated)
-                    return RedirectToAction("Index");
-                // TODO: Add update logic here
- 
-                return RedirectToAction("Index");
-            }
-            catch
-            {
-                return View();
-            }
-        }
-
-        //
         // GET: /ManufacturerPresentation/Delete/5
  
         public ActionResult Delete(int id)
