@@ -20,7 +20,7 @@ namespace UnicefVirtualWarehouse.Controllers
 
         public ActionResult Create()
         {
-            if (!Request.IsAuthenticated)
+            if (!Request.IsAuthenticated || User.IsInRole(UnicefRole.Manufacturer.ToString()))
                 return RedirectToAction("Index");
 
             return View();
@@ -29,7 +29,7 @@ namespace UnicefVirtualWarehouse.Controllers
 		[AcceptVerbs(HttpVerbs.Post)]
 		public ActionResult Create(FormCollection form)
 		{
-            if (!Request.IsAuthenticated)
+            if (!Request.IsAuthenticated || User.IsInRole(UnicefRole.Manufacturer.ToString()))
                 return RedirectToAction("Index");
             
             var productCategory = new ProductCategory { Name = form["Name"] };
