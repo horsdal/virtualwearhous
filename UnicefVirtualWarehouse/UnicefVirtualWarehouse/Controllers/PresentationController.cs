@@ -26,20 +26,13 @@ namespace UnicefVirtualWarehouse.Controllers
             return View("index", product.Presentations.ToList());
         }
 
-        //
-        // GET: /Presentation/Details/5
-
-        public ActionResult Details(int id)
-        {
-            return View();
-        }
-
+ 
         //
         // GET: /Presentation/Create
 
         public ActionResult Create()
         {
-            if (!Request.IsAuthenticated)
+            if (!Request.IsAuthenticated || !(User.IsInRole(UnicefRole.Unicef.ToString()) || User.IsInRole((UnicefRole.Administrator.ToString()))))
                 return RedirectToAction("Index");
 
             var products = productRepo.GetAll();
@@ -52,7 +45,7 @@ namespace UnicefVirtualWarehouse.Controllers
 		[AcceptVerbs(HttpVerbs.Post)]
 		public ActionResult Create(FormCollection form)
 		{
-            if (!Request.IsAuthenticated)
+            if (!Request.IsAuthenticated || !(User.IsInRole(UnicefRole.Unicef.ToString()) || User.IsInRole((UnicefRole.Administrator.ToString()))))
                 return RedirectToAction("Index");
             
             CreateAndSaveNewPresentation(form);
@@ -67,42 +60,11 @@ namespace UnicefVirtualWarehouse.Controllers
                 var product = productRepo.GetById(productId);
                 var presentation = new Presentation {Name = form["Key.Name"], Products = new List<Product> {product}};
 
-                var db = MvcApplication.CurrentUnicefContext;
-
                 presentationRepo.Add(presentation, product);
             }
         }
 
-        //
-        // GET: /Presentation/Edit/5
  
-        public ActionResult Edit(int id)
-        {
-            if (!Request.IsAuthenticated)
-                return RedirectToAction("Index");
-            return View();
-        }
-
-        //
-        // POST: /Presentation/Edit/5
-
-        [HttpPost]
-        public ActionResult Edit(int id, FormCollection collection)
-        {
-            try
-            {
-                if (!Request.IsAuthenticated)
-                    return RedirectToAction("Index");
-                // TODO: Add update logic here
- 
-                return RedirectToAction("Index");
-            }
-            catch
-            {
-                return View();
-            }
-        }
-
         //
         // GET: /Presentation/Delete/5
  
