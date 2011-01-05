@@ -26,17 +26,9 @@ namespace UnicefVirtualWarehouse.Controllers
             return View("index", productCategory.Products.ToList());
         }
 
-		public ActionResult Manufacturer(int id)
-		{
-			//IEnumerable<Presentation> manufacturerPresentations = 
-			//    MvcApplication.CurrentUnicefContext.ManufacturerPresentations.Include("Presentation").Where(man => man.Manufacturer.Id == id).Select(manPres => manPres.) ToList();
-
-			return View();
-		}
-
         public ActionResult Create()
         {
-            if (!Request.IsAuthenticated)
+            if (!Request.IsAuthenticated || User.IsInRole(UnicefRole.Manufacturer.ToString()))
                 return RedirectToAction("Index");
 
             var categories = MvcApplication.CurrentUnicefContext.ProductCatagories.ToList();
@@ -47,7 +39,7 @@ namespace UnicefVirtualWarehouse.Controllers
         [AcceptVerbs(HttpVerbs.Post)]
         public ActionResult Create(FormCollection form)
         {
-            if (!Request.IsAuthenticated)
+            if (!Request.IsAuthenticated || User.IsInRole(UnicefRole.Manufacturer.ToString()))
                 return RedirectToAction("Index");
 
             CreateNewProduct(form);
