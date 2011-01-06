@@ -84,7 +84,7 @@ namespace UnicefVirtualWarehouse.Controllers
         {
             FormsService.SignOut();
 
-            return RedirectToAction("Index", "Home");
+            return RedirectToAction("Index", "ProductCategory");
         }
 
         // **************************************
@@ -108,7 +108,7 @@ namespace UnicefVirtualWarehouse.Controllers
                 if (createStatus == MembershipCreateStatus.Success)
                 {
                     FormsService.SignIn(model.UserName, false /* createPersistentCookie */, Response);
-                    return RedirectToAction("Index", "Home");
+                    return RedirectToAction("Index", "ProductCategory");
                 }
                 else
                 {
