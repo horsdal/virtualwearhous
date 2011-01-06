@@ -32,7 +32,7 @@ namespace UnicefVirtualWarehouse.Controllers
 
         public ActionResult Create()
         {
-            if (!Request.IsAuthenticated || !(User.IsInRole(UnicefRole.Unicef.ToString()) || User.IsInRole((UnicefRole.Administrator.ToString()))))
+            if (!Request.IsAuthenticated || !(User.IsInRole(UnicefRole.Manufacturer.ToString()) || User.IsInRole((UnicefRole.Administrator.ToString()))))
                 return RedirectToAction("Index");
 
             var products = productRepo.GetAll();
@@ -45,7 +45,7 @@ namespace UnicefVirtualWarehouse.Controllers
 		[AcceptVerbs(HttpVerbs.Post)]
 		public ActionResult Create(FormCollection form)
 		{
-            if (!Request.IsAuthenticated || !(User.IsInRole(UnicefRole.Unicef.ToString()) || User.IsInRole((UnicefRole.Administrator.ToString()))))
+            if (!Request.IsAuthenticated || !(User.IsInRole(UnicefRole.Manufacturer.ToString()) || User.IsInRole((UnicefRole.Administrator.ToString()))))
                 return RedirectToAction("Index");
             
             CreateAndSaveNewPresentation(form);

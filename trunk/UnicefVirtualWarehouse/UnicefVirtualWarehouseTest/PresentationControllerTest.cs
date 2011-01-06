@@ -11,7 +11,7 @@ using UnicefVirtualWarehouse.Models.Repositories;
 
 namespace UnicefVirtualWarehouseTest
 {
-    public class PresentationControllerTestLoggedInAsUnicef : ControllerTestBase<PresentationController>
+    public class PresentationControllerTestLoggedInAsManufaturer : ControllerTestBase<PresentationController>
     {
         protected override bool IsLoggedIn()
         {
@@ -20,7 +20,7 @@ namespace UnicefVirtualWarehouseTest
 
         protected override string Role()
         {
-            return UnicefRole.Unicef.ToString();
+            return UnicefRole.Manufacturer.ToString();
         }
 
         [Test]
@@ -84,7 +84,7 @@ namespace UnicefVirtualWarehouseTest
     }
 
     [TestFixture]
-    class PresentationControllerTestLoggedInAsManufacturer : ControllerTestBase<PresentationController>
+    class PresentationControllerTestLoggedInAsUnicef : ControllerTestBase<PresentationController>
     {
         protected override bool IsLoggedIn()
         {
@@ -93,7 +93,7 @@ namespace UnicefVirtualWarehouseTest
 
         protected override string Role()
         {
-            return UnicefRole.Manufacturer.ToString();
+            return UnicefRole.Unicef.ToString();
         }
 
         [Test]
