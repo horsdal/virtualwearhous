@@ -100,6 +100,7 @@ namespace UnicefVirtualWarehouse.Models
         bool ValidateUser(string userName, string password);
         MembershipCreateStatus CreateUser(string userName, string password, string email, UnicefRole role, int associatedManufacturer);
         bool ChangePassword(string userName, string oldPassword, string newPassword);
+        bool DeleteUser(string userName);
     }
 
     public class AccountMembershipService : IMembershipService

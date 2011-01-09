@@ -149,5 +149,15 @@ namespace UnicefVirtualWarehouse.Controllers
             return View();
         }
 
+        public ActionResult Delete(int id)
+        {
+            if (!Request.IsAuthenticated || !User.IsInRole(UnicefRole.Administrator.ToString()))
+                return RedirectToAction("Index", "ProductCategory");
+
+            var userRepo = new UserRepository();
+            var user = userRepo.GetById(id);
+            var success = user != null && MembershipService.DeleteUser(user.UserName);
+            return View(success);
+        }
     }
 }

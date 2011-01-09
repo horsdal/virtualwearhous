@@ -1,4 +1,5 @@
-﻿using System.Web.Mvc;
+﻿using System;
+using System.Web.Mvc;
 using NUnit.Framework;
 using UnicefVirtualWarehouse.Controllers;
 using UnicefVirtualWarehouse.Models;
@@ -6,7 +7,7 @@ using UnicefVirtualWarehouse.Models.Repositories;
 
 namespace UnicefVirtualWarehouseTest
 {
-    public class AccountControllerTestNotLoggedIn : ControllerTestBase<AccountController>
+    public class AccountControllerTestNotLoggedIn : ControllerTestBase<AlwaysValidAccountController>
     {
         [Test]
         public void CannotAccessRegistrationPage()
@@ -24,6 +25,15 @@ namespace UnicefVirtualWarehouseTest
             Assert.That(res, Is.Not.Null);
             Assert.That(res.RouteValues.Values, Contains.Item("ProductCategory"));
             Assert.That(res.RouteValues.Values, Contains.Item("Index"));
+        }
+
+        [Test]
+        public void CannotDeleteUsers()
+        {
+            var res = controllerUnderTest.Delete(1) as RedirectToRouteResult;
+            Assert.That(res, Is.Not.Null);
+            Assert.That(res.RouteValues.Values, Contains.Item("Index"));
+            Assert.That(res.RouteValues.Values, Contains.Item("ProductCategory"));
         }
     }
 
@@ -50,8 +60,6 @@ namespace UnicefVirtualWarehouseTest
         [Test]
         public void CanRegisterAndDeleteManufacturerUser()
         {
-            var accounts = new AccountMembershipService();
-
             var registerModel = new RegisterModel
                                     {
                                         AssociatedManufacturerId = 1,
@@ -73,7 +81,9 @@ namespace UnicefVirtualWarehouseTest
                         }, "") as RedirectToRouteResult;
             Assert.That(validationResult, Is.Not.Null); // if login fails the same page is shown again, so when redirected login suceeded
 
-            Assert.That(accounts.DeleteUser(registerModel.UserName), Is.True);
+            var userFromMainDB = new UserRepository().GetByName(registerModel.UserName);
+            var deleteRes = controllerUnderTest.Delete(userFromMainDB.Id) as ViewResult;
+            Assert.That(deleteRes.ViewData.Model, Is.True);
         }
 
         [Test]
@@ -195,6 +205,15 @@ namespace UnicefVirtualWarehouseTest
             Assert.That(res.RouteValues.Values, Contains.Item("ProductCategory"));
             Assert.That(res.RouteValues.Values, Contains.Item("Index"));
         }
+        
+        [Test]
+        public void CannotDeleteUsers()
+        {
+            var res = controllerUnderTest.Delete(1) as RedirectToRouteResult;
+            Assert.That(res, Is.Not.Null);
+            Assert.That(res.RouteValues.Values, Contains.Item("Index"));
+            Assert.That(res.RouteValues.Values, Contains.Item("ProductCategory"));
+        }
     }
 
     public class AccountControllerTestLoggedInAsManufacturer : ControllerTestBase<AccountController>
@@ -220,6 +239,15 @@ namespace UnicefVirtualWarehouseTest
             Assert.That(res, Is.Not.Null);
             Assert.That(res.RouteValues.Values, Contains.Item("ProductCategory"));
             Assert.That(res.RouteValues.Values, Contains.Item("Index"));
+        }
+    
+        [Test]
+        public void CannotDeleteUsers()
+        {
+            var res = controllerUnderTest.Delete(1) as RedirectToRouteResult;
+            Assert.That(res, Is.Not.Null);
+            Assert.That(res.RouteValues.Values, Contains.Item("Index"));
+            Assert.That(res.RouteValues.Values, Contains.Item("ProductCategory"));
         }
     }
 
