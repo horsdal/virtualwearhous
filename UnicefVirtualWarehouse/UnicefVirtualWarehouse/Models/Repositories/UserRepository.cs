@@ -37,5 +37,10 @@ namespace UnicefVirtualWarehouse.Models.Repositories
             var user = GetByName(userName);
             return Delete(user);
         }
+
+        public User GetById(int userId)
+        {
+            return db.Users.Include("AssociatedManufaturer").FirstOrDefault(u => u.Id == userId);
+        }
     }
 }
