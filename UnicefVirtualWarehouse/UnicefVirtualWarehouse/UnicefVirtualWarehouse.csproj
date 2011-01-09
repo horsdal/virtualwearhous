@@ -117,7 +117,9 @@
     <Content Include="Views\ProductCategory\Index.aspx" />
     <Content Include="Views\Product\Create.aspx" />
     <Content Include="Views\Product\Index.aspx" />
-    <Content Include="Web.config" />
+    <Content Include="Web.config">
+      <SubType>Designer</SubType>
+    </Content>
     <Content Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </Content>

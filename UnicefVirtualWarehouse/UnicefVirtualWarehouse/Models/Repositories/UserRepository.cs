@@ -31,5 +31,11 @@ namespace UnicefVirtualWarehouse.Models.Repositories
             db.Users.Remove(user);
             return db.SaveChanges() > 0;
         }
+
+        public bool Delete(string userName)
+        {
+            var user = GetByName(userName);
+            return Delete(user);
+        }
     }
 }

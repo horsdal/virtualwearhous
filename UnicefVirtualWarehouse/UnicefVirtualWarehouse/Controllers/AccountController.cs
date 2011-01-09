@@ -31,13 +31,10 @@ namespace UnicefVirtualWarehouse.Controllers
             }
         }
 
-
-        protected override void Initialize(RequestContext requestContext)
+        public AccountController()
         {
             if (FormsService == null) { FormsService = new FormsAuthenticationService(); }
             if (MembershipService == null) { MembershipService = new AccountMembershipService(); }
-
-            base.Initialize(requestContext);
         }
 
         // **************************************
@@ -52,7 +49,7 @@ namespace UnicefVirtualWarehouse.Controllers
         [HttpPost]
         public ActionResult LogOn(LogOnModel model, string returnUrl)
         {
-            if (ModelState.IsValid)
+            if (IsModelStateValidValid())
             {
                 if (MembershipService.ValidateUser(model.UserName, model.Password))
                 {
@@ -76,6 +73,11 @@ namespace UnicefVirtualWarehouse.Controllers
             return View(model);
         }
 
+        protected virtual bool IsModelStateValidValid()
+        {
+            return ModelState.IsValid;
+        }
+
         // **************************************
         // URL: /Account/LogOff
         // **************************************
@@ -93,6 +95,8 @@ namespace UnicefVirtualWarehouse.Controllers
 
         public ActionResult Register()
         {
+            if (!Request.IsAuthenticated || !User.IsInRole(UnicefRole.Administrator.ToString()))
+                return RedirectToAction("Index", "ProductCategory");
             ViewData["PasswordLength"] = MembershipService.MinPasswordLength;
             return View();
         }
@@ -100,6 +104,9 @@ namespace UnicefVirtualWarehouse.Controllers
         [HttpPost]
         public ActionResult Register(RegisterModel model)
         {
+            if (!Request.IsAuthenticated || !User.IsInRole(UnicefRole.Administrator.ToString()))
+                return RedirectToAction("Index", "ProductCategory");
+
             if (ModelState.IsValid)
             {
                 // Attempt to register the user
