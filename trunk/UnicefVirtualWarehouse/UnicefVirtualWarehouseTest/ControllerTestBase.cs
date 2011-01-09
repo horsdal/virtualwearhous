@@ -13,6 +13,8 @@ namespace UnicefVirtualWarehouseTest
         private MockRepository mocks;
         private HttpContextBase mockedhttpContext;
         private HttpRequestBase mockedHttpRequest;
+        private HttpResponseBase mockedHttpResponse;
+        private HttpCookieCollection cookies = new HttpCookieCollection();
         protected ControllerType controllerUnderTest;
         protected string FakeNovoUser { get { return "FakeNovoUser"; } }
 
@@ -24,11 +26,14 @@ namespace UnicefVirtualWarehouseTest
             mocks = new MockRepository();
             mockedhttpContext = mocks.DynamicMock<HttpContextBase>();
             mockedHttpRequest = mocks.DynamicMock<HttpRequestBase>();
+            mockedHttpResponse = mocks.DynamicMock<HttpResponseBase>();
             var id = new GenericIdentity(FakeNovoUser);
             var theUser = new GenericPrincipal(id, new [] { Role() } );
             SetupResult.For(mockedhttpContext.Request).Return(mockedHttpRequest);
             SetupResult.For(mockedHttpRequest.IsAuthenticated).Return(IsLoggedIn());
             SetupResult.For(mockedhttpContext.User).Return(theUser);
+            SetupResult.For(mockedhttpContext.Response).Return(mockedHttpResponse);
+            SetupResult.For(mockedHttpResponse.Cookies).Return(cookies);
 
             mocks.ReplayAll();
         }

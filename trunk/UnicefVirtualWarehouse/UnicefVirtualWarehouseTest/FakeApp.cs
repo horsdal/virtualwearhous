@@ -1,7 +1,9 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Text;
+using System.Web.Security;
 using UnicefVirtualWarehouse;
 
 namespace UnicefVirtualWarehouseTest
@@ -12,6 +14,8 @@ namespace UnicefVirtualWarehouseTest
         {
             this.Init();
             this.StartDatabaseContext();
+
+            AppDomain.CurrentDomain.SetData("DataDirectory", @"C:\projects\virtualwearhouse\UnicefVirtualWarehouse\UnicefVirtualWarehouse\App_Data");
         }
 
         public void BeginTest()

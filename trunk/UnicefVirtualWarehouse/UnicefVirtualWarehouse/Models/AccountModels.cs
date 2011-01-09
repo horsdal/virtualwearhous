@@ -139,7 +139,7 @@ namespace UnicefVirtualWarehouse.Models
             if (String.IsNullOrEmpty(email)) throw new ArgumentException("Value cannot be null or empty.", "email");
 
             MembershipCreateStatus status;
-            _provider.CreateUser(userName, password, email, null, null, true, null, out status);
+            _provider.CreateUser(userName, password, email, "Generic question", "generic answer", true, null, out status);
             if (status == MembershipCreateStatus.Success)
             {
                 var manufacturerRepository =new ManufacturerRepository();
@@ -181,6 +181,11 @@ namespace UnicefVirtualWarehouse.Models
             {
                 return false;
             }
+        }
+
+        public bool DeleteUser(string userName)
+        {
+            return _provider.DeleteUser(userName, true) && new UserRepository().Delete(userName);
         }
     }
 
