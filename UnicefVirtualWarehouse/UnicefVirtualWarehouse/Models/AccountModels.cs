@@ -140,23 +140,28 @@ namespace UnicefVirtualWarehouse.Models
 
             MembershipCreateStatus status;
             _provider.CreateUser(userName, password, email, "Generic question", "generic answer", true, null, out status);
-            if (status == MembershipCreateStatus.Success)
-            {
-                var manufacturerRepository =new ManufacturerRepository();
-                var userRepo = new UserRepository();
-                var dbStatus = userRepo.Add(new User
-                                                {
-                                                    UserName = userName,
-                                                    Role = (int) role,
-                                                    AssociatedManufaturer = manufacturerRepository.GetById(associatedManufacturer)
-                                              });
-                if (!dbStatus)
-                {
-                    _provider.DeleteUser(userName, true);
-                    status = MembershipCreateStatus.DuplicateUserName;
-                }
-            }
 
+            if (status == MembershipCreateStatus.Success)
+                status = CreateUserInMainDB(userName, status, role, associatedManufacturer);
+
+            return status;
+        }
+
+        private MembershipCreateStatus CreateUserInMainDB(string userName, MembershipCreateStatus status, UnicefRole role, int associatedManufacturer)
+        {
+            var manufacturerRepository = new ManufacturerRepository();
+            var userRepo = new UserRepository();
+            var dbStatus = userRepo.Add(new User
+                                            {
+                                                UserName = userName,
+                                                Role = (int) role,
+                                                AssociatedManufaturer = manufacturerRepository.GetById(associatedManufacturer)
+                                            });
+            if (!dbStatus)
+            {
+                _provider.DeleteUser(userName, true);
+                status = MembershipCreateStatus.DuplicateUserName;
+            }
             return status;
         }
 

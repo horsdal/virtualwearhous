@@ -2,6 +2,7 @@
 using NUnit.Framework;
 using UnicefVirtualWarehouse.Controllers;
 using UnicefVirtualWarehouse.Models;
+using UnicefVirtualWarehouse.Models.Repositories;
 
 namespace UnicefVirtualWarehouseTest
 {
@@ -102,7 +103,67 @@ namespace UnicefVirtualWarehouseTest
 
             Assert.That(accounts.DeleteUser(registerModel.UserName), Is.True);
         }
-   
+
+        [Test]
+        public void CannotCreateExistingUser()
+        {
+            var accounts = new AccountMembershipService();
+
+            var registerModel = new RegisterModel
+                                    {
+                                        UserName = "TestAdminUserRegistrationDuplicate",
+                                        Password = "Pa3sword!",
+                                        ConfirmPassword = "Pa3sword!",
+                                        Email = "test@manufacturer.com",
+                                        Role = UnicefRole.Administrator
+                                    };
+
+            accounts.DeleteUser(registerModel.UserName);
+
+            try
+            {
+                var firstRes = controllerUnderTest.Register(registerModel) as RedirectToRouteResult;
+                Assert.That(firstRes, Is.Not.Null); // a redirect means registration succeeded
+                var secondRes = controllerUnderTest.Register(registerModel) as ViewResult;
+                Assert.That(secondRes, Is.Not.Null); // return to same page means something is wrong
+            }
+            finally
+            {
+                Assert.That(accounts.DeleteUser(registerModel.UserName), Is.True);
+            }
+        }
+
+        [Test]
+        public void CannotCreateUserAlreadyInMainDB()
+        {
+            var accounts = new AccountMembershipService();
+            var userRepo = new UserRepository();
+
+            var registerModel = new RegisterModel
+            {
+                UserName = "TestUnicefnUserRegistrationDuplicate",
+                Password = "Pa3sword!",
+                ConfirmPassword = "Pa3sword!",
+                Email = "test@manufacturer.com",
+                Role = UnicefRole.Unicef
+            };
+
+            accounts.DeleteUser(registerModel.UserName);
+            userRepo.Add(new User
+                             {
+                                 UserName = registerModel.UserName,
+                                 Role = (int) registerModel.Role
+                             });
+            try
+            {
+                var view = controllerUnderTest.Register(registerModel) as ViewResult;
+                Assert.That(view, Is.Not.Null); // return to same page means something is wrong
+            }
+            finally
+            {
+                userRepo.Delete(registerModel.UserName);
+            }
+        }
     }
 
     public class AccountControllerTestLoggedInAsUnicef: ControllerTestBase<AccountController>
@@ -135,7 +196,7 @@ namespace UnicefVirtualWarehouseTest
             Assert.That(res.RouteValues.Values, Contains.Item("Index"));
         }
     }
- 
+
     public class AccountControllerTestLoggedInAsManufacturer : ControllerTestBase<AccountController>
     {
         protected override bool  IsLoggedIn()

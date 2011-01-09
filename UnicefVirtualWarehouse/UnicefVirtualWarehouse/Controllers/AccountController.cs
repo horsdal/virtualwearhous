@@ -55,20 +55,11 @@ namespace UnicefVirtualWarehouse.Controllers
                 {
                     FormsService.SignIn(model.UserName, model.RememberMe, Response);
                     if (!String.IsNullOrEmpty(returnUrl))
-                    {
                         return Redirect(returnUrl);
-                    }
-                    else
-                    {
-                        return RedirectToAction("Index", "ProductCategory");
-                    }
+                    return RedirectToAction("Index", "ProductCategory");
                 }
-                else
-                {
-                    ModelState.AddModelError("", "The user name or password provided is incorrect.");
-                }
+                ModelState.AddModelError("", "The user name or password provided is incorrect.");
             }
-
             // If we got this far, something failed, redisplay form
             return View(model);
         }
@@ -113,14 +104,8 @@ namespace UnicefVirtualWarehouse.Controllers
                 MembershipCreateStatus createStatus = MembershipService.CreateUser(model.UserName, model.Password, model.Email, model.Role, model.AssociatedManufacturerId);
 
                 if (createStatus == MembershipCreateStatus.Success)
-                {
-                    FormsService.SignIn(model.UserName, false /* createPersistentCookie */, Response);
                     return RedirectToAction("Index", "ProductCategory");
-                }
-                else
-                {
-                    ModelState.AddModelError("", AccountValidation.ErrorCodeToString(createStatus));
-                }
+                ModelState.AddModelError("", AccountValidation.ErrorCodeToString(createStatus));
             }
 
             // If we got this far, something failed, redisplay form
@@ -146,13 +131,8 @@ namespace UnicefVirtualWarehouse.Controllers
             if (ModelState.IsValid)
             {
                 if (MembershipService.ChangePassword(User.Identity.Name, model.OldPassword, model.NewPassword))
-                {
                     return RedirectToAction("ChangePasswordSuccess");
-                }
-                else
-                {
-                    ModelState.AddModelError("", "The current password is incorrect or the new password is invalid.");
-                }
+                ModelState.AddModelError("", "The current password is incorrect or the new password is invalid.");
             }
 
             // If we got this far, something failed, redisplay form
