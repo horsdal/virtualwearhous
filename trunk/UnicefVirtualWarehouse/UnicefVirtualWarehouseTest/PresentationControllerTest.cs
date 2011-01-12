@@ -73,6 +73,50 @@ namespace UnicefVirtualWarehouseTest
     class PresentationControllerTestAsNotLoggedIn : ControllerTestBase<PresentationController>
     {
         [Test]
+        public void IndexContainsSummaryPrices()
+        {
+            var res = controllerUnderTest.Index() as ViewResult;
+            var presentationsForView = res.ViewData.Model as IEnumerable<PresentationViewModel>;
+            Assert.That(presentationsForView, Is.Not.Null);
+
+            CheckPresentationViewModels(presentationsForView);
+        }
+
+        [Test]
+        public void ProductSubviewContainsSummaryPrices()
+        {
+            var res = controllerUnderTest.Product(138) as ViewResult;
+            var presentationsForView = res.ViewData.Model as IEnumerable<PresentationViewModel>;
+            Assert.That(presentationsForView, Is.Not.Null);
+
+            CheckPresentationViewModels(presentationsForView);
+        }
+
+        private void CheckPresentationViewModels(IEnumerable<PresentationViewModel> presentationsForView)
+        {
+            var manufacturerPresentationRepo = new ManufacturerPresentationRepository();
+            foreach (var p in presentationsForView)
+            {
+                var manufacturerPresentationsForP = manufacturerPresentationRepo.GetByPresentationId(p.Presentation.Id);
+                if (manufacturerPresentationsForP.Count == 0)
+                {
+                    Assert.That(p.MaxPrice, Is.EqualTo(0));
+                    Assert.That(p.MinPrice, Is.EqualTo(0));
+                    Assert.That(p.AveragePrice, Is.EqualTo(0));
+                }
+                else
+                {
+                    var maxPriceForPresentation = manufacturerPresentationsForP.Max(mp => mp.Price);
+                    var minPriceForPresentation = manufacturerPresentationsForP.Min(mp => mp.Price);
+                    var averagePriceForPrensentation = manufacturerPresentationsForP.Average(mp => mp.Price);
+                    Assert.That(p.MaxPrice, Is.EqualTo(maxPriceForPresentation));
+                    Assert.That(p.MinPrice, Is.EqualTo(minPriceForPresentation));
+                    Assert.That(p.AveragePrice, Is.InRange(averagePriceForPrensentation - 1, averagePriceForPrensentation + 1));                   
+                }
+            }
+        }
+
+        [Test]
         public void CreateRedirectsToIndex()
         {
             var res = controllerUnderTest.Create() as RedirectToRouteResult;
