@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.Linq;
 using System.Web.Mvc;
 using UnicefVirtualWarehouse.Models;
@@ -6,6 +7,14 @@ using UnicefVirtualWarehouse.Models.Repositories;
 
 namespace UnicefVirtualWarehouse.Controllers
 {
+    public class PresentationViewModel
+    {
+        public Presentation Presentation { get; set; }
+        public int MaxPrice { get; set; }
+        public int MinPrice { get; set; }
+        public int AveragePrice { get; set; }
+    }
+
     public class PresentationController : Controller
     {
         private readonly ProductRepository productRepo = new ProductRepository();
@@ -15,15 +24,61 @@ namespace UnicefVirtualWarehouse.Controllers
 
         public ActionResult Index()
         {
-            var presentations = presentationRepo.GetAll();
+            var presentations = presentationRepo.GetAll().Select(
+                p =>
+                    {
+                        var manufacturerPresentations =
+                            new ManufacturerPresentationRepository().GetByPresentationId(p.Id);
+                        return new PresentationViewModel
+                            {
+                                Presentation = p,
+                                MaxPrice = MaxPriceFor(manufacturerPresentations),
+                                AveragePrice = AveragePriceFor(manufacturerPresentations),
+                                MinPrice = MinPriceFor(manufacturerPresentations)
+                            };
+                    });
             return View(presentations);
+        }
+
+        private int MinPriceFor(IList<ManufacturerPresentation> manufacturerPresentations)
+        {
+            return manufacturerPresentations.Count == 0 ?
+                0 :
+                manufacturerPresentations.Min(p => p.Price);            
+        }
+
+        private int AveragePriceFor(IList<ManufacturerPresentation> manufacturerPresentations)
+        {
+            var averagePrice = manufacturerPresentations.Count == 0
+                                   ? 0
+                                   : manufacturerPresentations.Average(p => p.Price);
+            return (int) Math.Round(averagePrice);
+        }
+
+        private int MaxPriceFor(IList<ManufacturerPresentation> manufacturerPresentations)
+        {
+            return manufacturerPresentations.Count == 0 ?
+                0 :
+                manufacturerPresentations.Max(p => p.Price);
         }
 
         public ActionResult Product(int id)
         {
             var product = productRepo.GetById(id);
-
-            return View("index", product.Presentations.ToList());
+            var presentations = product.Presentations.Select(
+               p =>
+               {
+                   var manufacturerPresentations =
+                       new ManufacturerPresentationRepository().GetByPresentationId(p.Id);
+                   return new PresentationViewModel
+                   {
+                       Presentation = p,
+                       MaxPrice = MaxPriceFor(manufacturerPresentations),
+                       AveragePrice = AveragePriceFor(manufacturerPresentations),
+                       MinPrice = MinPriceFor(manufacturerPresentations)
+                   };
+               });
+            return View("index", presentations.ToList());
         }
 
  
