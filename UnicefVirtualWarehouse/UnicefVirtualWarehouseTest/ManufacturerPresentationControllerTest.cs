@@ -90,6 +90,31 @@ namespace UnicefVirtualWarehouseTest
                 }
             }            
         }
+
+        [Test]
+        public void DetailsViewDataContainsOnlyPricingInformationForThisManufacturer()
+        {
+            var manufacturer = new ManufacturerRepository().GetById(2);
+            var manufacturerPresentationRepo = new ManufacturerPresentationRepository();
+            var allManufacturerPresentations = manufacturerPresentationRepo.GetAll();
+            var myManufaturerPresentations = manufacturerPresentationRepo.GetByManufacturer(manufacturer);
+
+            var result = controllerUnderTest.Details(1) as ViewResult;
+            Assert.That(result, Is.Not.Null);
+            var manufacturePresentationsFromView = result.ViewData.Model as IEnumerable<ManufacturerPresentation>;
+            foreach (var mpFromView in manufacturePresentationsFromView)
+            {
+                if (mpFromView.Manufacturer.Id == manufacturer.Id)
+                {
+                    var priceFromDB = myManufaturerPresentations.SingleOrDefault(p => p.ID == mpFromView.ID).Price;
+                    Assert.That(mpFromView.Price, Is.EqualTo(priceFromDB));
+                }
+                else
+                {
+                    Assert.That(mpFromView.Price, Is.EqualTo(0));
+                }
+            }
+        }
     }
 
     [TestFixture]
@@ -144,6 +169,22 @@ namespace UnicefVirtualWarehouseTest
                 Assert.That(mpFromView.Price, Is.EqualTo(priceFromDB));
             }
         }
+
+        [Test]
+        public void DetailsViewDataContainsPricingInformation()
+        {
+            var allManufacturerPresentations = new ManufacturerPresentationRepository().GetAll();
+
+            var result = controllerUnderTest.Details(1) as ViewResult;
+            Assert.That(result, Is.Not.Null);
+            var manufacturePresentationsFromView = result.ViewData.Model as IEnumerable<ManufacturerPresentation>;
+            foreach (var mpFromView in manufacturePresentationsFromView)
+            {
+                var priceFromDB = allManufacturerPresentations.SingleOrDefault(p => p.ID == mpFromView.ID).Price;
+                Assert.That(mpFromView.Price, Is.EqualTo(priceFromDB));
+            }
+        }
+
     }
 
     [TestFixture]
@@ -163,6 +204,16 @@ namespace UnicefVirtualWarehouseTest
         public void IndexViewDataContainsNoPricingInformation()
         {
             var result = controllerUnderTest.Index() as ViewResult;
+            Assert.That(result, Is.Not.Null);
+            var manufacturePresentationsFromView = result.ViewData.Model as IEnumerable<ManufacturerPresentation>;
+            foreach (var mpFromView in manufacturePresentationsFromView)
+                Assert.That(mpFromView.Price, Is.EqualTo(0));
+        }
+
+        [Test]
+        public void DetailsViewDataContainsNoPricingInformation()
+        {
+            var result = controllerUnderTest.Details(1) as ViewResult;
             Assert.That(result, Is.Not.Null);
             var manufacturePresentationsFromView = result.ViewData.Model as IEnumerable<ManufacturerPresentation>;
             foreach (var mpFromView in manufacturePresentationsFromView)
@@ -209,5 +260,19 @@ namespace UnicefVirtualWarehouseTest
             }
         }
 
+        [Test]
+        public void DeatilsViewDataContainsPricingInformation()
+        {
+            var allManufacturerPresentations = new ManufacturerPresentationRepository().GetAll();
+
+            var result = controllerUnderTest.Details(1) as ViewResult;
+            Assert.That(result, Is.Not.Null);
+            var manufacturePresentationsFromView = result.ViewData.Model as IEnumerable<ManufacturerPresentation>;
+            foreach (var mpFromView in manufacturePresentationsFromView)
+            {
+                var priceFromDB = allManufacturerPresentations.SingleOrDefault(p => p.ID == mpFromView.ID).Price;
+                Assert.That(mpFromView.Price, Is.EqualTo(priceFromDB));
+            }
+        }
     }
 }
