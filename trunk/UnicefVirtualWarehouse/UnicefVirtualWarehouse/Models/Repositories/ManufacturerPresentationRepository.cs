@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Data.Entity;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
@@ -17,7 +18,7 @@ namespace UnicefVirtualWarehouse.Models.Repositories
 
         public IList<ManufacturerPresentation> GetByPresentationId(int presentationId)
         {
-           return db.ManufacturerPresentations.Where(mp => mp.Presentation.Id == presentationId).ToList();
+           return db.ManufacturerPresentations.Where(mp => mp.Presentation.Id == presentationId).Include("Presentation").Include("Manufacturer").ToList();
         }
 
         public void Add(ManufacturerPresentation manufacturerPresentation)

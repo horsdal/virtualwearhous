@@ -17,13 +17,16 @@ namespace UnicefVirtualWarehouse.Controllers
         public ActionResult Index()
         {
             var manufacturerPresentations = manufacturerPresentationRepo.GetAll();
+            ScrubPricingInformation(manufacturerPresentations);
+            return View(manufacturerPresentations);
+        }
 
+        private void ScrubPricingInformation(IList<ManufacturerPresentation> manufacturerPresentations)
+        {
             if (!Request.IsAuthenticated)
                 ScrubAllPricingInformation(manufacturerPresentations);
             if (Request.IsAuthenticated && User.IsInRole(UnicefRole.Manufacturer.ToString()))
                 ScrubPricingInformationFromPresentationFromOtherManufacturers(manufacturerPresentations);
-
-			return View(manufacturerPresentations);
         }
 
         private void ScrubPricingInformationFromPresentationFromOtherManufacturers(IList<ManufacturerPresentation> manufacturerPresentations)
@@ -44,11 +47,15 @@ namespace UnicefVirtualWarehouse.Controllers
         // GET: /ManufacturerPresentation/Details/5
 
 		public ActionResult Details(int id)
-        {
-			IList<ManufacturerPresentation> manPresentations = 
-				MvcApplication.CurrentUnicefContext.ManufacturerPresentations.Include("Presentation").Include("Manufacturer").Where(manPres => manPres.Presentation.Id == id).ToList();
+		{
+		    IList<ManufacturerPresentation> manPresentations = new ManufacturerPresentationRepository().GetByPresentationId(id);
+		    ScrubPricingInformation(manPresentations);
+		    return View("Index", manPresentations);
+		}
 
-			return View("Index", manPresentations);            
+        private IList<ManufacturerPresentation> GetByPresentationId(int id)
+        {
+            return MvcApplication.CurrentUnicefContext.ManufacturerPresentations.Include("Presentation").Include("Manufacturer").Where(manPres => manPres.Presentation.Id == id).ToList();
         }
 
         //
