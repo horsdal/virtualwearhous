@@ -18,7 +18,26 @@ namespace UnicefVirtualWarehouse.Controllers
         {
             var manufacturerPresentations = manufacturerPresentationRepo.GetAll();
 
+            if (!Request.IsAuthenticated)
+                ScrubAllPricingInformation(manufacturerPresentations);
+            if (Request.IsAuthenticated && User.IsInRole(UnicefRole.Manufacturer.ToString()))
+                ScrubPricingInformationFromPresentationFromOtherManufacturers(manufacturerPresentations);
+
 			return View(manufacturerPresentations);
+        }
+
+        private void ScrubPricingInformationFromPresentationFromOtherManufacturers(IList<ManufacturerPresentation> manufacturerPresentations)
+        {
+            var user = new UserRepository().GetByName(User.Identity.Name);
+            var othersManufacturerPresentations =
+                manufacturerPresentations.Where(mp => mp.Manufacturer.Id != user.AssociatedManufaturer.Id);
+            ScrubAllPricingInformation(othersManufacturerPresentations.ToList());
+        }
+
+        private void ScrubAllPricingInformation(IList<ManufacturerPresentation> manufacturerPresentations)
+        {
+            foreach (var manufacturerPresentation in manufacturerPresentations)
+                manufacturerPresentation.Price = 0;
         }
 
         //

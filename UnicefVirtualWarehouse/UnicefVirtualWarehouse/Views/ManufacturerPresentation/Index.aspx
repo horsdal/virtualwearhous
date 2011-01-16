@@ -8,7 +8,7 @@
 				<th>Manufacturer</th>
 				<th>Presentation</th>
 				<th>Size</th>
-				<th>Price in USD</th>
+				<% if (Request.IsAuthenticated) {%> <th>Price in USD</th> <% } %>
 				<th>Minimal Unit</th>
 				<th>Licensed</th>
 				<th>CPP</th>
@@ -25,9 +25,11 @@
 				<td>
 					<%=p.Size %>
 				</td>
+                <% if (Request.IsAuthenticated) {%>
 				<td>
-					<%=((decimal) p.Price) / 100 %>
+					<%=((decimal) p.Price)/100%>
 				</td>
+                <% }%>
 				<td>
 					<%=p.MinUnit %>
 				</td>

@@ -30,5 +30,10 @@ namespace UnicefVirtualWarehouse.Models.Repositories
         {
             return db.ManufacturerPresentations.Include("Presentation").Include("Manufacturer").ToList();
         }
+
+        public IList<ManufacturerPresentation> GetByManufacturer(Manufacturer manufacturer)
+        {
+            return db.ManufacturerPresentations.Where(mp => mp.Manufacturer.Id == manufacturer.Id).ToList();
+        }
     }
 }
