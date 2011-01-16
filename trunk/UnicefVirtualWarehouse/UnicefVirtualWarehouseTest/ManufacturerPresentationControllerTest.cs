@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Collections.Specialized;
 using System.Linq;
 using System.Web.Mvc;
@@ -63,6 +64,32 @@ namespace UnicefVirtualWarehouseTest
             var createdManufacturerPresentation = manufacturerPresentations.FirstOrDefault(m => m.Price == price);
             Assert.That(createdManufacturerPresentation.Manufacturer.Id, Is.EqualTo(2)); //Which is Novo
         }
+
+        [Test]
+        public void IndexViewDataContainsOnlyPricingInformationForThisManufacturer()
+        {
+            var manufacturer = new ManufacturerRepository().GetById(2);
+            var manufacturerPresentationRepo = new ManufacturerPresentationRepository();
+            var allManufacturerPresentations = manufacturerPresentationRepo.GetAll();
+            var myManufaturerPresentations = manufacturerPresentationRepo.GetByManufacturer(manufacturer);
+
+            var result = controllerUnderTest.Index() as ViewResult;
+            Assert.That(result, Is.Not.Null);
+            var manufacturePresentationsFromView = result.ViewData.Model as IEnumerable<ManufacturerPresentation>;
+            Assert.That(manufacturePresentationsFromView.Count(), Is.EqualTo(allManufacturerPresentations.Count));
+            foreach (var mpFromView in manufacturePresentationsFromView)
+            {
+                if (mpFromView.Manufacturer.Id == manufacturer.Id)
+                {
+                    var priceFromDB = myManufaturerPresentations.SingleOrDefault(p => p.ID == mpFromView.ID).Price;
+                    Assert.That(mpFromView.Price, Is.EqualTo(priceFromDB));
+                }
+                else
+                {
+                    Assert.That(mpFromView.Price, Is.EqualTo(0));
+                }
+            }            
+        }
     }
 
     [TestFixture]
@@ -101,6 +128,22 @@ namespace UnicefVirtualWarehouseTest
             Assert.That(createdManufacturerPresentation, Is.Not.Null);
             Assert.That(createdManufacturerPresentation.Presentation.Id, Is.EqualTo(presentationId));
         }
+
+        [Test]
+        public void IndexViewDataContainsPricingInformation()
+        {
+            var allManufacturerPresentations = new ManufacturerPresentationRepository().GetAll();
+
+            var result = controllerUnderTest.Index() as ViewResult;
+            Assert.That(result, Is.Not.Null);
+            var manufacturePresentationsFromView = result.ViewData.Model as IEnumerable<ManufacturerPresentation>;
+            Assert.That(manufacturePresentationsFromView.Count(), Is.EqualTo(allManufacturerPresentations.Count));
+            foreach (var mpFromView in manufacturePresentationsFromView)
+            {
+                var priceFromDB = allManufacturerPresentations.SingleOrDefault(p => p.ID == mpFromView.ID).Price;
+                Assert.That(mpFromView.Price, Is.EqualTo(priceFromDB));
+            }
+        }
     }
 
     [TestFixture]
@@ -114,6 +157,16 @@ namespace UnicefVirtualWarehouseTest
                 
             res = controllerUnderTest.Create(new FormCollection()) as RedirectToRouteResult;
             Assert.That(res.RouteValues.Values, Contains.Item("Index"));
+        }
+
+        [Test]
+        public void IndexViewDataContainsNoPricingInformation()
+        {
+            var result = controllerUnderTest.Index() as ViewResult;
+            Assert.That(result, Is.Not.Null);
+            var manufacturePresentationsFromView = result.ViewData.Model as IEnumerable<ManufacturerPresentation>;
+            foreach (var mpFromView in manufacturePresentationsFromView)
+                Assert.That(mpFromView.Price, Is.EqualTo(0));
         }
     }
 
@@ -139,5 +192,22 @@ namespace UnicefVirtualWarehouseTest
             res = controllerUnderTest.Create(new FormCollection()) as RedirectToRouteResult;
             Assert.That(res.RouteValues.Values, Contains.Item("Index"));
         }
+
+        [Test]
+        public void IndexViewDataContainsPricingInformation()
+        {
+            var allManufacturerPresentations = new ManufacturerPresentationRepository().GetAll();
+
+            var result = controllerUnderTest.Index() as ViewResult;
+            Assert.That(result, Is.Not.Null);
+            var manufacturePresentationsFromView = result.ViewData.Model as IEnumerable<ManufacturerPresentation>;
+            Assert.That(manufacturePresentationsFromView.Count(), Is.EqualTo(allManufacturerPresentations.Count));
+            foreach (var mpFromView in manufacturePresentationsFromView)
+            {
+                var priceFromDB = allManufacturerPresentations.SingleOrDefault(p => p.ID == mpFromView.ID).Price;
+                Assert.That(mpFromView.Price, Is.EqualTo(priceFromDB));
+            }
+        }
+
     }
 }
