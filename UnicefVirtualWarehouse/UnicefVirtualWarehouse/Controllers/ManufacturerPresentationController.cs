@@ -53,11 +53,6 @@ namespace UnicefVirtualWarehouse.Controllers
 		    return View("Index", manPresentations);
 		}
 
-        private IList<ManufacturerPresentation> GetByPresentationId(int id)
-        {
-            return MvcApplication.CurrentUnicefContext.ManufacturerPresentations.Include("Presentation").Include("Manufacturer").Where(manPres => manPres.Presentation.Id == id).ToList();
-        }
-
         //
         // GET: /ManufacturerPresentation/Create
 
