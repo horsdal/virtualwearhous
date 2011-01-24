@@ -22,7 +22,7 @@ namespace UnicefVirtualWarehouse.Models.Repositories
 
         public Presentation GetById(int id)
         {
-            return db.Presentations.Where(p => p.Id == id).SingleOrDefault();
+            return db.Presentations.Include("Products").Where(p => p.Id == id).SingleOrDefault();
         }
 
         public void Add(Presentation presentation, Product product)
@@ -35,6 +35,33 @@ namespace UnicefVirtualWarehouse.Models.Repositories
         public IList<Presentation> GetAll()
         {
             return db.Presentations.ToList();
+        }
+
+        public void DeleteById(int id)
+        {
+            var presentation = GetById(id);
+            if (HasNoManufacturerPresentations(presentation))
+                Delete(presentation);
+        }
+
+        public void Delete(Presentation presentation)
+        {
+            RemovePresentationFromProducts(presentation);
+            db.Presentations.Remove(presentation);
+            db.SaveChanges();
+        }
+
+        private void RemovePresentationFromProducts(Presentation presentation)
+        {
+            if (presentation.Products != null)
+                foreach (var product in presentation.Products)
+                    product.Presentations.Remove(presentation);
+        }
+
+        private bool HasNoManufacturerPresentations(Presentation presentation)
+        {
+            var manufacturerPresentationRepo = new ManufacturerPresentationRepository();
+            return (manufacturerPresentationRepo.GetByPresentationId(presentation.Id).Count() == 0);
         }
     }
 }

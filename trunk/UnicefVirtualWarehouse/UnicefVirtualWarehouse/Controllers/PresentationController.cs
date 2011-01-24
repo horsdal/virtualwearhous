@@ -37,7 +37,7 @@ namespace UnicefVirtualWarehouse.Controllers
                                 MinPrice = MinPriceFor(manufacturerPresentations)
                             };
                     });
-            return View(presentations);
+            return View(presentations.ToList());
         }
 
         private int MinPriceFor(IList<ManufacturerPresentation> manufacturerPresentations)
@@ -87,7 +87,7 @@ namespace UnicefVirtualWarehouse.Controllers
 
         public ActionResult Create()
         {
-            if (!Request.IsAuthenticated || !(User.IsInRole(UnicefRole.Manufacturer.ToString()) || User.IsInRole((UnicefRole.Administrator.ToString()))))
+            if (!Request.IsAuthenticated || UserMayNotEditPresentations())
                 return RedirectToAction("Index");
 
             var products = productRepo.GetAll();
@@ -100,12 +100,17 @@ namespace UnicefVirtualWarehouse.Controllers
 		[AcceptVerbs(HttpVerbs.Post)]
 		public ActionResult Create(FormCollection form)
 		{
-            if (!Request.IsAuthenticated || !(User.IsInRole(UnicefRole.Manufacturer.ToString()) || User.IsInRole((UnicefRole.Administrator.ToString()))))
+            if (!Request.IsAuthenticated || UserMayNotEditPresentations())
                 return RedirectToAction("Index");
             
             CreateAndSaveNewPresentation(form);
 		    return RedirectToAction("Index");
 		}
+
+        private bool UserMayNotEditPresentations()
+        {
+            return !(User.IsInRole(UnicefRole.Manufacturer.ToString()) || User.IsInRole((UnicefRole.Administrator.ToString())));
+        }
 
         private void CreateAndSaveNewPresentation(FormCollection form)
         {
@@ -125,9 +130,10 @@ namespace UnicefVirtualWarehouse.Controllers
  
         public ActionResult Delete(int id)
         {
-            if (!Request.IsAuthenticated)
+            if (!Request.IsAuthenticated || UserMayNotEditPresentations())
                 return RedirectToAction("Index");
-            return View();
+
+            return View(presentationRepo.GetById(id));
         }
 
         //
@@ -138,16 +144,22 @@ namespace UnicefVirtualWarehouse.Controllers
         {
             try
             {
-                if (!Request.IsAuthenticated)
-                    return RedirectToAction("Index");
-                // TODO: Add delete logic here
- 
-                return RedirectToAction("Index");
+                return DoDelete(id);
             }
-            catch
+            catch (Exception e)
             {
                 return View();
             }
+        }
+
+        private ActionResult DoDelete(int id)
+        {
+            if (!Request.IsAuthenticated || UserMayNotEditPresentations())
+                return RedirectToAction("Index");
+
+            presentationRepo.DeleteById(id);
+ 
+            return RedirectToAction("Index");
         }
     }
 }
