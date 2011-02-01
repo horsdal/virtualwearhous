@@ -13,15 +13,23 @@ namespace UnicefVirtualWarehouseTest
     [TestFixture]
     class ManufacturerPresentationControllerTest : ControllerTestBase<ManufacturerPresentationController>
     {
+        private ManufacturerPresentationRepository manufacturerPresentationRepo;
+
         protected override bool IsLoggedIn()
         {
             return true;
         }
 
+        [SetUp]
+        public void TestSetup()
+        {
+            manufacturerPresentationRepo = new ManufacturerPresentationRepository();
+        }
+
         [Test]
         public void CanAddAndFindAManufacturerPresentation()
         {
-            var repo = new ManufacturerPresentationRepository();
+            var repo = manufacturerPresentationRepo;
             var presentationId = 1;
             var price = DateTime.Now.Ticks % int.MaxValue;
 
@@ -45,7 +53,7 @@ namespace UnicefVirtualWarehouseTest
         [Test]
         public void WhenCreatingAManufacturerPresentationItBelongsToTheLoggedInManufacturer()
         {
-            var repo = new ManufacturerPresentationRepository();
+            var repo = manufacturerPresentationRepo;
             var presentationId = 1;
             var price = DateTime.Now.Ticks % int.MaxValue;
 
@@ -69,7 +77,7 @@ namespace UnicefVirtualWarehouseTest
         public void IndexViewDataContainsOnlyPricingInformationForThisManufacturer()
         {
             var manufacturer = new ManufacturerRepository().GetById(2);
-            var manufacturerPresentationRepo = new ManufacturerPresentationRepository();
+            var manufacturerPresentationRepo = this.manufacturerPresentationRepo;
             var allManufacturerPresentations = manufacturerPresentationRepo.GetAll();
             var myManufaturerPresentations = manufacturerPresentationRepo.GetByManufacturer(manufacturer);
 
@@ -95,7 +103,7 @@ namespace UnicefVirtualWarehouseTest
         public void DetailsViewDataContainsOnlyPricingInformationForThisManufacturer()
         {
             var manufacturer = new ManufacturerRepository().GetById(2);
-            var manufacturerPresentationRepo = new ManufacturerPresentationRepository();
+            var manufacturerPresentationRepo = this.manufacturerPresentationRepo;
             var allManufacturerPresentations = manufacturerPresentationRepo.GetAll();
             var myManufaturerPresentations = manufacturerPresentationRepo.GetByManufacturer(manufacturer);
 
@@ -114,6 +122,92 @@ namespace UnicefVirtualWarehouseTest
                     Assert.That(mpFromView.Price, Is.EqualTo(0));
                 }
             }
+        }
+
+        [Test]
+        public void CanAccessDeletePageForOwnPresentation()
+        {
+            var res = controllerUnderTest.Delete(1) as ViewResult;
+            Assert.That(res, Is.Not.Null);
+            Assert.That(res.ViewName, Is.EqualTo(""));
+        }
+
+        [Test]
+        public void DeletePageContainsTheManufacturerPresentationForOwnPresentation()
+        {
+            var presFromDb = GetOwnPresentationFromDb();
+
+            var res = controllerUnderTest.Delete(presFromDb.ID) as ViewResult;
+            var presFromViewdata = res.ViewData.Model as ManufacturerPresentation;
+            Assert.That(presFromViewdata, Is.Not.Null);
+            Assert.That(presFromViewdata.ID, Is.EqualTo(presFromDb.ID));
+            Assert.That(presFromViewdata.CPP, Is.EqualTo(presFromDb.CPP));
+            Assert.That(presFromViewdata.Licensed, Is.EqualTo(presFromDb.Licensed));
+            Assert.That(presFromViewdata.Manufacturer.Id, Is.EqualTo(presFromDb.Manufacturer.Id));
+            Assert.That(presFromViewdata.Presentation.Id, Is.EqualTo(presFromDb.Presentation.Id));
+            Assert.That(presFromViewdata.Price, Is.EqualTo(presFromDb.Price));
+            Assert.That(presFromViewdata.Size, Is.EqualTo(presFromDb.Size));
+        }
+
+        private ManufacturerPresentation GetOwnPresentationFromDb()
+        {
+            var manufacturer = new ManufacturerRepository().GetById(2);
+            return manufacturerPresentationRepo.GetByManufacturer(manufacturer).First();
+        }
+
+        [Test]
+        public void DeletePageContainsNoManufacturerPresentationForOthersPresentation()
+        {
+            ManufacturerPresentation presFromDb = GetOthersPresentationFromDb();
+
+            var res = controllerUnderTest.Delete(presFromDb.ID) as ViewResult;
+            var presFromViewdata = res.ViewData.Model as ManufacturerPresentation;
+            Assert.That(presFromViewdata, Is.Null);
+        }
+
+        private ManufacturerPresentation GetOthersPresentationFromDb()
+        {
+            var manufacturer = new ManufacturerRepository().GetById(1);
+            return manufacturerPresentationRepo.GetByManufacturer(manufacturer).First();
+        }
+
+        [Test]
+        public void CanDeleteOwnPresentation()
+        {
+            bool succes = false;
+            var presFromDb = GetOwnPresentationFromDb();
+            var toReAdd = new ManufacturerPresentation()
+                              {
+                                  CPP = presFromDb.CPP,
+                                  Licensed = presFromDb.Licensed,
+                                  Manufacturer = presFromDb.Manufacturer,
+                                  ManufacturingSite = presFromDb.ManufacturingSite,
+                                  MinUnit = presFromDb.MinUnit,
+                                  Presentation = presFromDb.Presentation,
+                                  Price = presFromDb.Price,
+                                  Size = presFromDb.Size
+                              };
+            try
+            {
+                var res = controllerUnderTest.Delete(presFromDb.ID, new FormCollection()) as ViewResult;
+                var fromDbAfterDelete = manufacturerPresentationRepo.GetById(presFromDb.ID);
+                Assert.That(fromDbAfterDelete, Is.Null);
+                succes = true;
+            }
+            finally
+            {
+                if (succes)
+                    manufacturerPresentationRepo.Add(toReAdd);
+            }
+        }
+
+        [Test]
+        public void CannotDeleteOthersPresentation()
+        {
+            var presFromDb = GetOthersPresentationFromDb();
+            var res = controllerUnderTest.Delete(presFromDb.ID, new FormCollection()) as ViewResult;
+            var fromDbAfterDelete = manufacturerPresentationRepo.GetById(presFromDb.ID);
+            Assert.That(fromDbAfterDelete, Is.Not.Null);
         }
     }
 
@@ -185,6 +279,62 @@ namespace UnicefVirtualWarehouseTest
             }
         }
 
+        private ManufacturerPresentation GetPresentationFromDb(ManufacturerPresentationRepository manufacturerPresentationRepository)
+        {
+            var manufacturer = new ManufacturerRepository().GetById(1);
+            return manufacturerPresentationRepository.GetByManufacturer(manufacturer).First();
+        }
+
+        [Test]
+        public void DeletePageContainsTheManufacturerPresentationForOwnPresentation()
+        {
+            var presFromDb = GetPresentationFromDb(new ManufacturerPresentationRepository());
+
+            var res = controllerUnderTest.Delete(presFromDb.ID) as ViewResult;
+            var presFromViewdata = res.ViewData.Model as ManufacturerPresentation;
+            Assert.That(presFromViewdata, Is.Not.Null);
+            Assert.That(presFromViewdata.ID, Is.EqualTo(presFromDb.ID));
+            Assert.That(presFromViewdata.CPP, Is.EqualTo(presFromDb.CPP));
+            Assert.That(presFromViewdata.Licensed, Is.EqualTo(presFromDb.Licensed));
+            Assert.That(presFromViewdata.Manufacturer.Id, Is.EqualTo(presFromDb.Manufacturer.Id));
+            Assert.That(presFromViewdata.Presentation.Id, Is.EqualTo(presFromDb.Presentation.Id));
+            Assert.That(presFromViewdata.Price, Is.EqualTo(presFromDb.Price));
+            Assert.That(presFromViewdata.Size, Is.EqualTo(presFromDb.Size));
+        }
+
+
+        [Test]
+        public void CanDeletePresentation()
+        {
+            bool succes = false;
+            var manufacturerPresentationRepo = new ManufacturerPresentationRepository();
+            var presFromDb = GetPresentationFromDb(manufacturerPresentationRepo);
+            var toReAdd = new ManufacturerPresentation()
+            {
+                CPP = presFromDb.CPP,
+                Licensed = presFromDb.Licensed,
+                Manufacturer = presFromDb.Manufacturer,
+                ManufacturingSite = presFromDb.ManufacturingSite,
+                MinUnit = presFromDb.MinUnit,
+                Presentation = presFromDb.Presentation,
+                Price = presFromDb.Price,
+                Size = presFromDb.Size
+            };
+            try
+            {
+                var res = controllerUnderTest.Delete(presFromDb.ID, new FormCollection()) as ViewResult;
+                var fromDbAfterDelete = manufacturerPresentationRepo.GetById(presFromDb.ID);
+                Assert.That(fromDbAfterDelete, Is.Null);
+                succes = true;
+            }
+            finally
+            {
+                if (succes)
+                    manufacturerPresentationRepo.Add(toReAdd);
+            }
+        }
+
+
     }
 
     [TestFixture]
@@ -218,6 +368,18 @@ namespace UnicefVirtualWarehouseTest
             var manufacturePresentationsFromView = result.ViewData.Model as IEnumerable<ManufacturerPresentation>;
             foreach (var mpFromView in manufacturePresentationsFromView)
                 Assert.That(mpFromView.Price, Is.EqualTo(0));
+        }
+
+        [Test]
+        public void CannotAccessDeletePage()
+        {
+            var result = controllerUnderTest.Delete(2) as RedirectToRouteResult;
+            Assert.That(result, Is.Not.Null);
+            Assert.That(result.RouteValues.Values, Contains.Item("Index"));
+
+            var result2 = controllerUnderTest.Delete(2, new FormCollection()) as RedirectToRouteResult;
+            Assert.That(result2, Is.Not.Null);
+            Assert.That(result2.RouteValues.Values, Contains.Item("Index"));
         }
     }
 
@@ -273,6 +435,18 @@ namespace UnicefVirtualWarehouseTest
                 var priceFromDB = allManufacturerPresentations.SingleOrDefault(p => p.ID == mpFromView.ID).Price;
                 Assert.That(mpFromView.Price, Is.EqualTo(priceFromDB));
             }
+        }
+
+        [Test]
+        public void CannotAccessDeletePage()
+        {
+            var result = controllerUnderTest.Delete(2) as RedirectToRouteResult;
+            Assert.That(result, Is.Not.Null);
+            Assert.That(result.RouteValues.Values, Contains.Item("Index"));
+
+            var result2 = controllerUnderTest.Delete(2, new FormCollection()) as RedirectToRouteResult;
+            Assert.That(result2, Is.Not.Null);
+            Assert.That(result2.RouteValues.Values, Contains.Item("Index"));
         }
     }
 }
