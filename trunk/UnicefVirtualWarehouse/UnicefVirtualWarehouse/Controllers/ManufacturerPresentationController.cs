@@ -58,12 +58,17 @@ namespace UnicefVirtualWarehouse.Controllers
 
         public ActionResult Create()
         {
-            if (!Request.IsAuthenticated || !(User.IsInRole(UnicefRole.Manufacturer.ToString()) || User.IsInRole(UnicefRole.Administrator.ToString())))
+            if (!Request.IsAuthenticated || !UserThatMayEdit())
                 return RedirectToAction("Index");
 
             var presentations = new PresentationRepository().GetAll();
             return View(new KeyValuePair<ManufacturerPresentation, IEnumerable<Presentation>>(new ManufacturerPresentation(), presentations));
-        } 
+        }
+
+        private bool UserThatMayEdit()
+        {
+            return (User.IsInRole(UnicefRole.Manufacturer.ToString()) || User.IsInRole(UnicefRole.Administrator.ToString()));
+        }
 
         //
         // POST: /ManufacturerPresentation/Create
@@ -112,12 +117,32 @@ namespace UnicefVirtualWarehouse.Controllers
 
         //
         // GET: /ManufacturerPresentation/Delete/5
- 
+
         public ActionResult Delete(int id)
         {
-            if (!Request.IsAuthenticated)
+            if (!Request.IsAuthenticated || !UserThatMayEdit())
                 return RedirectToAction("Index");
-            return View();
+            return View(GetManufacturerPresentation(id));
+        }
+
+        private ManufacturerPresentation GetManufacturerPresentation(int id)
+        {
+            var manuPres = manufacturerPresentationRepo.GetById(id);
+            return CheckThatUserMayEditPresentation(manuPres);
+        }
+
+        private ManufacturerPresentation CheckThatUserMayEditPresentation(ManufacturerPresentation manuPres)
+        {
+            if (User.IsInRole(UnicefRole.Administrator.ToString()))
+                return manuPres;
+            else
+                return CheckThatPresentationBelongsToManufacturer(manuPres);
+        }
+
+        private ManufacturerPresentation CheckThatPresentationBelongsToManufacturer(ManufacturerPresentation manuPres)
+        {
+            var manufacturerUser = new UserRepository().GetByName(User.Identity.Name);
+            return (manuPres.Manufacturer.Id == manufacturerUser.AssociatedManufaturer.Id) ? manuPres : null;
         }
 
         //
@@ -128,9 +153,12 @@ namespace UnicefVirtualWarehouse.Controllers
         {
             try
             {
-                if (!Request.IsAuthenticated)
+                if (!Request.IsAuthenticated || !UserThatMayEdit())
                     return RedirectToAction("Index");
-                // TODO: Add delete logic here
+
+                var mp = GetManufacturerPresentation(id);
+                if (mp != null)
+                    manufacturerPresentationRepo.Delete(mp);
  
                 return RedirectToAction("Index");
             }
