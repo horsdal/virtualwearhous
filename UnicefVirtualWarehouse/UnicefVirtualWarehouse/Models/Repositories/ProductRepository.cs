@@ -37,5 +37,15 @@ namespace UnicefVirtualWarehouse.Models.Repositories
         {
             return db.Product.Include("Presentations").SingleOrDefault(p => p.Id == productId); ;
         }
+
+        public void DeleteById(int id)
+        {
+            var productToDelete = GetById(id);
+            if (productToDelete != null && productToDelete.Presentations.Count() == 0)
+            {
+                db.Product.Remove(productToDelete);
+                db.SaveChanges();
+            }
+        }
     }
 }

@@ -55,5 +55,26 @@ namespace UnicefVirtualWarehouse.Controllers
             if (int.TryParse(form["Value"], out categoryId))
                 productRepo.AddProduct(categoryId, product);
         }
+
+        public ActionResult Delete(int id)
+        {
+            if (!Request.IsAuthenticated || User.IsInRole(UnicefRole.Manufacturer.ToString()))
+                return RedirectToAction("Index");
+
+            var productToDelete = productRepo.GetById(id);
+
+            return View(productToDelete);
+        }
+
+        [HttpPost]
+        public ActionResult Delete(int id, FormCollection form)
+        {
+            if (!Request.IsAuthenticated || User.IsInRole(UnicefRole.Manufacturer.ToString()))
+                return RedirectToAction("Index");
+
+            productRepo.DeleteById(id);
+
+            return RedirectToAction("Index");
+        }
     }
 }
