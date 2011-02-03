@@ -23,5 +23,10 @@ namespace UnicefVirtualWarehouse.Models.Repositories
             db.ProductCatagories.Add(productCategory);
             db.SaveChanges();
         }
+
+        public IList<ProductCategory> GetAll()
+        {
+            return db.ProductCatagories.ToList();
+        }
     }
 }

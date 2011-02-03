@@ -119,6 +119,7 @@
     <Content Include="Views\ProductCategory\Create.aspx" />
     <Content Include="Views\ProductCategory\Index.aspx" />
     <Content Include="Views\Product\Create.aspx" />
+    <Content Include="Views\Product\Delete.aspx" />
     <Content Include="Views\Product\Index.aspx" />
     <Content Include="Web.config">
       <SubType>Designer</SubType>

@@ -34,7 +34,7 @@ namespace UnicefVirtualWarehouse.Models.Repositories
 
         public IList<Presentation> GetAll()
         {
-            return db.Presentations.ToList();
+            return db.Presentations.Include("Products").ToList();
         }
 
         public void DeleteById(int id)
