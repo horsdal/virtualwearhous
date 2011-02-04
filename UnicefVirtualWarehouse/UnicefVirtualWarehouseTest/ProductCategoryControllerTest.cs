@@ -43,6 +43,61 @@ namespace UnicefVirtualWarehouseTest
             Assert.That(view, Is.Not.Null);
             Assert.That(view.ViewName, Is.EqualTo("")); //that is the default view for the action
         }
+
+        [Test]
+        public void CanAccessDeletePage()
+        {
+            var repo = new ProductCategoryRepository();
+            var productCategory = repo.GetAll().First();
+
+            var result = controllerUnderTest.Delete(productCategory.Id) as ViewResult;
+            Assert.That(result, Is.Not.Null);
+            Assert.That(result.ViewName, Is.EqualTo(""));
+            var productInViewData = result.ViewData.Model as ProductCategory;
+            Assert.That(productInViewData, Is.Not.Null);
+            Assert.That(productInViewData.Id, Is.EqualTo(productCategory.Id));
+            Assert.That(productInViewData.Name, Is.EqualTo(productCategory.Name));
+        }
+
+        [Test]
+        public void CanDeletePresentationWithoutAnyPresentations()
+        {
+            var newProductName = string.Format("New test product categrory #{0}#", DateTime.Now.Ticks);
+
+            controllerUnderTest.Create(new FormCollection(new NameValueCollection { { "Name", newProductName } }));
+            var repo = new ProductCategoryRepository();
+            var productCategories = repo.GetByName(newProductName);
+
+            var result = controllerUnderTest.Delete(productCategories.First().Id, new FormCollection()) as RedirectToRouteResult;
+            Assert.That(result, Is.Not.Null);
+            Assert.That(result.RouteValues.Values, Contains.Item("Index"));
+
+            var deletedProductcategroy= repo.GetById(productCategories.First().Id);
+            Assert.That(deletedProductcategroy, Is.Null);
+        }
+
+        [Test]
+        public void DontFailWhenDeletingProductThatDoesNotExist()
+        {
+            var productCategoryRepo = new ProductCategoryRepository();
+            Assert.That(productCategoryRepo.GetById(int.MaxValue), Is.Null);
+            controllerUnderTest.Delete(int.MaxValue, new FormCollection());
+        }
+
+        [Test]
+        public void CannotDeleteProductWithPresentations()
+        {
+            var productCategoryRepo = new ProductCategoryRepository();
+            var productCategoryNotToBeDeleted = productCategoryRepo.GetAll().Where(pc => pc.Products.Count() != 0).First();
+
+            Assert.That(productCategoryNotToBeDeleted, Is.Not.Null);
+
+            controllerUnderTest.Delete(productCategoryNotToBeDeleted.Id, new FormCollection());
+
+            var productCategoryAfterDelete = productCategoryRepo.GetById(productCategoryNotToBeDeleted.Id);
+            Assert.That(productCategoryAfterDelete, Is.Not.Null);
+            Assert.That(productCategoryAfterDelete.Id, Is.EqualTo(productCategoryNotToBeDeleted.Id));
+        }
     }
 
     public class ProductCategoryControllerTestLoggedInAsAdmin : ControllerTestBase<ProductCategoryController>
@@ -78,6 +133,61 @@ namespace UnicefVirtualWarehouseTest
             Assert.That(view, Is.Not.Null);
             Assert.That(view.ViewName, Is.EqualTo("")); //that is the default view for the action
         }
+
+        [Test]
+        public void CanAccessDeletePage()
+        {
+            var repo = new ProductCategoryRepository();
+            var productCategory = repo.GetAll().First();
+
+            var result = controllerUnderTest.Delete(productCategory.Id) as ViewResult;
+            Assert.That(result, Is.Not.Null);
+            Assert.That(result.ViewName, Is.EqualTo(""));
+            var productInViewData = result.ViewData.Model as ProductCategory;
+            Assert.That(productInViewData, Is.Not.Null);
+            Assert.That(productInViewData.Id, Is.EqualTo(productCategory.Id));
+            Assert.That(productInViewData.Name, Is.EqualTo(productCategory.Name));
+        }
+
+        [Test]
+        public void CanDeletePresentationWithoutAnyPresentations()
+        {
+            var newProductName = string.Format("New test product categrory #{0}#", DateTime.Now.Ticks);
+
+            controllerUnderTest.Create(new FormCollection(new NameValueCollection { { "Name", newProductName } }));
+            var repo = new ProductCategoryRepository();
+            var productCategories = repo.GetByName(newProductName);
+
+            var result = controllerUnderTest.Delete(productCategories.First().Id, new FormCollection()) as RedirectToRouteResult;
+            Assert.That(result, Is.Not.Null);
+            Assert.That(result.RouteValues.Values, Contains.Item("Index"));
+
+            var deletedProductcategroy = repo.GetById(productCategories.First().Id);
+            Assert.That(deletedProductcategroy, Is.Null);
+        }
+
+        [Test]
+        public void DontFailWhenDeletingProductThatDoesNotExist()
+        {
+            var productCategoryRepo = new ProductCategoryRepository();
+            Assert.That(productCategoryRepo.GetById(int.MaxValue), Is.Null);
+            controllerUnderTest.Delete(int.MaxValue, new FormCollection());
+        }
+
+        [Test]
+        public void CannotDeleteProductWithPresentations()
+        {
+            var productCategoryRepo = new ProductCategoryRepository();
+            var productCategoryNotToBeDeleted = productCategoryRepo.GetAll().Where(pc => pc.Products.Count() != 0).First();
+
+            Assert.That(productCategoryNotToBeDeleted, Is.Not.Null);
+
+            controllerUnderTest.Delete(productCategoryNotToBeDeleted.Id, new FormCollection());
+
+            var productCategoryAfterDelete = productCategoryRepo.GetById(productCategoryNotToBeDeleted.Id);
+            Assert.That(productCategoryAfterDelete, Is.Not.Null);
+            Assert.That(productCategoryAfterDelete.Id, Is.EqualTo(productCategoryNotToBeDeleted.Id));
+        }
     }
 
     [TestFixture]
@@ -91,6 +201,17 @@ namespace UnicefVirtualWarehouseTest
 
             res = controllerUnderTest.Create(new FormCollection()) as RedirectToRouteResult;
             Assert.That(res.RouteValues.Values, Contains.Item("Index"));
+        }
+
+        [Test]
+        public void DeleteRedirectsToIndex()
+        {
+            var res = controllerUnderTest.Delete(1) as RedirectToRouteResult;
+            Assert.That(res.RouteValues.Values, Contains.Item("Index"));
+
+            res = controllerUnderTest.Delete(1, new FormCollection()) as RedirectToRouteResult;
+            Assert.That(res.RouteValues.Values, Contains.Item("Index"));
+
         }
     }
 
@@ -115,6 +236,17 @@ namespace UnicefVirtualWarehouseTest
 
             res = controllerUnderTest.Create(new FormCollection()) as RedirectToRouteResult;
             Assert.That(res.RouteValues.Values, Contains.Item("Index"));
+        }
+
+        [Test]
+        public void DeleteRedirectsToIndex()
+        {
+            var res = controllerUnderTest.Delete(1) as RedirectToRouteResult;
+            Assert.That(res.RouteValues.Values, Contains.Item("Index"));
+
+            res = controllerUnderTest.Delete(1, new FormCollection()) as RedirectToRouteResult;
+            Assert.That(res.RouteValues.Values, Contains.Item("Index"));
+
         }
     }
 

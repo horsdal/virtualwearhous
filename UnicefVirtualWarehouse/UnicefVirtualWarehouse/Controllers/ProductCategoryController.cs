@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.Linq;
 using System.Web.Mvc;
 using UnicefVirtualWarehouse.Models;
@@ -37,5 +38,25 @@ namespace UnicefVirtualWarehouse.Controllers
 
 			return RedirectToAction("Index");
 		}
+
+        public ActionResult Delete(int id)
+        {
+            if (!Request.IsAuthenticated || User.IsInRole(UnicefRole.Manufacturer.ToString()))
+                return RedirectToAction("Index");
+
+            return View(productCategoryRepo.GetById(id));
+        }
+
+        [HttpPost]
+        public ActionResult Delete(int id, FormCollection form)
+        {
+            if (!Request.IsAuthenticated || User.IsInRole(UnicefRole.Manufacturer.ToString()))
+                return RedirectToAction("Index");
+
+            productCategoryRepo.DeleteById(id);
+
+            return RedirectToAction("Index");
+        }
+
     }
 }

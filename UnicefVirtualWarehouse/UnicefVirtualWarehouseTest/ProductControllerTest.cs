@@ -40,7 +40,7 @@ namespace UnicefVirtualWarehouseTest
             var newProductName = string.Format("New test product #{0}#", DateTime.Now.Ticks);
 
             var repo = new ProductRepository();
-            var catogoryId = 1; 
+            var catogoryId = new ProductCategoryRepository().GetAll().First().Id; 
 
             controllerUnderTest.Create(new FormCollection(new NameValueCollection {{"Key.Name", newProductName}, {"Value", catogoryId.ToString()}}));
 
@@ -78,15 +78,15 @@ namespace UnicefVirtualWarehouseTest
             Assert.That(result, Is.Not.Null);
             Assert.That(result.RouteValues.Values, Contains.Item("Index"));
 
-            var deletedPresentation = repo.GetById(products.First().Id);
-            Assert.That(deletedPresentation, Is.Null);
+            var deletedProductCategory = repo.GetById(products.First().Id);
+            Assert.That(deletedProductCategory, Is.Null);
         }
 
         [Test]
         public void DontFailWhenDeletingProductThatDoesNotExist()
         {
-            var presentationRepo = new ProductRepository();
-            Assert.That(presentationRepo.GetById(int.MaxValue), Is.Null);
+            var productRepository = new ProductRepository();
+            Assert.That(productRepository.GetById(int.MaxValue), Is.Null);
             controllerUnderTest.Delete(int.MaxValue, new FormCollection());
         }
 
@@ -108,7 +108,7 @@ namespace UnicefVirtualWarehouseTest
         }
     }
 
-      [TestFixture]
+    [TestFixture]
     public class ProductControllerTestLoggedInAsAdmin : ControllerTestBase<ProductController>
     {
         protected override bool IsLoggedIn()
@@ -135,9 +135,9 @@ namespace UnicefVirtualWarehouseTest
             var newProductName = string.Format("New test product #{0}#", DateTime.Now.Ticks);
 
             var repo = new ProductRepository();
-            var catogoryId = 1; 
+            var categoryId = new ProductCategoryRepository().GetAll().First().Id; 
 
-            controllerUnderTest.Create(new FormCollection(new NameValueCollection {{"Key.Name", newProductName}, {"Value", catogoryId.ToString()}}));
+            controllerUnderTest.Create(new FormCollection(new NameValueCollection {{"Key.Name", newProductName}, {"Value", categoryId.ToString()}}));
 
             var products = repo.GetByName(newProductName);
             Assert.That(products.Count, Is.EqualTo(1));
@@ -202,6 +202,18 @@ namespace UnicefVirtualWarehouseTest
             Assert.That(productAfterDelete.Id, Is.EqualTo(productNotToBeDeleted.Id));
         }
  
+        [Test]
+        public void CannotCreateProductInNoExistantCategory()
+        {
+            var newProductName = string.Format("New test product #{0}#", DateTime.Now.Ticks);
+
+            var repo = new ProductRepository();
+            var categoryId = int.MaxValue;
+
+            controllerUnderTest.Create(new FormCollection(new NameValueCollection { { "Key.Name", newProductName }, { "Value", categoryId.ToString() } }));
+            var productAfterCreation = repo.GetByName(newProductName).FirstOrDefault();
+            Assert.That(productAfterCreation, Is.Null);
+        }
     }
 
       [TestFixture]

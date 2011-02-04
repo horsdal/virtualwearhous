@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Linq;
 using System.Collections.Generic;
+using System.Web.Mvc;
 
 namespace UnicefVirtualWarehouse.Models.Repositories
 {
@@ -26,7 +27,25 @@ namespace UnicefVirtualWarehouse.Models.Repositories
 
         public IList<ProductCategory> GetAll()
         {
-            return db.ProductCatagories.ToList();
+            return db.ProductCatagories.Include("Products").ToList();
+        }
+
+        public ProductCategory GetById(int id)
+        {
+            return db.ProductCatagories.Include("Products").Where(pc => pc.Id == id).FirstOrDefault();
+        }
+
+        public void DeleteById(int id)
+        {
+            var categoryToDelete = GetById(id);
+            if (categoryToDelete != null && categoryToDelete.Products.Count() == 0)
+                Delete(categoryToDelete);
+        }
+
+        private void Delete(ProductCategory categoryToDelete)
+        {
+            db.ProductCatagories.Remove(categoryToDelete);
+            db.SaveChanges();
         }
     }
 }

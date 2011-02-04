@@ -133,7 +133,7 @@ namespace UnicefVirtualWarehouse.Controllers
 
         private ManufacturerPresentation CheckThatUserMayEditPresentation(ManufacturerPresentation manuPres)
         {
-            if (User.IsInRole(UnicefRole.Administrator.ToString()))
+            if (User.IsInRole(UnicefRole.Administrator.ToString()) || manuPres == null)
                 return manuPres;
             else
                 return CheckThatPresentationBelongsToManufacturer(manuPres);
