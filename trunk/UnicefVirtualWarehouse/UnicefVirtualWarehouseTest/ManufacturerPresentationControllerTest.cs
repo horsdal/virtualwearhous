@@ -127,7 +127,16 @@ namespace UnicefVirtualWarehouseTest
         [Test]
         public void CanAccessDeletePageForOwnPresentation()
         {
-            var res = controllerUnderTest.Delete(1) as ViewResult;
+            var pres = GetOwnPresentationFromDb();
+            var res = controllerUnderTest.Delete(pres.ID) as ViewResult;
+            Assert.That(res, Is.Not.Null);
+            Assert.That(res.ViewName, Is.EqualTo(""));
+        }
+
+        [Test]
+        public void CanAccessPageEvenForNonExistantPresentation()
+        {
+            var res = controllerUnderTest.Delete(int.MaxValue) as ViewResult;
             Assert.That(res, Is.Not.Null);
             Assert.That(res.ViewName, Is.EqualTo(""));
         }

@@ -24,8 +24,11 @@ namespace UnicefVirtualWarehouse.Models.Repositories
             db.Product.Add(product);
             var categoryId = catogoryId;
             var category = db.ProductCatagories.Include("Products").FirstOrDefault(cat => cat.Id == categoryId);
-            category.Products.Add(product);
-            db.SaveChanges();
+            if (category != null)
+            {
+                category.Products.Add(product);
+                db.SaveChanges();
+            }
         }
 
         public IList<Product> GetByName(string name)

@@ -117,6 +117,7 @@
     <Content Include="Views\ManufacturerPresentation\Index.aspx" />
     <Content Include="Views\Presentation\Index.aspx" />
     <Content Include="Views\ProductCategory\Create.aspx" />
+    <Content Include="Views\ProductCategory\Delete.aspx" />
     <Content Include="Views\ProductCategory\Index.aspx" />
     <Content Include="Views\Product\Create.aspx" />
     <Content Include="Views\Product\Delete.aspx" />
