@@ -52,6 +52,7 @@ namespace UnicefVirtualWarehouse
 	        //uc.Database.Connection.ConnectionString("Data Source=.\SQLEXPRESS;Initial Catalog=UnicefVirtualWarehouse;Integrated Security=SSPI;");    
 	        ctx.Database.Connection.ConnectionString = @"Data Source=.\SQLEXPRESS;Initial Catalog=UnicefVirtualWarehouse.UnicefContext;Integrated Security=SSPI;";
 
+
 	        if (!ctx.Database.Exists() || !ctx.Database.ModelMatchesDatabase())
 	        {
 	            ctx.Database.DeleteIfExists();

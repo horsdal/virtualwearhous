@@ -40,7 +40,10 @@ namespace UnicefVirtualWarehouse.Models.Repositories
 
         public IList<ManufacturerPresentation> GetByManufacturer(Manufacturer manufacturer)
         {
-            var mpsByManufacturer = db.ManufacturerPresentations.Where(mp => mp.Manufacturer.Id == manufacturer.Id);
+            var mpsByManufacturer = db.ManufacturerPresentations.Where(
+                mp =>
+                    mp.Manufacturer.Id == manufacturer.Id
+                );
             return IncludeDependencies(mpsByManufacturer).ToList();
         }
 
