@@ -87,6 +87,20 @@ namespace UnicefVirtualWarehouseTest
             Assert.That(presentationAfterDelete, Is.Not.Null);
             Assert.That(presentationAfterDelete.Id, Is.EqualTo(presentationNotToBeDeleted.Id));
         }
+
+        [Test]
+        public void ManageContainsManufacturersOwnPresentations()
+        {
+            var novo = new UserRepository().GetByName(FakeNovoUser).AssociatedManufaturer;
+            var novoPresentations = new PresentationRepository().GetAllByOwner(novo);
+
+            var view = controllerUnderTest.Manage() as ViewResult;
+            var presentations = view.ViewData.Model as IEnumerable<Presentation>;
+            Assert.That(presentations, Is.Not.Null);
+            Assert.That(presentations.FirstOrDefault(), Is.Not.Null);
+            Assert.That(presentations, Is.EquivalentTo(novoPresentations));
+        }
+
     }
 
     public class PresentationControllerTestLoggedInAsAdmin : ControllerTestBase<PresentationController>

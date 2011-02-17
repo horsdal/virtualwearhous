@@ -79,6 +79,7 @@
     <Compile Include="ContactControllerTest.cs" />
     <Compile Include="ControllerTestBase.cs" />
     <Compile Include="FakeApp.cs" />
+    <Compile Include="HomeControllerTest.cs" />
     <Compile Include="ManufacturerPresentationControllerTest.cs" />
     <Compile Include="PresentationControllerTest.cs" />
     <Compile Include="ProductCategoryControllerTest.cs" />
