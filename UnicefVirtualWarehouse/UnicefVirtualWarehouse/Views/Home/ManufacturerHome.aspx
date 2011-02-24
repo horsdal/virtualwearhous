@@ -9,5 +9,5 @@
     <h2><%: Model.Name %> Home</h2>
     <%: Html.ActionLink("Manage product presentations", "Manage", "Presentation") %> <br />
     <%: Html.ActionLink("Manage manufaturer presentations", "Manage", "ManufacturerPresentation") %> <br />
-    <%: Html.ActionLink("Edit contact information", "Edit", "Contact") %>
+    <%: Html.ActionLink("Edit contact information", "Edit", "Contact", new { id = Model.Contact.Id }, null )%>
 </asp:Content>

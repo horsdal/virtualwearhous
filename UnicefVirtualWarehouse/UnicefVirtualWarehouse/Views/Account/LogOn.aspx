@@ -7,7 +7,8 @@
 <asp:Content ID="loginContent" ContentPlaceHolderID="MainContent" runat="server">
     <h2>Log On</h2>
     <p>
-        Please enter your username and password. <%: Html.ActionLink("Register", "Register") %> if you don't have an account.
+        Please enter your username and password. <br />
+        To register please contact Unicef at <a href="mailto:blabla@unicef.org" >blabla@unicef.org</a>.
     </p>
 
     <% using (Html.BeginForm()) { %>

@@ -106,6 +106,7 @@
     <Compile Include="Models\Manufacturer.cs" />
     <Compile Include="Models\ManufacturerPresentation.cs" />
     <Compile Include="Models\ProductCategory.cs" />
+    <Compile Include="Models\Repositories\ContactRepository.cs" />
     <Compile Include="Models\Repositories\ManufacturerPresentationRepository.cs" />
     <Compile Include="Models\Repositories\ManufacturerRepository.cs" />
     <Compile Include="Models\Repositories\PresentationRepository.cs" />
@@ -126,10 +127,13 @@
     <Content Include="Models\Scripts\Demo data\Products.sql" />
     <Content Include="Views\Account\Delete.aspx" />
     <Content Include="Views\Contact\Create.aspx" />
+    <Content Include="Views\Contact\Edit.aspx" />
     <Content Include="Views\Contact\Index.aspx" />
     <Content Include="Views\Home\ManufacturerHome.aspx" />
+    <Content Include="Views\Home\UnicefHome.aspx" />
     <Content Include="Views\ManufacturerPresentation\Create.aspx" />
     <Content Include="Views\ManufacturerPresentation\Delete.aspx" />
+    <Content Include="Views\ManufacturerPresentation\Manage.aspx" />
     <Content Include="Views\Manufacturer\Index.aspx" />
     <Content Include="Views\Presentation\Create.aspx" />
     <Content Include="Views\Presentation\Delete.aspx" />

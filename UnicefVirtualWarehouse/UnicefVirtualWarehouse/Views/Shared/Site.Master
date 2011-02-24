@@ -11,7 +11,7 @@
     <div class="page">
 		<img src="../../Content/unicef_logo.gif" />
         <div id="header">
-            <div id="title">                
+            <div id="title">
 				<h1>Virtual Warehouse</h1>
             </div>
               
@@ -21,8 +21,14 @@
             
             <div id="menucontainer">
             
-                <ul id="menu">              
+                <ul id="menu">
+                <% if (Request.IsAuthenticated) { %>              
                     <li><%: Html.ActionLink("Home", "Index", "Home")%></li>
+                    <% } %>
+                    <li><%: Html.ActionLink("Product categories", "Index", "ProductCategory")%></li>
+                    <li><%: Html.ActionLink("Products", "Index", "Product")%></li>
+                    <li><%: Html.ActionLink("Presentations", "Index", "Presentation")%></li>
+                    <li><%: Html.ActionLink("Manufacturer presentations", "Index", "ManufacturerPresentation")%></li>
                     <li><%: Html.ActionLink("About", "About", "Home")%></li>
                 </ul>
             
