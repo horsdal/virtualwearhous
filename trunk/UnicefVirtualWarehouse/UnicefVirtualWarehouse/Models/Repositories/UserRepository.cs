@@ -1,4 +1,6 @@
 ﻿using System;
+using System.Data.Entity;
+using System.Data.Entity.Infrastructure;
 using System.Linq;
 
 namespace UnicefVirtualWarehouse.Models.Repositories
@@ -23,7 +25,7 @@ namespace UnicefVirtualWarehouse.Models.Repositories
 
         public User GetByName(string userName)
         {
-            return db.Users.Include("AssociatedManufaturer").FirstOrDefault(u => u.UserName == userName);
+            return WithAllFields(db.Users).FirstOrDefault(u => u.UserName == userName);
         }
 
         public bool Delete(User user)
@@ -41,6 +43,11 @@ namespace UnicefVirtualWarehouse.Models.Repositories
         public User GetById(int userId)
         {
             return db.Users.Include("AssociatedManufaturer").FirstOrDefault(u => u.Id == userId);
+        }
+
+        private DbQuery<User> WithAllFields(DbSet<User> users)
+        {
+            return users.Include("AssociatedManufaturer").Include("AssociatedManufaturer.Contact");
         }
     }
 }

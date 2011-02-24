@@ -7,6 +7,7 @@ namespace UnicefVirtualWarehouse.Controllers
 {
     public class ContactController : Controller
     {
+        private readonly ContactRepository contactRepo = new ContactRepository();
         //
         // GET: /Contact/
 
@@ -32,7 +33,7 @@ namespace UnicefVirtualWarehouse.Controllers
 
         public ActionResult Create()
         {
-            if (!Request.IsAuthenticated || !(User.IsInRole(UnicefRole.Manufacturer.ToString()) || User.IsInRole(UnicefRole.Administrator.ToString())))
+            if (!IsAllowedToEdit())
                 return RedirectToAction("Index");
             
             return View();
@@ -44,7 +45,7 @@ namespace UnicefVirtualWarehouse.Controllers
 		[AcceptVerbs(HttpVerbs.Post)]
 		public ActionResult Create(FormCollection form)
 		{
-            if (!Request.IsAuthenticated || !(User.IsInRole(UnicefRole.Manufacturer.ToString()) || User.IsInRole(UnicefRole.Administrator.ToString())))
+            if (!IsAllowedToEdit())
                 return RedirectToAction("Index");
             
             var contact = new Contact 
@@ -73,51 +74,38 @@ namespace UnicefVirtualWarehouse.Controllers
 
 			return RedirectToAction("Index", contact);
 		}
-        
+
+        private bool IsAllowedToEdit()
+        {
+            return Request.IsAuthenticated && 
+                (User.IsInRole(UnicefRole.Manufacturer.ToString()) || 
+                 User.IsInRole(UnicefRole.Administrator.ToString()));
+        }
+
         //
         // GET: /Contact/Edit/5
  
         public ActionResult Edit(int id)
         {
-            return View();
-        }
-
-        //
-        // POST: /Contact/Edit/5
-
-        [HttpPost]
-        public ActionResult Edit(int id, FormCollection collection)
-        {
-            try
-            {
-                // TODO: Add update logic here
- 
+            if (!IsAllowedToEdit())
                 return RedirectToAction("Index");
-            }
-            catch
-            {
-                return View();
-            }
+
+            var contact = contactRepo.GetById(id);
+            return View(contact);
         }
 
         //
-        // GET: /Contact/Delete/5
- 
-        public ActionResult Delete(int id)
-        {
-            return View();
-        }
-
-        //
-        // POST: /Contact/Delete/5
+        // POST: /Contact/Edit/
 
         [HttpPost]
-        public ActionResult Delete(int id, FormCollection collection)
+        public ActionResult Edit(int id, Contact contact)
         {
             try
             {
-                // TODO: Add delete logic here
- 
+                if (!IsAllowedToEdit())
+                    return RedirectToAction("Index"); 
+                
+                contactRepo.Update(id, contact);
                 return RedirectToAction("Index");
             }
             catch

@@ -53,9 +53,6 @@
       <HintPath>..\..\Tools\NHibernate-3.0.0.CR1\Required_Bins\Iesi.Collections.dll</HintPath>
     </Reference>
     <Reference Include="Microsoft.Data.Entity.CTP, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL" />
-    <Reference Include="NHibernate">
-      <HintPath>..\..\Tools\NHibernate-3.0.0.CR1\Required_Bins\NHibernate.dll</HintPath>
-    </Reference>
     <Reference Include="nunit.framework">
       <HintPath>..\..\Tools\NUnit-2.5.8.10295\bin\net-2.0\nunit.framework.dll</HintPath>
     </Reference>

@@ -167,5 +167,16 @@ namespace UnicefVirtualWarehouse.Controllers
                 return View();
             }
         }
+
+        public ActionResult Manage()
+        {
+            if (Request.IsAuthenticated && User.IsInRole(UnicefRole.Manufacturer.ToString()))
+            {
+                var manufacturerAssociatedWithUser = new UserRepository().GetByName(User.Identity.Name).AssociatedManufaturer;
+                var presentationsBelongingToManufacturer = manufacturerPresentationRepo.GetByManufacturer(manufacturerAssociatedWithUser);
+                return View(presentationsBelongingToManufacturer);
+            }
+            return RedirectToAction("Index");
+        }
     }
 }

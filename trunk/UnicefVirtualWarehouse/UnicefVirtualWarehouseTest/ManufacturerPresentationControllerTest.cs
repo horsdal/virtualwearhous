@@ -218,6 +218,20 @@ namespace UnicefVirtualWarehouseTest
             var fromDbAfterDelete = manufacturerPresentationRepo.GetById(presFromDb.ID);
             Assert.That(fromDbAfterDelete, Is.Not.Null);
         }
+
+        [Test]
+        public void ManageContainsManufacturersOwnPresentations()
+        {
+            var novo = new UserRepository().GetByName(FakeNovoUser).AssociatedManufaturer;
+            var novoPresentations = new ManufacturerPresentationRepository().GetByManufacturer(novo);
+
+            var view = controllerUnderTest.Manage() as ViewResult;
+            var manufacturerPresentationss = view.ViewData.Model as IEnumerable<ManufacturerPresentation>;
+            Assert.That(manufacturerPresentationss, Is.Not.Null);
+            Assert.That(manufacturerPresentationss.FirstOrDefault(), Is.Not.Null);
+            Assert.That(manufacturerPresentationss, Is.EquivalentTo(novoPresentations));
+        }
+
     }
 
     [TestFixture]
@@ -390,6 +404,15 @@ namespace UnicefVirtualWarehouseTest
             Assert.That(result2, Is.Not.Null);
             Assert.That(result2.RouteValues.Values, Contains.Item("Index"));
         }
+
+        [Test]
+        public void GetsRedirectedToIndexWhenTryingToGoToManagePage()
+        {
+            var result = controllerUnderTest.Manage() as RedirectToRouteResult;
+            Assert.That(result, Is.Not.Null);
+            Assert.That(result.RouteValues.Values, Contains.Item("Index"));
+        }
+
     }
 
     [TestFixture]
@@ -457,5 +480,14 @@ namespace UnicefVirtualWarehouseTest
             Assert.That(result2, Is.Not.Null);
             Assert.That(result2.RouteValues.Values, Contains.Item("Index"));
         }
+
+        [Test]
+        public void GetsRedirectedToIndexWhenTryingToGoToManagePage()
+        {
+            var result = controllerUnderTest.Manage() as RedirectToRouteResult;
+            Assert.That(result, Is.Not.Null);
+            Assert.That(result.RouteValues.Values, Contains.Item("Index"));
+        }
+
     }
 }

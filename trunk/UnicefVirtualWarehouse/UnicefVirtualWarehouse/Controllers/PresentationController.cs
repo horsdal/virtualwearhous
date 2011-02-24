@@ -171,7 +171,7 @@ namespace UnicefVirtualWarehouse.Controllers
                 return View(presentationsBelongingToManufacturer);
             }
 
-            return View();
+            return RedirectToAction("Index");
         }
     }
 }

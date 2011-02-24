@@ -257,6 +257,14 @@ namespace UnicefVirtualWarehouseTest
             Assert.That(res.RouteValues.Values, Contains.Item("Index"));
             
         }
+
+        [Test]
+        public void GetsRedirectedToIndexWhenTryingToGoToManagePage()
+        {
+            var result = controllerUnderTest.Manage() as RedirectToRouteResult;
+            Assert.That(result, Is.Not.Null);
+            Assert.That(result.RouteValues.Values, Contains.Item("Index"));
+        }
     }
 
     [TestFixture]
@@ -291,6 +299,14 @@ namespace UnicefVirtualWarehouseTest
             res = controllerUnderTest.Delete(1, new FormCollection()) as RedirectToRouteResult;
             Assert.That(res.RouteValues.Values, Contains.Item("Index"));
 
+        }
+
+        [Test]
+        public void GetsRedirectedToIndexWhenTryingToGoToManagePage()
+        {
+            var result = controllerUnderTest.Manage() as RedirectToRouteResult;
+            Assert.That(result, Is.Not.Null);
+            Assert.That(result.RouteValues.Values, Contains.Item("Index"));
         }
     }
 

@@ -12,9 +12,6 @@
         <tr>
             <th></th>
             <th>
-                Id
-            </th>
-            <th>
                 Name
             </th>
         </tr>
