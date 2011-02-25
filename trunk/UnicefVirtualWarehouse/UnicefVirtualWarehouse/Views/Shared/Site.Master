@@ -12,24 +12,24 @@
 		<img src="../../Content/unicef_logo.gif" />
         <div id="header">
             <div id="title">
-				<h1>Virtual Warehouse</h1>
+				<h1>ChildMed - Sources and prices of selected medicines for children</h1>
             </div>
               
             <div id="logindisplay">
                 <% Html.RenderPartial("LogOnUserControl"); %>
             </div> 
-            
+            <br />
             <div id="menucontainer">
             
                 <ul id="menu">
-                <% if (Request.IsAuthenticated) { %>              
-                    <li><%: Html.ActionLink("Home", "Index", "Home")%></li>
-                    <% } %>
+                
                     <li><%: Html.ActionLink("Product categories", "Index", "ProductCategory")%></li>
                     <li><%: Html.ActionLink("Products", "Index", "Product")%></li>
                     <li><%: Html.ActionLink("Presentations", "Index", "Presentation")%></li>
                     <li><%: Html.ActionLink("Manufacturer presentations", "Index", "ManufacturerPresentation")%></li>
-                    <li><%: Html.ActionLink("About", "About", "Home")%></li>
+                <% if (Request.IsAuthenticated) { %>              
+                    <li><%: Html.ActionLink("Home", "Index", "Home")%></li>
+                    <% } %>    <li><%: Html.ActionLink("About", "About", "Home")%></li>
                 </ul>
             
             </div>

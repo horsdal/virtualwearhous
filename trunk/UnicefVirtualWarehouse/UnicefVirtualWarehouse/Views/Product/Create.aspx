@@ -1,7 +1,7 @@
 ﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Views/Shared/Site.Master" Inherits="System.Web.Mvc.ViewPage<KeyValuePair<UnicefVirtualWarehouse.Models.Product, IEnumerable<UnicefVirtualWarehouse.Models.ProductCategory>>>" %>
 
 <asp:Content ID="Content1" ContentPlaceHolderID="TitleContent" runat="server">
-	Unicef Virtual Warehouse: Create Product
+	ChildMed - : Create Product
 </asp:Content>
 
 <asp:Content ID="Content2" ContentPlaceHolderID="MainContent" runat="server">
