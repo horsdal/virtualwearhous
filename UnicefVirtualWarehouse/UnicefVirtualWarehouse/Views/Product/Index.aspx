@@ -1,6 +1,6 @@
 <%@ Page Title="" Language="C#" Inherits="System.Web.Mvc.ViewPage<System.Collections.Generic.IList<UnicefVirtualWarehouse.Models.Product>>" MasterPageFile="~/Views/Shared/Site.Master" %>
 <%@ Import Namespace="UnicefVirtualWarehouse.Models" %>
-<asp:Content runat="server" ID="Title" ContentPlaceHolderID="TitleContent">Unicef Virtual Warehouse Products</asp:Content>
+<asp:Content runat="server" ID="Title" ContentPlaceHolderID="TitleContent">ChildMed -  Products</asp:Content>
 <asp:Content runat="server" ID="Main" ContentPlaceHolderID="MainContent">
 <h3>Products</h3>
 <% if(Model.Any()) { %>	
