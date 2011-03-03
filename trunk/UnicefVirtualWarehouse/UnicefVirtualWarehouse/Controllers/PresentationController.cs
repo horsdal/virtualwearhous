@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Dynamic;
 using System.Linq;
 using System.Web.Mvc;
 using UnicefVirtualWarehouse.Models;
@@ -13,6 +14,7 @@ namespace UnicefVirtualWarehouse.Controllers
         public int MaxPrice { get; set; }
         public int MinPrice { get; set; }
         public int AveragePrice { get; set; }
+        public int Id { get; set; }
     }
 
     public class PresentationController : Controller
@@ -34,7 +36,8 @@ namespace UnicefVirtualWarehouse.Controllers
                                 Presentation = p,
                                 MaxPrice = MaxPriceFor(manufacturerPresentations),
                                 AveragePrice = AveragePriceFor(manufacturerPresentations),
-                                MinPrice = MinPriceFor(manufacturerPresentations)
+                                MinPrice = MinPriceFor(manufacturerPresentations),
+                                Id = p.Id
                             };
                     });
             return View(presentations.ToList());
@@ -70,13 +73,24 @@ namespace UnicefVirtualWarehouse.Controllers
                {
                    var manufacturerPresentations =
                        new ManufacturerPresentationRepository().GetByPresentationId(p.Id);
+#if true                   
                    return new PresentationViewModel
                    {
                        Presentation = p,
                        MaxPrice = MaxPriceFor(manufacturerPresentations),
                        AveragePrice = AveragePriceFor(manufacturerPresentations),
-                       MinPrice = MinPriceFor(manufacturerPresentations)
+                       MinPrice = MinPriceFor(manufacturerPresentations),
+                       Id = p.Id
                    };
+#else
+                   dynamic res = new ExpandoObject();
+                   res.Presentation = p;
+                   res.MaxPrice = MaxPriceFor(manufacturerPresentations);
+                   res.AveragePrice = AveragePriceFor(manufacturerPresentations);
+                   res.MinPrice = MinPriceFor(manufacturerPresentations);
+                   res.Id = p.Id;
+                   return res;
+#endif
                });
             return View("index", presentations.ToList());
         }

@@ -129,11 +129,13 @@
     <Content Include="Views\Contact\Create.aspx" />
     <Content Include="Views\Contact\Edit.aspx" />
     <Content Include="Views\Contact\Index.aspx" />
+    <Content Include="Views\Home\AdministratorHome.aspx" />
     <Content Include="Views\Home\ManufacturerHome.aspx" />
     <Content Include="Views\Home\UnicefHome.aspx" />
     <Content Include="Views\ManufacturerPresentation\Create.aspx" />
     <Content Include="Views\ManufacturerPresentation\Delete.aspx" />
     <Content Include="Views\ManufacturerPresentation\Manage.aspx" />
+    <Content Include="Views\Manufacturer\Create.aspx" />
     <Content Include="Views\Manufacturer\Index.aspx" />
     <Content Include="Views\Presentation\Create.aspx" />
     <Content Include="Views\Presentation\Delete.aspx" />

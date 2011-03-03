@@ -24,7 +24,7 @@ namespace UnicefVirtualWarehouse.Controllers
                 return View("UnicefHome");
 
             if (User.IsInRole(UnicefRole.Administrator.ToString()))
-                return View("AdminHome");
+                return View("AdministratorHome");
 
             return null;
         }

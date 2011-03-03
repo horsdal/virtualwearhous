@@ -1,10 +1,13 @@
 ﻿using System.Linq;
 using System.Web.Mvc;
+using UnicefVirtualWarehouse.Models;
+using UnicefVirtualWarehouse.Models.Repositories;
 
 namespace UnicefVirtualWarehouse.Controllers
 {
     public class ManufacturerController : Controller
     {
+        private readonly ManufacturerRepository manufacturerRepo = new ManufacturerRepository();
         //
         // GET: /Manufacture/
 
@@ -19,7 +22,8 @@ namespace UnicefVirtualWarehouse.Controllers
 
         public ActionResult Details(int id)
         {
-            return View();
+            var manufacturer = manufacturerRepo.GetById(id);
+            return View(manufacturer);
         }
 
         //
@@ -27,7 +31,7 @@ namespace UnicefVirtualWarehouse.Controllers
 
         public ActionResult Create()
         {
-            if (!Request.IsAuthenticated)
+            if (!Request.IsAuthenticated || !User.IsInRole(UnicefRole.Administrator.ToString()))
                 return RedirectToAction("Index");
 
             return View();
@@ -37,22 +41,37 @@ namespace UnicefVirtualWarehouse.Controllers
         // POST: /Manufacture/Create
 
         [HttpPost]
-        public ActionResult Create(FormCollection collection)
+        public ActionResult Create(Manufacturer manufacturer)
         {
             try
             {
-                if (!Request.IsAuthenticated)
-                    return RedirectToAction("Index");
-                // TODO: Add insert logic here
-
-                return RedirectToAction("Index");
+                return HandleCreateRequest(manufacturer);
             }
             catch
             {
                 return View();
             }
         }
-        
+
+        private ActionResult HandleCreateRequest(Manufacturer manufacturer)
+        {
+            if (!Request.IsAuthenticated)
+                return RedirectToAction("Index");
+
+            CreateNewManufacturer(manufacturer);
+
+            return RedirectToAction("Index");
+        }
+
+        private void CreateNewManufacturer(Manufacturer manufacturer)
+        {
+            var contactRepo = new ContactRepository();
+            var contact = new Contact();
+            contactRepo.Create(contact);
+            manufacturer.Contact = contact;
+            manufacturerRepo.Create(manufacturer);
+        }
+
         //
         // GET: /Manufacture/Edit/5
  
@@ -91,6 +110,7 @@ namespace UnicefVirtualWarehouse.Controllers
         {
             if (!Request.IsAuthenticated)
                 return RedirectToAction("Index");
+
             return View();
         }
 
@@ -105,6 +125,7 @@ namespace UnicefVirtualWarehouse.Controllers
                 if (!Request.IsAuthenticated)
                     return RedirectToAction("Index");
                 // TODO: Add delete logic here
+                manufacturerRepo.Delete(id);
  
                 return RedirectToAction("Index");
             }

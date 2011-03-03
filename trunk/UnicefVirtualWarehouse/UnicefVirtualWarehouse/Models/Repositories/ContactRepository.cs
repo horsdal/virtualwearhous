@@ -32,5 +32,11 @@ namespace UnicefVirtualWarehouse.Models.Repositories
         {
             return db.Contacts.Where(c => c.Id == id).FirstOrDefault();
         }
+
+        public void Create(Contact contact)
+        {
+            db.Contacts.Add(contact);
+            db.SaveChanges();
+        }
     }
 }
