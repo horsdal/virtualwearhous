@@ -80,7 +80,7 @@ namespace UnicefVirtualWarehouseTest
         public void IndexReturnManufacturerHomeViewWithManufaturerAsModelData()
         {
             var view = controllerUnderTest.Index() as ViewResult;
-            Assert.That(view.ViewName, Is.EqualTo("AdminHome"));
+            Assert.That(view.ViewName, Is.EqualTo("AdministratorHome"));
         }
     }
 

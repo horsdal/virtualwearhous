@@ -25,6 +25,11 @@
 	<%}%>
 
 	</table>
+        <% if (Request.IsAuthenticated && (User.IsInRole(UnicefRole.Unicef.ToString()) || User.IsInRole(UnicefRole.Administrator.ToString()))) {%>
+       <p>
+            <%: Html.ActionLink("Create New", "Create") %>
+        </p>
+    <% } %>
 <%}else{%>
 	<p>No Product Categories available.</p>
 <%}%>
