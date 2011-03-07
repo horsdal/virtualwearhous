@@ -55,7 +55,7 @@ namespace UnicefVirtualWarehouse.Controllers
 
         private ActionResult HandleCreateRequest(Manufacturer manufacturer)
         {
-            if (!Request.IsAuthenticated)
+            if (!Request.IsAuthenticated || !User.IsInRole(UnicefRole.Administrator.ToString()))
                 return RedirectToAction("Index");
 
             CreateNewManufacturer(manufacturer);
@@ -77,23 +77,26 @@ namespace UnicefVirtualWarehouse.Controllers
  
         public ActionResult Edit(int id)
         {
-            if (!Request.IsAuthenticated)
+            if (!Request.IsAuthenticated || !User.IsInRole(UnicefRole.Administrator.ToString()))
                 return RedirectToAction("Index");
-            
-            return View();
+
+            var manufacturerToEdit = manufacturerRepo.GetById(id);
+
+            return View(manufacturerToEdit);
         }
 
-        //
+        
         // POST: /Manufacture/Edit/5
 
         [HttpPost]
-        public ActionResult Edit(int id, FormCollection collection)
+        public ActionResult Edit(int id, Manufacturer editedManufacturer)
         {
             try
             {
-                if (!Request.IsAuthenticated)
+                if (!Request.IsAuthenticated || !User.IsInRole(UnicefRole.Administrator.ToString()))
                     return RedirectToAction("Index");
-                // TODO: Add update logic here
+
+                manufacturerRepo.Update(editedManufacturer);
  
                 return RedirectToAction("Index");
             }
@@ -108,10 +111,12 @@ namespace UnicefVirtualWarehouse.Controllers
  
         public ActionResult Delete(int id)
         {
-            if (!Request.IsAuthenticated)
+            if (!Request.IsAuthenticated || !User.IsInRole(UnicefRole.Administrator.ToString()))
                 return RedirectToAction("Index");
 
-            return View();
+            var manufacturerToEdit = manufacturerRepo.GetById(id);
+
+            return View(manufacturerToEdit);
         }
 
         //
@@ -122,9 +127,9 @@ namespace UnicefVirtualWarehouse.Controllers
         {
             try
             {
-                if (!Request.IsAuthenticated)
+                if (!Request.IsAuthenticated || !User.IsInRole(UnicefRole.Administrator.ToString()))
                     return RedirectToAction("Index");
-                // TODO: Add delete logic here
+
                 manufacturerRepo.Delete(id);
  
                 return RedirectToAction("Index");

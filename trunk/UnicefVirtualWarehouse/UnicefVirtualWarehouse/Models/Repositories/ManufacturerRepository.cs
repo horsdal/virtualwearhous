@@ -48,5 +48,13 @@ namespace UnicefVirtualWarehouse.Models.Repositories
 
             db.SaveChanges();
         }
+
+        public void Update(Manufacturer editedManufacturer)
+        {
+            var manufacturerFromDB = db.Manufacturers.FirstOrDefault(m => m.Id == editedManufacturer.Id);
+            manufacturerFromDB.GMP = editedManufacturer.GMP;
+            manufacturerFromDB.Name = editedManufacturer.Name;
+            db.SaveChanges();
+        }
     }
 }

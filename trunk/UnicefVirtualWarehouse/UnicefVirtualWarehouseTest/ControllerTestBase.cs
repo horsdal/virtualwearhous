@@ -9,7 +9,7 @@ namespace UnicefVirtualWarehouseTest
 {
     public class ControllerTestBase<ControllerType> where ControllerType : Controller, new()
     {
-        private FakeApp app;
+        protected FakeApp app;
         private MockRepository mocks;
         private HttpContextBase mockedhttpContext;
         private HttpRequestBase mockedHttpRequest;
@@ -53,6 +53,17 @@ namespace UnicefVirtualWarehouseTest
         {
             app.BeginTest();
 
+            CreateControllerUnderTest();
+        }
+
+        protected void RenewDbContextAndControllerUnderTest()
+        {
+            app.RenewUnicefContext();
+            CreateControllerUnderTest();
+        }
+
+        private void CreateControllerUnderTest()
+        {
             controllerUnderTest = new ControllerType();
             controllerUnderTest.ControllerContext = new ControllerContext(mockedhttpContext, new RouteData(), controllerUnderTest);
         }

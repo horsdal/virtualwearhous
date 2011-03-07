@@ -136,6 +136,9 @@
     <Content Include="Views\ManufacturerPresentation\Delete.aspx" />
     <Content Include="Views\ManufacturerPresentation\Manage.aspx" />
     <Content Include="Views\Manufacturer\Create.aspx" />
+    <Content Include="Views\Manufacturer\Delete.aspx" />
+    <Content Include="Views\Manufacturer\Details.aspx" />
+    <Content Include="Views\Manufacturer\Edit.aspx" />
     <Content Include="Views\Manufacturer\Index.aspx" />
     <Content Include="Views\Presentation\Create.aspx" />
     <Content Include="Views\Presentation\Delete.aspx" />

@@ -20,7 +20,7 @@ namespace UnicefVirtualWarehouse
 		private static readonly string unicefContext = "UnicefContext";
 
         [ThreadStatic]
-	    private static UnicefContext currentContext;
+	    protected static UnicefContext currentContext;
 		public static UnicefContext CurrentUnicefContext
 		{
             get { return currentContext; }

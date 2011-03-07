@@ -18,6 +18,12 @@ namespace UnicefVirtualWarehouseTest
             AppDomain.CurrentDomain.SetData("DataDirectory", @"C:\projects\virtualwearhouse\UnicefVirtualWarehouse\UnicefVirtualWarehouse\App_Data");
         }
 
+        public void RenewUnicefContext()
+        {
+            currentContext.Dispose();
+            currentContext = new UnicefContext();
+        }
+
         public void BeginTest()
         {
             Application_BeginRequest(this, new EventArgs());
