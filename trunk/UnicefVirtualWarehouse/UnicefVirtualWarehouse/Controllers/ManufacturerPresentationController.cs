@@ -26,10 +26,10 @@ namespace UnicefVirtualWarehouse.Controllers
             if (!Request.IsAuthenticated)
                 ScrubAllPricingInformation(manufacturerPresentations);
             if (Request.IsAuthenticated && User.IsInRole(UnicefRole.Manufacturer.ToString()))
-                ScrubPricingInformationFromPresentationFromOtherManufacturers(manufacturerPresentations);
+                ScrubPricingInformationFromPresentationsFromOtherManufacturers(manufacturerPresentations);
         }
 
-        private void ScrubPricingInformationFromPresentationFromOtherManufacturers(IList<ManufacturerPresentation> manufacturerPresentations)
+        private void ScrubPricingInformationFromPresentationsFromOtherManufacturers(IList<ManufacturerPresentation> manufacturerPresentations)
         {
             var user = new UserRepository().GetByName(User.Identity.Name);
             var othersManufacturerPresentations =

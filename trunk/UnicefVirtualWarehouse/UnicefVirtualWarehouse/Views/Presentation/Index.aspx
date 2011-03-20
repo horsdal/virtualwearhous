@@ -5,18 +5,13 @@
 <h3>Product Presentation</h3>
 <% if(Model.Any()) { %>	
 	<table width="100%">
+    		<th>Name</th><th>Max price (USD)</th><th>Average Price (USD)</th><th>Max price (USD)</th>
             <% if (Request.IsAuthenticated && User.IsInRole(UnicefRole.Administrator.ToString())) {%>
                 <th></th>
             <% } %>	
-    		<th>Name</th><th>Max price (USD)</th><th>Average Price (USD)</th><th>Max price (USD)</th>
 		    <% int counter = 0; %>
 			<% foreach(var p in Model){%>
 			    <tr onMouseOver="this.bgColor='#FCEB8B'" onMouseOut="this.bgColor='#FFFFFF'">
-                <% if (Request.IsAuthenticated && User.IsInRole(UnicefRole.Administrator.ToString())) {%>
-     		        <%=counter % 2 != 0 ? "<td style=\"background-color:#e8eef4\">" : "<td style=\"background-color:transparent\">"%>
-                        <%: Html.ActionLink("Delete", "Delete", new { p.Id })%>
-                    </td>
-                <% } %>
 				<%=counter % 2 != 0 ? "<td style=\"background-color:#e8eef4\">" : "<td style=\"background-color:transparent\">"%>
 					<a href="../../ManufacturerPresentation/Details/<%=p.Presentation.Id %>"><%=p.Presentation.Name%></a>
 				</td>
@@ -29,6 +24,11 @@
 				<%=counter % 2 != 0 ? "<td style=\"background-color:#e8eef4\">" : "<td style=\"background-color:transparent\">"%>
 					<%= ((decimal) p.MinPrice) / 100 %>
 				</td>
+                <% if (Request.IsAuthenticated && User.IsInRole(UnicefRole.Administrator.ToString())) {%>
+     		        <%=counter % 2 != 0 ? "<td style=\"background-color:#e8eef4\">" : "<td style=\"background-color:transparent\">"%>
+                        <%: Html.ActionLink("Delete", "Delete", new { p.Id })%>
+                    </td>
+                <% } %>
 			</tr>
 				<% counter++; %>
 			<%}%>

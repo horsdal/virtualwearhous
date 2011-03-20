@@ -154,6 +154,46 @@ ul#menu li#greeting
     color: #fff;
 }
 
+ul#menu li#first a
+{
+    padding: 10px 20px;
+    font-weight: bold;
+    text-decoration: none;
+    line-height: 2.8em;
+    background-color: #99FF33;
+    color: #034af3;
+}
+
+ul#menu li#second a
+{
+    padding: 10px 20px;
+    font-weight: bold;
+    text-decoration: none;
+    line-height: 2.8em;
+    background-color: #CCFF99;
+    color: #034af3;
+}
+
+ul#menu li#third a
+{
+    padding: 10px 20px;
+    font-weight: bold;
+    text-decoration: none;
+    line-height: 2.8em;
+    background-color: #CCFFCC;
+    color: #034af3;
+}
+
+ul#menu li#fourth a
+{
+    padding: 10px 20px;
+    font-weight: bold;
+    text-decoration: none;
+    line-height: 2.8em;
+    background-color: #CCFFFF;
+    color: #034af3;
+}
+
 ul#menu li a
 {
     padding: 10px 20px;

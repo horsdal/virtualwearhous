@@ -12,15 +12,15 @@
 		<% int counter = 0; %>
 			<% foreach(var m in Model){%>
 			<tr onMouseOver="this.bgColor='#FCEB8B'" onMouseOut="this.bgColor='#FFFFFF'">
-                <% if (Request.IsAuthenticated && User.IsInRole(UnicefRole.Administrator.ToString())) {%>
+				<% counter++; %>               
+				<%=counter % 2 != 0 ? "<td style=\"background-color:#e8eef4\">" : "<td style=\"background-color:transparent\">"%>
+					<%: Html.ActionLink(m.Name, "Details", new { m.Id} ) %>
+				</td>
+                 <% if (Request.IsAuthenticated && User.IsInRole(UnicefRole.Administrator.ToString())) {%>
      		        <%=counter % 2 != 0 ? "<td style=\"background-color:#e8eef4\">" : "<td style=\"background-color:transparent\">"%>
                         <%: Html.ActionLink("Delete", "Delete", new { m.Id })%>
                     </td>
                 <% } %>
-				<%=counter % 2 != 0 ? "<td style=\"background-color:#e8eef4\">" : "<td style=\"background-color:transparent\">"%>
-				<% counter++; %>
-					<%: Html.ActionLink(m.Name, "Details", new { m.Id} ) %>
-				</td>
 			</tr>
 			<%}%>
 	</table> 
