@@ -6,9 +6,6 @@
 <% int counter = 0; %>
 <% if(Model.Any()) { %>
 	<table width="100%">	
-                <% if (Request.IsAuthenticated && User.IsInRole(UnicefRole.Administrator.ToString())) {%>
-                    <th></th>
-                <% } %>	
     			<th>Manufacturer</th>
 				<th>Presentation</th>
 				<th>Size</th>
@@ -16,15 +13,13 @@
 				<th>Minimal Unit</th>
 				<th>Licensed</th>
 				<th>CPP</th>
+                <% if (Request.IsAuthenticated && User.IsInRole(UnicefRole.Administrator.ToString())) {%>
+                    <th></th>
+                <% } %>	
 
 			<% foreach(var p in Model){%>
-				<%=counter % 2 != 0 ? "<tr onMouseOver=\"this.bgColor='#FCEB8B'\" onMouseOut=\"this.bgColor='#FFFFFF'\" style=\"background-color:#e8eef4\">" : "<tr onMouseOver=\"this.bgColor='#FCEB8B'\" onMouseOut=\"this.bgColor='#FFFFFF'\" style=\"background-color:transparent\">"%>
-                <% if (Request.IsAuthenticated && User.IsInRole(UnicefRole.Administrator.ToString())) {%>
-     		        <%=counter % 2 != 0 ? "<td style=\"background-color:#e8eef4\">" : "<td style=\"background-color:transparent\">"%>
-                        <%: Html.ActionLink("Delete", "Delete", new { p.ID })%>
-                    </td>
-                <% } %>
 				<% counter++; %>
+				<%=counter % 2 != 0 ? "<tr onMouseOver=\"this.bgColor='#FCEB8B'\" onMouseOut=\"this.bgColor='#FFFFFF'\" style=\"background-color:#e8eef4\">" : "<tr onMouseOver=\"this.bgColor='#FCEB8B'\" onMouseOut=\"this.bgColor='#FFFFFF'\" style=\"background-color:transparent\">"%>
 				<td>
 					<a  href="../../Contact/Details/<%=p.Manufacturer.Id %>"><%=p.Manufacturer.Name %></a>
 				</td>
@@ -48,6 +43,11 @@
 				<td>
                 <img src="../../Content/<%=p.CPP ? "check_16.png": "delete_16.png" %>" />
 				</td>
+                <% if (Request.IsAuthenticated && User.IsInRole(UnicefRole.Administrator.ToString())) {%>
+     		        <%=counter % 2 != 0 ? "<td style=\"background-color:#e8eef4\">" : "<td style=\"background-color:transparent\">"%>
+                        <%: Html.ActionLink("Delete", "Delete", new { p.ID })%>
+                    </td>
+                <% } %>
 			</tr>
 			<%}%>
 	</table> 
