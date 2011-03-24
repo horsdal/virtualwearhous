@@ -1,4 +1,6 @@
 ﻿using System;
+using System.Collections;
+using System.Collections.Generic;
 using System.Data.Entity;
 using System.Data.Entity.Infrastructure;
 using System.Linq;
@@ -48,6 +50,11 @@ namespace UnicefVirtualWarehouse.Models.Repositories
         private DbQuery<User> WithAllFields(DbSet<User> users)
         {
             return users.Include("AssociatedManufaturer").Include("AssociatedManufaturer.Contact");
+        }
+
+        public IEnumerable<User> GetAll()
+        {
+            return db.Users;
         }
     }
 }

@@ -12,5 +12,5 @@
    <%: Html.ActionLink("Product presentations", "Index", "Presentation") %> <br />
    <%: Html.ActionLink("Manufacturer presentation", "Index", "ManufacturerPresentation") %> <br />
    <%: Html.ActionLink("Manage manufacturers", "Index", "Manufacturer") %> <br />
-   <%: Html.ActionLink("Manage users", "Index", "Account") %> <br />
+   <%: Html.ActionLink("Manage users", "Manage", "Account") %> <br />
 </asp:Content>

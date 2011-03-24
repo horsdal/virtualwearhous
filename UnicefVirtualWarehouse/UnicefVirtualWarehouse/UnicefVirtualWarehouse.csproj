@@ -126,6 +126,7 @@
     <Content Include="Models\Scripts\Demo data\Presentations.sql" />
     <Content Include="Models\Scripts\Demo data\Products.sql" />
     <Content Include="Views\Account\Delete.aspx" />
+    <Content Include="Views\Account\Manage.aspx" />
     <Content Include="Views\Contact\Create.aspx" />
     <Content Include="Views\Contact\Edit.aspx" />
     <Content Include="Views\Contact\Index.aspx" />

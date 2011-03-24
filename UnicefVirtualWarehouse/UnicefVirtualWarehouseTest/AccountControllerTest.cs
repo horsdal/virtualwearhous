@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Web.Mvc;
 using NUnit.Framework;
 using UnicefVirtualWarehouse.Controllers;
@@ -35,6 +36,15 @@ namespace UnicefVirtualWarehouseTest
             Assert.That(res.RouteValues.Values, Contains.Item("Index"));
             Assert.That(res.RouteValues.Values, Contains.Item("ProductCategory"));
         }
+
+        [Test]
+        public void CannotAccessManagePage()
+        {
+            var res = controllerUnderTest.Manage() as RedirectToRouteResult;
+            Assert.That(res, Is.Not.Null);
+            Assert.That(res.RouteValues.Values, Contains.Item("ProductCategory"));
+            Assert.That(res.RouteValues.Values, Contains.Item("Index"));
+        }
     }
 
     public class AccountControllerTestLoggedInAsAdmin: ControllerTestBase<AlwaysValidAccountController>
@@ -47,6 +57,18 @@ namespace UnicefVirtualWarehouseTest
         protected override  string Role()
         {
             return UnicefRole.Administrator.ToString();
+        }
+
+        [Test]
+        public void ManagePageContainsAllUsersFromMainDdInViewData()
+        {
+            var allUsers = new UserRepository().GetAll();
+            var res = controllerUnderTest.Manage() as ViewResult;
+            Assert.That(res, Is.Not.Null);
+            Assert.That(res.ViewName, Is.EqualTo(string.Empty));
+
+            var usersFromViewData = res.ViewData.Model as IEnumerable<User>;
+            Assert.That(usersFromViewData, Is.EquivalentTo(allUsers));
         }
 
         [Test]
@@ -214,6 +236,15 @@ namespace UnicefVirtualWarehouseTest
             Assert.That(res.RouteValues.Values, Contains.Item("Index"));
             Assert.That(res.RouteValues.Values, Contains.Item("ProductCategory"));
         }
+
+        [Test]
+        public void CannotAccessManagePage()
+        {
+            var res = controllerUnderTest.Manage() as RedirectToRouteResult;
+            Assert.That(res, Is.Not.Null);
+            Assert.That(res.RouteValues.Values, Contains.Item("ProductCategory"));
+            Assert.That(res.RouteValues.Values, Contains.Item("Index"));
+        }
     }
 
     public class AccountControllerTestLoggedInAsManufacturer : ControllerTestBase<AccountController>
@@ -248,6 +279,15 @@ namespace UnicefVirtualWarehouseTest
             Assert.That(res, Is.Not.Null);
             Assert.That(res.RouteValues.Values, Contains.Item("Index"));
             Assert.That(res.RouteValues.Values, Contains.Item("ProductCategory"));
+        }
+
+        [Test]
+        public void CannotAccessManagePage()
+        {
+            var res = controllerUnderTest.Manage() as RedirectToRouteResult;
+            Assert.That(res, Is.Not.Null);
+            Assert.That(res.RouteValues.Values, Contains.Item("ProductCategory"));
+            Assert.That(res.RouteValues.Values, Contains.Item("Index"));
         }
     }
 
