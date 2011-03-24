@@ -11,7 +11,7 @@ using UnicefVirtualWarehouse.Models.Repositories;
 
 namespace UnicefVirtualWarehouseTest
 {
-    public class PresentationControllerTestLoggedInAsManufaturer : ControllerTestBase<PresentationController>
+    public class PresentationControllerTestLoggedInAsUnicef : ControllerTestBase<PresentationController>
     {
         protected override bool IsLoggedIn()
         {
@@ -20,7 +20,7 @@ namespace UnicefVirtualWarehouseTest
 
         protected override string Role()
         {
-            return UnicefRole.Manufacturer.ToString();
+            return UnicefRole.Unicef.ToString();
         }
 
         [Test]
@@ -89,16 +89,15 @@ namespace UnicefVirtualWarehouseTest
         }
 
         [Test]
-        public void ManageContainsManufacturersOwnPresentations()
+        public void ManageContainsAllPresentations()
         {
-            var novo = new UserRepository().GetByName(FakeNovoUser).AssociatedManufaturer;
-            var novoPresentations = new PresentationRepository().GetAllByOwner(novo);
+            var allPresentations = new PresentationRepository().GetAll();
 
             var view = controllerUnderTest.Manage() as ViewResult;
             var presentations = view.ViewData.Model as IEnumerable<Presentation>;
             Assert.That(presentations, Is.Not.Null);
             Assert.That(presentations.FirstOrDefault(), Is.Not.Null);
-            Assert.That(presentations, Is.EquivalentTo(novoPresentations));
+            Assert.That(presentations, Is.EquivalentTo(allPresentations));
         }
 
     }
@@ -268,7 +267,7 @@ namespace UnicefVirtualWarehouseTest
     }
 
     [TestFixture]
-    class PresentationControllerTestLoggedInAsUnicef : ControllerTestBase<PresentationController>
+    class PresentationControllerTestLoggedInAsManufacturer : ControllerTestBase<PresentationController>
     {
         protected override bool IsLoggedIn()
         {
@@ -277,7 +276,7 @@ namespace UnicefVirtualWarehouseTest
 
         protected override string Role()
         {
-            return UnicefRole.Unicef.ToString();
+            return UnicefRole.Manufacturer.ToString();
         }
 
         [Test]

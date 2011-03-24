@@ -123,7 +123,7 @@ namespace UnicefVirtualWarehouse.Controllers
 
         private bool UserMayNotEditPresentations()
         {
-            return !(User.IsInRole(UnicefRole.Manufacturer.ToString()) || User.IsInRole((UnicefRole.Administrator.ToString())));
+            return !(User.IsInRole(UnicefRole.Unicef.ToString()) || User.IsInRole((UnicefRole.Administrator.ToString())));
         }
 
         private void CreateAndSaveNewPresentation(FormCollection form)
@@ -178,14 +178,18 @@ namespace UnicefVirtualWarehouse.Controllers
 
         public ActionResult Manage()
         {
-            if (Request.IsAuthenticated && User.IsInRole(UnicefRole.Manufacturer.ToString()))
+            if (Request.IsAuthenticated && UserMayEditPresentations())
             {
-                var manufacturerAssociatedWithUser = new UserRepository().GetByName(User.Identity.Name).AssociatedManufaturer;
-                var presentationsBelongingToManufacturer = presentationRepo.GetAllByOwner(manufacturerAssociatedWithUser);
+                var presentationsBelongingToManufacturer = presentationRepo.GetAll();
                 return View(presentationsBelongingToManufacturer);
             }
 
             return RedirectToAction("Index");
+        }
+
+        private bool UserMayEditPresentations()
+        {
+            return !UserMayNotEditPresentations();
         }
     }
 }
