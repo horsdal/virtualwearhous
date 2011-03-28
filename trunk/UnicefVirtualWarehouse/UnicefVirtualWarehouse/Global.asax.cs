@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Configuration;
+using System.Data.Entity.Infrastructure;
 using System.Linq;
 using System.Reflection;
 using System.Security.Principal;
@@ -48,24 +49,27 @@ namespace UnicefVirtualWarehouse
 
 	    protected void StartDatabaseContext()
 	    {
-	        var ctx = new UnicefContext();
+            Database.SetInitializer<UnicefContext>(null);
+            var ctx = new UnicefContext();
 	        //uc.Database.Connection.ConnectionString("Data Source=.\SQLEXPRESS;Initial Catalog=UnicefVirtualWarehouse;Integrated Security=SSPI;");    
-	        ctx.Database.Connection.ConnectionString = @"Data Source=.\SQLEXPRESS;Initial Catalog=UnicefVirtualWarehouse.UnicefContext;Integrated Security=SSPI;";
-
-
+	      //  ctx.Database.Connection.ConnectionString = @"Data Source=.\SQLEXPRESS;Initial Catalog=UnicefVirtualWarehouse.UnicefContext;Integrated Security=SSPI;";
+            ctx.Database.Connection.ConnectionString = @"Server=db002.appharbor.net;Database=db1558;User ID=db1558;Password=wzG4ewPpwEwN2yvjYp6uytw4VV74QMAAUnYboFmYg5bztZXdsqXugZZccLgrxUFR;";
+#if DEBUG
 	        if (!ctx.Database.Exists() || !ctx.Database.ModelMatchesDatabase())
 	        {
 	            ctx.Database.DeleteIfExists();
 	            ctx.Database.Create();
 	        }
+#endif
 	    }
 
 	    protected void Application_BeginRequest(object sender, EventArgs e)
         {
             currentContext = new UnicefContext();
             //uc.Database.Connection.ConnectionString("Data Source=.\SQLEXPRESS;Initial Catalog=UnicefVirtualWarehouse;Integrated Security=SSPI;");    
-            currentContext.Database.Connection.ConnectionString = @"Data Source=.\SQLEXPRESS;Initial Catalog=UnicefVirtualWarehouse.UnicefContext;Integrated Security=SSPI;";
-	        currentContext.Database.CreateIfNotExists();
+            //currentContext.Database.Connection.ConnectionString = @"Data Source=.\SQLEXPRESS;Initial Catalog=UnicefVirtualWarehouse.UnicefContext;Integrated Security=SSPI;";
+            currentContext.Database.Connection.ConnectionString = @"Server=db002.appharbor.net;Database=db1558;User ID=db1558;Password=wzG4ewPpwEwN2yvjYp6uytw4VV74QMAAUnYboFmYg5bztZXdsqXugZZccLgrxUFR;";
+           // currentContext.Database.CreateIfNotExists();
         }
 
 		protected void Application_EndRequest(object sender, EventArgs e)
