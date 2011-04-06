@@ -17,6 +17,7 @@ namespace UnicefVirtualWarehouse.Controllers
         public int Id { get; set; }
     }
 
+    [HandleError]
     public class PresentationController : Controller
     {
         private readonly ProductRepository productRepo = new ProductRepository();
@@ -73,7 +74,6 @@ namespace UnicefVirtualWarehouse.Controllers
                {
                    var manufacturerPresentations =
                        new ManufacturerPresentationRepository().GetByPresentationId(p.Id);
-#if true                   
                    return new PresentationViewModel
                    {
                        Presentation = p,
@@ -82,15 +82,6 @@ namespace UnicefVirtualWarehouse.Controllers
                        MinPrice = MinPriceFor(manufacturerPresentations),
                        Id = p.Id
                    };
-#else
-                   dynamic res = new ExpandoObject();
-                   res.Presentation = p;
-                   res.MaxPrice = MaxPriceFor(manufacturerPresentations);
-                   res.AveragePrice = AveragePriceFor(manufacturerPresentations);
-                   res.MinPrice = MinPriceFor(manufacturerPresentations);
-                   res.Id = p.Id;
-                   return res;
-#endif
                });
             return View("index", presentations.ToList());
         }

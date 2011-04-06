@@ -5,6 +5,7 @@ using UnicefVirtualWarehouse.Models.Repositories;
 
 namespace UnicefVirtualWarehouse.Controllers
 {
+    [HandleError]
     public class ContactController : Controller
     {
         private readonly ContactRepository contactRepo = new ContactRepository();

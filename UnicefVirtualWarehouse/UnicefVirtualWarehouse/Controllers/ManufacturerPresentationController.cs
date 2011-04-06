@@ -7,6 +7,7 @@ using UnicefVirtualWarehouse.Models.Repositories;
 
 namespace UnicefVirtualWarehouse.Controllers
 {
+    [HandleError]
     public class ManufacturerPresentationController : Controller
     {
         private ManufacturerPresentationRepository manufacturerPresentationRepo = new ManufacturerPresentationRepository();
