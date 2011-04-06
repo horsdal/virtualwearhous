@@ -8,6 +8,7 @@ using UnicefVirtualWarehouse.Models.Repositories;
 
 namespace UnicefVirtualWarehouse.Controllers
 {
+    [HandleError]
     public class ProductController : Controller
     {
         private ProductRepository productRepo = new ProductRepository();
