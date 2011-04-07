@@ -73,6 +73,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="AccountControllerTest.cs" />
+    <Compile Include="ApplicationTest.cs" />
     <Compile Include="ContactControllerTest.cs" />
     <Compile Include="ControllerTestBase.cs" />
     <Compile Include="FakeApp.cs" />

@@ -33,5 +33,10 @@ namespace UnicefVirtualWarehouseTest
         {
             Application_EndRequest(this, new EventArgs());
         }
+
+        public void Application_Error(object sender, EventArgs e)
+        {
+            base.Application_Error(sender, e);
+        }
     }
 }
