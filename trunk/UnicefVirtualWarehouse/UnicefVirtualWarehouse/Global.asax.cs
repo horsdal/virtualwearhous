@@ -9,6 +9,7 @@ using System.Web;
 using System.Web.Mvc;
 using System.Web.Routing;
 using System.Web.Security;
+using NLog;
 using UnicefVirtualWarehouse.Models;
 
 namespace UnicefVirtualWarehouse
@@ -19,6 +20,7 @@ namespace UnicefVirtualWarehouse
 	public class MvcApplication : System.Web.HttpApplication
 	{
 		private static readonly string unicefContext = "UnicefContext";
+        private static Logger logger = LogManager.GetCurrentClassLogger();
 
         [ThreadStatic]
 	    protected static UnicefContext currentContext;
@@ -46,6 +48,19 @@ namespace UnicefVirtualWarehouse
 
             StartDatabaseContext();
 		}
+
+        protected void Application_Error(object sender, EventArgs e)
+        {
+            try
+            {
+                var exception = Server.GetLastError();
+                logger.Error("{0} : {1}", exception.Message, exception.StackTrace);
+            }            
+            catch (Exception)
+            {
+                // failed to record exception
+            }
+        }
 
 	    protected void StartDatabaseContext()
 	    {
