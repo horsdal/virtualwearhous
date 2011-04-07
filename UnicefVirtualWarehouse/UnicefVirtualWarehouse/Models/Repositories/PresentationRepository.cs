@@ -1,9 +1,5 @@
-﻿using System;
-using System.Collections;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Linq;
-using System.Web;
-using System.Web.Mvc;
 
 namespace UnicefVirtualWarehouse.Models.Repositories
 {
@@ -63,11 +59,6 @@ namespace UnicefVirtualWarehouse.Models.Repositories
         {
             var manufacturerPresentationRepo = new ManufacturerPresentationRepository();
             return (manufacturerPresentationRepo.GetByPresentationId(presentation.Id).Count() == 0);
-        }
-
-        public IList<Presentation> GetAllByOwner(Manufacturer owner)
-        {
-            return db.Presentations.Where(p => p.Owner.Id == owner.Id).ToList();
         }
     }
 }
