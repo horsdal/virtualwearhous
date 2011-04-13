@@ -13,4 +13,5 @@
    <%: Html.ActionLink("Manufacturer presentation", "Index", "ManufacturerPresentation") %> <br />
    <%: Html.ActionLink("Manage manufacturers", "Index", "Manufacturer") %> <br />
    <%: Html.ActionLink("Manage users", "Manage", "Account") %> <br />
+   <a href="/App_Data/log.txt">View latest application error log</a>
 </asp:Content>
