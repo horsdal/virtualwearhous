@@ -1,0 +1,34 @@
+#summary Describes the staging and production environment
+
+= Introduction =
+
+The Unicef ChildMed web application is built on [http://www.asp.net/mvc  ASP.NET MVC] with a dependency on two additional .dlls (found in UnicefVirtualWarehouse/UnicefVirtualWarehouse/bin) and [http://www.microsoft.com/express/Database/ MS SQL Server Express] or above.
+To run the application a [http://www.microsoft.com/windowsserver/ Windows Server] with [http://www.iis.net/ IIS] and a MS SQL Server is required. The SQL Server can (obviously) be on a separate server.
+
+= Staging =
+The staging site is at http://childmedtest.apphb.com/ and is hosted through [https://appharbor.com/ AppHarbor] (an ASP.NET oriented [http://en.wikipedia.org/wiki/Platform_as_a_service PaaS] solution on top on [http://aws.amazon.com/ec2/ Amazon EC2].
+
+AppHarbor uses [http://git-scm.com/ git] for publishing. The model is that you push your git repository master up to AppHarbor which then compiles and deplaoys the application automatically.
+
+To publish the application to the staging environment setup a local git repository in the root directory of the web application (UnicefVirtualWarehouse/UnicefVirtualWarehouse/):
+{{{
+    git init
+    git add . 
+    git commit -m "Initial commit"
+}}}
+The git add command adds all files, except for those mentioned in .gitignore.
+When the local git repository is up and running setup the staging repository at AppHarbor as a remote repository:
+{{{
+    git remote add appharbor http://[username]@localhost:1824/childmedtest.git
+}}}
+Lastly, to publish push your local repostory to AppHarbor:
+{{{
+    git push appharbor master
+}}}
+
+To publish further modifications first commit all changes to the local git repository and then push to AppHarbor.
+
+
+= Production =
+
+No production environment has been chosen yet.
