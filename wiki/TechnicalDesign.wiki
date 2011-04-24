@@ -1,0 +1,35 @@
+# This page briefly describes the technical design of the code of the application
+
+= Introduction =
+
+The application follows the [http://en.wikipedia.org/wiki/Model%E2%80%93view%E2%80%93controller Model-View-Controller] (aka MVC) pattern via the [http://www.asp.net/mvc ASP.NET MVC] framework. To understand the application it is recommended to understand MVC and at least the basics of [http://www.asp.net/mvc ASP.NET MVC].
+
+= Logical view =
+
+== Domain Model ==
+
+The core of the application is the domain model shown in this image:
+[http://virtualwearhous.googlecode.com/svn/trunk/Documentation/Data%20Model.png]
+
+This model is defined in code in pure [http://virtualwearhous.googlecode.com/svn/trunk/Documentation/Data%20Model.png POCOs] in the namespace 'UnicefVirtualWarehouse.Models'.
+
+The domain model is mirrored directly in the database, following the Active Record pattern. This is implemented with Entity Framwork Code First. The entity context is the class ' UnicefVirtualWarehouse.UnicefContext', and is the class the defines the mapping between the domain model and the database.
+
+== Additional Database Tables ==
+
+In addition to the domain model the database contains a logs table and some user handling tables.
+
+The user handling tables are addressed in the security section below.
+
+The logs table is used for error logging. This table contains all logging output of the application. This table is not automatically pruned, so it must be manually cleaned up if necessary. The input to the logs table is controlled in the 'nlog.config' file.
+
+= Process view =
+
+
+= Implementation view =
+
+
+= Deployment view =
+
+
+= Security =
