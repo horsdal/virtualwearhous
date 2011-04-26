@@ -40,7 +40,7 @@ The application is deployed to one or more IIS web servers. The database is depl
 
 = Security =
 
-The security in the application is based on the forms authentication implementation that comes out of the box with a default ASP.NET MVC 2 project. This comes with its own set of database tables. This means that pages protected from unauthorized access is protected by standard forms authentication using an encrypted cookie with an associated server side timeout. 
+The security in the application is based on the [http://msdn.microsoft.com/en-us/library/yh26yfzy.aspx forms authentication] implementation that comes out of the box with a default ASP.NET MVC 2 project. This comes with its own set of database tables. This means that pages protected from unauthorized access is protected by standard forms authentication using an encrypted cookie with an associated server side timeout. 
 
 Administrator user can create new user with any role. The roles are Administrator, Unicef, Manufacturer.
 
