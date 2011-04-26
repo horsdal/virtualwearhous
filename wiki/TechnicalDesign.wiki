@@ -2,7 +2,7 @@
 
 = Introduction =
 
-The application follows the [http://en.wikipedia.org/wiki/Model%E2%80%93view%E2%80%93controller Model-View-Controller] (aka MVC) pattern via the [http://www.asp.net/mvc ASP.NET MVC] framework. To understand the application it is recommended to understand MVC and at least the basics of [http://www.asp.net/mvc ASP.NET MVC].
+The application follows the [http://en.wikipedia.org/wiki/Model%E2%80%93view%E2%80%93controller Model-View-Controller] (aka MVC) pattern via the [http://www.asp.net/mvc ASP.NET MVC 2] framework. To understand the application it is recommended to understand MVC and at least the basics of [http://www.asp.net/mvc ASP.NET MVC].
 
 = Logical view =
 
@@ -25,11 +25,23 @@ The logs table is used for error logging. This table contains all logging output
 
 = Process view =
 
+As most web apps, the application is stateless, and indeed it uses no session data apart from the authentication cookie mentioned below in the security section.
 
 = Implementation view =
+
+The application itself is a single Visual Studio project. Along side that project is a unit test project, providing a high level of coverage of the application code.
+
+The application consists of controllers in the controllers folder, views in the views folder and a model in the models folder. The model consists of the domain classes shown above, and a corresponding set of [http://martinfowler.com/eaaCatalog/repository.html repository] classes.
 
 
 = Deployment view =
 
+The application is deployed to one or more IIS web servers. The database is deployed to one MS SQL Server, possibly in a clustered setup. Database sharding is not supported.
 
 = Security =
+
+The security in the application is based on the forms authentication implementation that comes out of the box with a default ASP.NET MVC 2 project. This comes with its own set of database tables. This means that pages protected from unauthorized access is protected by standard forms authentication using an encrypted cookie with an associated server side timeout. 
+
+Administrator user can create new user with any role. The roles are Administrator, Unicef, Manufacturer.
+
+The application as deployed to the staging environment run http, not https. This may opens for man-in-the-middle attacks, and possibly replay-attacks.
