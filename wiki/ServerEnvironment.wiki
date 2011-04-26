@@ -28,6 +28,15 @@ Lastly, to publish push your local repostory to AppHarbor:
 
 To publish further modifications first commit all changes to the local git repository and then push to AppHarbor.
 
+== Accessing the database ==
+
+The staging database can be reached with MS SQL Studio Express using the username/password provided by AppHarbor.
+
+== Configuring connection strings ==
+
+The connections string used by everything in the application except the logger is the connection string called unicefvirtualwarehouse found in the web.config. This connection string is automatically replaced with the connections string for the AppHarbor database of the same name by the AppHarbor deployment pipeline.
+The connection string for the logger needs to be set up manually in the nlog.config file, by going to the AppHarbor dashboard and copying the appropriate connections string. NB Do not commit nlog.config with the AppHarbor connection string to SVN: If you do that it will be publically available.
+
 
 = Production =
 
