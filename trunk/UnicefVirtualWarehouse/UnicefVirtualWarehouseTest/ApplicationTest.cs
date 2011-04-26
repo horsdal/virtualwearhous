@@ -1,5 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Configuration;
+using System.Data.SqlClient;
 using System.IO;
 using System.Linq;
 using System.Text;
@@ -14,15 +16,22 @@ namespace UnicefVirtualWarehouseTest
         [Test]
         public void ErrorsAreLoggedOnAppLevel()
         {
-            var logFile = File.OpenRead("App_Data/log.txt");
-            var sizeOfLogBefore = logFile.Length;
-            logFile.Close();
+            var app = new FakeApp();
+            using (var connection =
+                new SqlConnection(ConfigurationManager.ConnectionStrings["unicefvirtualwarehouse"].ConnectionString))
+            {
+                connection.Open();
+                var command =
+                    new SqlCommand("SELECT COUNT(*)  FROM [UnicefVirtualWarehouse.UnicefContext].[dbo].[Logs]",
+                                   connection);
+                var logEntriesBefore = command.ExecuteScalar();
 
-            FakeApp app = new FakeApp();
-            app.Application_Error(this, new EventArgs());
+                app.Application_Error(this, new EventArgs());
 
-            var sizeOfLogAfter = File.OpenRead("App_Data/log.txt").Length;
-            Assert.That(sizeOfLogAfter, Is.GreaterThan(sizeOfLogBefore));
+                var logEntriesAfter = command.ExecuteScalar();
+
+                Assert.That(logEntriesAfter, Is.GreaterThan(logEntriesBefore));
+            }
         }
     }
 }

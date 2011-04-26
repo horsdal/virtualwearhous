@@ -54,7 +54,10 @@ namespace UnicefVirtualWarehouse
             try
             {
                 var exception = Server.GetLastError();
-                logger.Error("{0} : {1}", exception.Message, exception.StackTrace);
+                if (exception != null)
+                    logger.Error("{0} : {1}", exception.Message, exception.StackTrace);
+                else
+                    logger.Warn("Application_Error called without a error set on server utility");
             }            
             catch (Exception)
             {
