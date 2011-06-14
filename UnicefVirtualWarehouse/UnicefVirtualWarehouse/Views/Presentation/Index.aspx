@@ -3,6 +3,11 @@
 <asp:Content runat="server" ID="Title" ContentPlaceHolderID="TitleContent">ChildMed -  Product Presentation</asp:Content>
 <asp:Content runat="server" ID="Main" ContentPlaceHolderID="MainContent">
 <h3>Product Presentation</h3>
+    <% if (Request.IsAuthenticated && User.IsInRole(UnicefRole.Administrator.ToString())) {%>
+       <p>
+            <%: Html.ActionLink("Create New", "Create") %>
+        </p>
+    <% } %>
 <% if(Model.Any()) { %>	
 	<table width="100%">
     		<th>Name</th><th>Max price (USD)</th><th>Average Price (USD)</th><th>Max price (USD)</th>
@@ -33,11 +38,6 @@
 				<% counter++; %>
 			<%}%>
 	</table> 
-    <% if (Request.IsAuthenticated && User.IsInRole(UnicefRole.Administrator.ToString())) {%>
-       <p>
-            <%: Html.ActionLink("Create New", "Create") %>
-        </p>
-    <% } %>
     <%}else{%>
     <p>No Presentations available.</p>
     <%}%>

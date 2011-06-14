@@ -1,9 +1,14 @@
-﻿<%@ Page Title="" Language="C#" Inherits="System.Web.Mvc.ViewPage<System.Collections.Generic.IList<UnicefVirtualWarehouse.Models.ManufacturerPresentation>>" MasterPageFile="~/Views/Shared/Site.Master" %>
+﻿<%@ Page Title="" Language="C#" Inherits="System.Web.Mvc.ViewPage<System.Collections.Generic.IEnumerable<UnicefVirtualWarehouse.Models.ManufacturerPresentation>>" MasterPageFile="~/Views/Shared/Site.Master" %>
 <%@ Import Namespace="UnicefVirtualWarehouse.Models" %>
 <asp:Content runat="server" ID="Title" ContentPlaceHolderID="TitleContent">ChildMed -  Product Presentations</asp:Content>
 <asp:Content runat="server" ID="Main" ContentPlaceHolderID="MainContent">
 <h3>Product Presentations from Manufacturers</h3>
 <% int counter = 0; %>
+    <% if (Request.IsAuthenticated && User.IsInRole(UnicefRole.Administrator.ToString())) {%>
+        <p>
+           <%: Html.ActionLink("Create New", "Create") %>
+        </p>
+    <% } %>
 <% if(Model.Any()) { %>
 	<table width="100%">	
     			<th>Manufacturer</th>
@@ -51,11 +56,6 @@
 			</tr>
 			<%}%>
 	</table> 
-    <% if (Request.IsAuthenticated && User.IsInRole(UnicefRole.Administrator.ToString())) {%>
-        <p>
-           <%: Html.ActionLink("Create New", "Create") %>
-        </p>
-    <% } %>
 <%}else{%>
     <p>No Presentations from Manufacturers available.</p>
 <%}%>

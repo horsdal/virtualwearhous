@@ -3,6 +3,11 @@
 <asp:Content runat="server" ID="Title" ContentPlaceHolderID="TitleContent"></asp:Content>
 <asp:Content runat="server" ID="Main" ContentPlaceHolderID="MainContent">
 <h3>Manufaturer</h3>
+    <% if (Request.IsAuthenticated && User.IsInRole(UnicefRole.Administrator.ToString())) {%>
+        <p>
+            <%: Html.ActionLink("Create New", "Create") %>
+        </p>
+    <% } %>
 <% if(Model.Any()) { %>	
 	<table width="100%">
         <% if (Request.IsAuthenticated && User.IsInRole(UnicefRole.Administrator.ToString())) {%>
@@ -24,11 +29,6 @@
 			</tr>
 			<%}%>
 	</table> 
-    <% if (Request.IsAuthenticated && User.IsInRole(UnicefRole.Administrator.ToString())) {%>
-        <p>
-            <%: Html.ActionLink("Create New", "Create") %>
-        </p>
-    <% } %>
 <%}else{%>
     <p>No Presentations available.</p>
 <%}%></asp:Content>

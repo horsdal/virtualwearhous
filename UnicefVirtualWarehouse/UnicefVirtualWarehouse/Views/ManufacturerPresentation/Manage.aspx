@@ -8,6 +8,10 @@
 
     <h2>Manage</h2>
 
+    <p>
+        <%: Html.ActionLink("Create New", "Create") %>
+    </p>
+
     <table>
         <tr>
             <th>
@@ -61,9 +65,6 @@
 
     </table>
 
-    <p>
-        <%: Html.ActionLink("Create New", "Create") %>
-    </p>
 
 </asp:Content>
 
