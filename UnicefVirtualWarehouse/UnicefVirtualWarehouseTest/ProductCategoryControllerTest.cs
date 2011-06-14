@@ -1,9 +1,11 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Collections.Specialized;
 using System.Linq;
 using System.Text;
 using System.Web.Mvc;
 using NUnit.Framework;
+using NUnit.Framework.Constraints;
 using UnicefVirtualWarehouse.Controllers;
 using UnicefVirtualWarehouse.Models;
 using UnicefVirtualWarehouse.Models.Repositories;
@@ -194,6 +196,15 @@ namespace UnicefVirtualWarehouseTest
     class ProductCategoryControllerTestAsNotLoggedIn : ControllerTestBase<ProductCategoryController>
     {
         [Test]
+        public void IndexViewDataIsSortedAlphabetically()
+        {
+            var result = controllerUnderTest.Index() as ViewResult;
+            Assert.That(result, Is.Not.Null);
+            var manufacturePresentationsFromView = result.ViewData.Model as IEnumerable<ProductCategory>;
+            Assert.That(manufacturePresentationsFromView, Is.Ordered.By("Name"));
+        }
+
+        [Test]
         public void CreateRedirectsToIndex()
         {
             var res = controllerUnderTest.Create() as RedirectToRouteResult;
@@ -211,7 +222,6 @@ namespace UnicefVirtualWarehouseTest
 
             res = controllerUnderTest.Delete(1, new FormCollection()) as RedirectToRouteResult;
             Assert.That(res.RouteValues.Values, Contains.Item("Index"));
-
         }
     }
 

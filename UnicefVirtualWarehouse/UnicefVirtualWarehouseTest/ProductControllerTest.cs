@@ -220,6 +220,15 @@ namespace UnicefVirtualWarehouseTest
       class ProductControllerTestAsNotLoggedIn : ControllerTestBase<ProductController>
       {
           [Test]
+          public void IndexViewDataIsSortedAlphabetically()
+          {
+              var result = controllerUnderTest.Index() as ViewResult;
+              Assert.That(result, Is.Not.Null);
+              var manufacturePresentationsFromView = result.ViewData.Model as IEnumerable<Product>;
+              Assert.That(manufacturePresentationsFromView, Is.Ordered.By("Name"));
+          }
+
+          [Test]
           public void CreateRedirectsToIndex()
           {
               var res = controllerUnderTest.Create() as RedirectToRouteResult;

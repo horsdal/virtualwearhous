@@ -5,6 +5,7 @@ using System.Linq;
 using System.Text;
 using System.Web.Mvc;
 using NUnit.Framework;
+using NUnit.Framework.Constraints;
 using UnicefVirtualWarehouse.Controllers;
 using UnicefVirtualWarehouse.Models;
 using UnicefVirtualWarehouse.Models.Repositories;
@@ -235,6 +236,23 @@ namespace UnicefVirtualWarehouseTest
                 }
             }
         }
+
+        [Test]
+        public void IndexViewDataIsSortedAlphebetically()
+        {
+            var res = controllerUnderTest.Index() as ViewResult;
+            var presentationsForView = res.ViewData.Model as IEnumerable<PresentationViewModel>;
+            Assert.That(presentationsForView, Is.Not.Null);
+            Assert.That(presentationsForView, IsOrderedByPresentationName());
+        }
+
+        private IResolveConstraint IsOrderedByPresentationName()
+        {
+            return
+                Is.Ordered.Using<PresentationViewModel>(
+                    (lhs, rhs) => lhs.Presentation.Name.CompareTo(rhs.Presentation.Name));
+        }
+
 
         [Test]
         public void CreateRedirectsToIndex()

@@ -4,6 +4,7 @@ using System.Collections.Specialized;
 using System.Linq;
 using System.Web.Mvc;
 using NUnit.Framework;
+using NUnit.Framework.Constraints;
 using UnicefVirtualWarehouse.Controllers;
 using UnicefVirtualWarehouse.Models;
 using UnicefVirtualWarehouse.Models.Repositories;
@@ -381,6 +382,22 @@ namespace UnicefVirtualWarehouseTest
             var manufacturePresentationsFromView = result.ViewData.Model as IEnumerable<ManufacturerPresentation>;
             foreach (var mpFromView in manufacturePresentationsFromView)
                 Assert.That(mpFromView.Price, Is.EqualTo(0));
+        }
+
+        [Test]
+        public void IndexViewDataIsSortedAlphabetically()
+        {
+            var result = controllerUnderTest.Index() as ViewResult;
+            Assert.That(result, Is.Not.Null);
+            var manufacturePresentationsFromView = result.ViewData.Model as IEnumerable<ManufacturerPresentation>;
+            Assert.That(manufacturePresentationsFromView, IsOrderedByPresentationName());
+        }
+
+        private IResolveConstraint IsOrderedByPresentationName()
+        {
+            return
+                Is.Ordered.Using<ManufacturerPresentation>(
+                    (lhs, rhs) => lhs.Presentation.Name.CompareTo(rhs.Presentation.Name));
         }
 
         [Test]

@@ -17,7 +17,7 @@ namespace UnicefVirtualWarehouse.Controllers
 
         public ActionResult Index()
         {
-            return View(productRepo.GetAll());
+            return View(productRepo.GetAll().OrderBy(p => p.Name));
         }
 
         public ActionResult ProductCategory(int id)

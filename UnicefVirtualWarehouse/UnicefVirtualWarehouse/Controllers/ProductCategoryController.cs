@@ -18,7 +18,7 @@ namespace UnicefVirtualWarehouse.Controllers
         public ActionResult Index()
         {
             IList<ProductCategory> products = MvcApplication.CurrentUnicefContext.ProductCatagories.ToList();
-            return View(products);
+            return View(products.OrderBy(p => p.Name));
         }
 
         public ActionResult Create()

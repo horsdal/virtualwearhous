@@ -41,7 +41,7 @@ namespace UnicefVirtualWarehouse.Controllers
                                 Id = p.Id
                             };
                     });
-            return View(presentations.ToList());
+            return View(presentations.OrderBy(p => p.Presentation.Name).ToList());
         }
 
         private int MinPriceFor(IList<ManufacturerPresentation> manufacturerPresentations)

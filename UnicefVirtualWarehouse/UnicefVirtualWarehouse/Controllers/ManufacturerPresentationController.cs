@@ -19,7 +19,7 @@ namespace UnicefVirtualWarehouse.Controllers
         {
             var manufacturerPresentations = manufacturerPresentationRepo.GetAll();
             ScrubPricingInformation(manufacturerPresentations);
-            return View(manufacturerPresentations);
+            return View(manufacturerPresentations.OrderBy(mp => mp.Presentation.Name));
         }
 
         private void ScrubPricingInformation(IList<ManufacturerPresentation> manufacturerPresentations)
