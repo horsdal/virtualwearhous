@@ -3,7 +3,12 @@
 <asp:Content runat="server" ID="Title" ContentPlaceHolderID="TitleContent">ChildMed -  Products</asp:Content>
 <asp:Content runat="server" ID="Main" ContentPlaceHolderID="MainContent">
 <h3>Products</h3>
-<% if(Model.Any()) { %>	
+       <% if (Request.IsAuthenticated && (User.IsInRole(UnicefRole.Unicef.ToString()) || User.IsInRole(UnicefRole.Administrator.ToString()))) {%>
+       <p>
+            <%: Html.ActionLink("Create New", "Create") %>
+        </p>
+    <% } %>
+<<% if(Model.Any()) { %>	
 	<table width="100%">
     <th>Name</th>
   <% if (Request.IsAuthenticated && (User.IsInRole(UnicefRole.Unicef.ToString()) || User.IsInRole(UnicefRole.Administrator.ToString()))) {%>
@@ -25,12 +30,7 @@
 	</tr>
     <%}%>
 	</table>
-        <% if (Request.IsAuthenticated && (User.IsInRole(UnicefRole.Unicef.ToString()) || User.IsInRole(UnicefRole.Administrator.ToString()))) {%>
-       <p>
-            <%: Html.ActionLink("Create New", "Create") %>
-        </p>
-    <% } %>
-<%}else{%>
+ %}else{%>
     <p>No products available.</p>
 <%}%>
 </asp:Content>

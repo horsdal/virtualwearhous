@@ -3,6 +3,11 @@
 <asp:Content runat="server" ID="Title" ContentPlaceHolderID="TitleContent">ChildMed -  Product Categories</asp:Content>
 <asp:Content runat="server" ID="Main" ContentPlaceHolderID="MainContent">
 <h3>Product Categories</h3>
+        <% if (Request.IsAuthenticated && (User.IsInRole(UnicefRole.Unicef.ToString()) || User.IsInRole(UnicefRole.Administrator.ToString()))) {%>
+       <p>
+            <%: Html.ActionLink("Create New", "Create") %>
+        </p>
+    <% } %>
 <% if(Model.Any()) { %>	
 	<table width="100%">
 	<th>Name</th>
@@ -25,11 +30,6 @@
 	<%}%>
 
 	</table>
-        <% if (Request.IsAuthenticated && (User.IsInRole(UnicefRole.Unicef.ToString()) || User.IsInRole(UnicefRole.Administrator.ToString()))) {%>
-       <p>
-            <%: Html.ActionLink("Create New", "Create") %>
-        </p>
-    <% } %>
 <%}else{%>
 	<p>No Product Categories available.</p>
 <%}%>
