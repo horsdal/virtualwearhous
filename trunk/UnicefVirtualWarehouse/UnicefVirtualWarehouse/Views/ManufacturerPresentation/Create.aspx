@@ -1,4 +1,5 @@
-﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Views/Shared/Site.Master" Inherits="System.Web.Mvc.ViewPage<KeyValuePair<UnicefVirtualWarehouse.Models.ManufacturerPresentation, IEnumerable<UnicefVirtualWarehouse.Models.Presentation>>>" %>
+﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Views/Shared/Site.Master" Inherits="System.Web.Mvc.ViewPage<UnicefVirtualWarehouse.Controllers.CreateManufacturerPresentationViewModel>" %>
+<%@ Import Namespace="UnicefVirtualWarehouse.Models" %>
 
 <asp:Content ID="Content1" ContentPlaceHolderID="TitleContent" runat="server">
 	Create
@@ -16,53 +17,62 @@
             
             
             <div class="editor-label">
-                <%: Html.LabelFor(model => model.Key.Licensed) %>
+                <%: Html.LabelFor(model => model.ManufacturerPresentation.Licensed) %>
             </div>
             <div class="editor-field">
-                <%: Html.CheckBoxFor(model => model.Key.Licensed) %>
-                <%: Html.ValidationMessageFor(model => model.Key.Licensed) %>
+                <%: Html.CheckBoxFor(model => model.ManufacturerPresentation.Licensed) %>
+                <%: Html.ValidationMessageFor(model => model.ManufacturerPresentation.Licensed) %>
             </div>
             
             <div class="editor-label">
-                <%: Html.LabelFor(model => model.Key.CPP) %>
+                <%: Html.LabelFor(model => model.ManufacturerPresentation.CPP) %>
             </div>
             <div class="editor-field">
-                <%: Html.CheckBoxFor(model => model.Key.CPP) %>
-                <%: Html.ValidationMessageFor(model => model.Key.CPP) %>
+                <%: Html.CheckBoxFor(model => model.ManufacturerPresentation.CPP) %>
+                <%: Html.ValidationMessageFor(model => model.ManufacturerPresentation.CPP) %>
             </div>
             
             <div class="editor-label">
-                <%: Html.LabelFor(model => model.Key.MinUnit) %>
+                <%: Html.LabelFor(model => model.ManufacturerPresentation.MinUnit) %>
             </div>
             <div class="editor-field">
-                <%: Html.TextBoxFor(model => model.Key.MinUnit) %>
-                <%: Html.ValidationMessageFor(model => model.Key.MinUnit) %>
+                <%: Html.TextBoxFor(model => model.ManufacturerPresentation.MinUnit) %>
+                <%: Html.ValidationMessageFor(model => model.ManufacturerPresentation.MinUnit) %>
             </div>
             
             <div class="editor-label">
-                <%: Html.LabelFor(model => model.Key.Size) %>
+                <%: Html.LabelFor(model => model.ManufacturerPresentation.Size) %>
             </div>
             <div class="editor-field">
-                <%: Html.TextBoxFor(model => model.Key.Size) %>
-                <%: Html.ValidationMessageFor(model => model.Key.Size) %>
+                <%: Html.TextBoxFor(model => model.ManufacturerPresentation.Size) %>
+                <%: Html.ValidationMessageFor(model => model.ManufacturerPresentation.Size) %>
             </div>
             
             <div class="editor-label">
-                <%: Html.LabelFor(model => model.Key.Price) %>
+                <%: Html.LabelFor(model => model.ManufacturerPresentation.Price) %>
             </div>
             <div class="editor-field">
-                <%: Html.TextBoxFor(model => model.Key.Price) %>
-                <%: Html.ValidationMessageFor(model => model.Key.Price) %>
+                <%: Html.TextBoxFor(model => model.ManufacturerPresentation.Price) %>
+                <%: Html.ValidationMessageFor(model => model.ManufacturerPresentation.Price) %>
             </div>
-            
+     
         <div class="display-label">
             Presentation
         </div>
         <div class="editor-field">
-            <%: Html.DropDownListFor(model => model.Value,
-                    Model.Value.Select(p => new SelectListItem {Text = p.Name, Value = p.Id.ToString()}).ToList()) %>
+            <%: Html.DropDownListFor(model => model.Presentations,
+                    Model.Presentations.Select(p => new SelectListItem {Text = p.Name, Value = p.Id.ToString()}).ToList()) %>
         </div>
-            <p>
+        <% if (Request.IsAuthenticated && User.IsInRole(UnicefRole.Administrator.ToString())) {%>
+            <div class="display-label">
+                Manufacturer
+            </div>
+            <div class="editor-field"> 
+                <%: Html.DropDownListFor(model => model.Manufacturers,
+                    Model.Manufacturers.Select(p => new SelectListItem {Text = p.Name, Value = p.Id.ToString()}).ToList()) %>
+            </div>
+        <% } %>  
+                     <p>
                 <input type="submit" value="Create" />
             </p>
         </fieldset>

@@ -11,6 +11,7 @@ namespace UnicefVirtualWarehouse.Controllers
     public class ManufacturerPresentationController : Controller
     {
         private ManufacturerPresentationRepository manufacturerPresentationRepo = new ManufacturerPresentationRepository();
+        private ManufacturerRepository manufacturerRepo = new ManufacturerRepository();
 
         //
         // GET: /ManufacturerPresentation/
@@ -63,7 +64,8 @@ namespace UnicefVirtualWarehouse.Controllers
                 return RedirectToAction("Index");
 
             var presentations = new PresentationRepository().GetAll();
-            return View(new KeyValuePair<ManufacturerPresentation, IEnumerable<Presentation>>(new ManufacturerPresentation(), presentations));
+            var manufacturers = manufacturerRepo.GetAll();
+            return View(new CreateManufacturerPresentationViewModel(presentations, manufacturers));
         }
 
         private bool UserThatMayEdit()
@@ -89,31 +91,36 @@ namespace UnicefVirtualWarehouse.Controllers
             }
             catch
             {
-                return View();
+                return Create();
             }
         }
 
         private ManufacturerPresentation CreateAndSaveNewManufacturePresentation(FormCollection collection)
         {
+            ManufacturerPresentation manufacturerPresentation = CreateManufacturerPresentation(collection);
+            manufacturerPresentationRepo.Add(manufacturerPresentation);
+            return manufacturerPresentation;
+        }
+
+        private ManufacturerPresentation CreateManufacturerPresentation(FormCollection collection)
+        {
             var presentaionRepo = new PresentationRepository();
-            var manufacturerUser = new UserRepository().GetByName(User.Identity.Name);
-            if (manufacturerUser == null)
+            var user = new UserRepository().GetByName(User.Identity.Name);
+            if (user == null)
                 throw new ApplicationException("User not found");
 
-            var manufacturerPresentation = new ManufacturerPresentation()
-                                               {
-                                                   CPP = Convert.ToBoolean(collection["Key.CPP"].Split(',')[0]),
-                                                   Licensed = Convert.ToBoolean(collection["Key.Licensed"].Split(',')[0]),
-                                                   MinUnit = Convert.ToInt32(collection["Key.MinUnit"]),
-                                                   Price = Convert.ToInt32(collection["Key.Price"]),
-                                                   Size = Convert.ToInt32(collection["Key.Size"]),
-                                                   Presentation =
-                                                       presentaionRepo.GetById(Convert.ToInt32(collection["Value"])),
-                                                    Manufacturer = manufacturerUser.AssociatedManufaturer
-                                               };
-            manufacturerPresentationRepo.Add(manufacturerPresentation);
-
-            return manufacturerPresentation;
+            return new ManufacturerPresentation()
+                       {
+                           CPP = Convert.ToBoolean(collection["ManufacturerPresentation.CPP"].Split(',')[0]),
+                           Licensed = Convert.ToBoolean(collection["ManufacturerPresentation.Licensed"].Split(',')[0]),
+                           MinUnit = Convert.ToInt32(collection["ManufacturerPresentation.MinUnit"]),
+                           Price = Convert.ToInt32(collection["ManufacturerPresentation.Price"]),
+                           Size = Convert.ToInt32(collection["ManufacturerPresentation.Size"]),
+                           Presentation =
+                               presentaionRepo.GetById(Convert.ToInt32(collection["Presentations"])),
+                           Manufacturer = 
+                               manufacturerRepo.GetById(Convert.ToInt32(collection["Manufacturers"])) ?? user.AssociatedManufaturer
+                       };
         }
 
         //
@@ -178,6 +185,20 @@ namespace UnicefVirtualWarehouse.Controllers
                 return View(presentationsBelongingToManufacturer);
             }
             return RedirectToAction("Index");
+        }
+    }
+
+    public class CreateManufacturerPresentationViewModel
+    {
+        public IList<Presentation> Presentations { get; set; }
+        public IList<Manufacturer> Manufacturers { get; set; }
+        public ManufacturerPresentation ManufacturerPresentation { get; set; }
+
+        public CreateManufacturerPresentationViewModel(IList<Presentation> presentations, IList<Manufacturer> manufacturers)
+        {
+            Presentations = presentations;
+            Manufacturers = manufacturers;
+            ManufacturerPresentation = new ManufacturerPresentation();
         }
     }
 }
