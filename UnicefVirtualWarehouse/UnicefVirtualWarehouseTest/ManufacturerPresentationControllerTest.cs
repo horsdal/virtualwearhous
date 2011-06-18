@@ -37,12 +37,12 @@ namespace UnicefVirtualWarehouseTest
             controllerUnderTest.Create(
                 new FormCollection(new NameValueCollection
                                        {
-                                           {"Key.Licensed", "true"},
-                                           {"Key.CPP", "false"},
-                                           {"Key.MinUnit", "5"},
-                                           {"Key.Size", "100"},
-                                           {"Key.Price", price.ToString() },
-                                           {"Value", presentationId.ToString()}
+                                           {"ManufacturerPresentation.Licensed", "true"},
+                                           {"ManufacturerPresentation.CPP", "false"},
+                                           {"ManufacturerPresentation.MinUnit", "5"},
+                                           {"ManufacturerPresentation.Size", "100"},
+                                           {"ManufacturerPresentation.Price", price.ToString() },
+                                           {"Presentations", presentationId.ToString()}
                                        }));
             var manufacturerPresentations = repo.GetByPresentationId(presentationId);
             Assert.That(manufacturerPresentations.Count, Is.GreaterThanOrEqualTo(1));
@@ -61,12 +61,12 @@ namespace UnicefVirtualWarehouseTest
             controllerUnderTest.Create(
                 new FormCollection(new NameValueCollection
                                        {
-                                           {"Key.Licensed", "true"},
-                                           {"Key.CPP", "false"},
-                                           {"Key.MinUnit", "5"},
-                                           {"Key.Size", "100"},
-                                           {"Key.Price", price.ToString() },
-                                           {"Value", presentationId.ToString()}
+                                           {"ManufacturerPresentation.Licensed", "true"},
+                                           {"ManufacturerPresentation.CPP", "false"},
+                                           {"ManufacturerPresentation.MinUnit", "5"},
+                                           {"ManufacturerPresentation.Size", "100"},
+                                           {"ManufacturerPresentation.Price", price.ToString() },
+                                           {"Presentations", presentationId.ToString()}
                                        }));
             var manufacturerPresentations = repo.GetByPresentationId(presentationId);
             Assert.That(manufacturerPresentations.Count, Is.GreaterThanOrEqualTo(1));
@@ -105,7 +105,6 @@ namespace UnicefVirtualWarehouseTest
         {
             var manufacturer = new ManufacturerRepository().GetById(2);
             var manufacturerPresentationRepo = this.manufacturerPresentationRepo;
-            var allManufacturerPresentations = manufacturerPresentationRepo.GetAll();
             var myManufaturerPresentations = manufacturerPresentationRepo.GetByManufacturer(manufacturer);
 
             var result = controllerUnderTest.Details(1) as ViewResult;
@@ -249,6 +248,14 @@ namespace UnicefVirtualWarehouseTest
         }
 
         [Test]
+        public void CreatePageViewDataContainsManufacturers()
+        {
+            var result = controllerUnderTest.Create() as ViewResult;
+            var viewmodel = result.ViewData.Model as CreateManufacturerPresentationViewModel;
+            Assert.That(viewmodel.Manufacturers, Is.Not.Empty);
+        }
+
+        [Test]
         public void CanAddAndFindAManufacturerPresentation()
         {
             var repo = new ManufacturerPresentationRepository();
@@ -258,18 +265,20 @@ namespace UnicefVirtualWarehouseTest
             controllerUnderTest.Create(
                 new FormCollection(new NameValueCollection
                                        {
-                                           {"Key.Licensed", "true"},
-                                           {"Key.CPP", "false"},
-                                           {"Key.MinUnit", "5"},
-                                           {"Key.Size", "100"},
-                                           {"Key.Price", price.ToString() },
-                                           {"Value", presentationId.ToString()}
+                                           {"ManufacturerPresentation.Licensed", "true"},
+                                           {"ManufacturerPresentation.CPP", "false"},
+                                           {"ManufacturerPresentation.MinUnit", "5"},
+                                           {"ManufacturerPresentation.Size", "100"},
+                                           {"ManufacturerPresentation.Price", price.ToString() },
+                                           {"Presentations", presentationId.ToString()},
+                                           {"Manufacturers", "1"}
                                        }));
             var manufacturerPresentations = repo.GetByPresentationId(presentationId);
             Assert.That(manufacturerPresentations.Count, Is.GreaterThanOrEqualTo(1));
             var createdManufacturerPresentation = manufacturerPresentations.FirstOrDefault(m => m.Price == price);
             Assert.That(createdManufacturerPresentation, Is.Not.Null);
             Assert.That(createdManufacturerPresentation.Presentation.Id, Is.EqualTo(presentationId));
+            Assert.That(createdManufacturerPresentation.Manufacturer.Id, Is.EqualTo(1));
         }
 
         [Test]
