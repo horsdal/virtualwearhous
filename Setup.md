@@ -1,0 +1,21 @@
+# Introduction #
+
+To setup a basic development environment follow the steps below:
+  * Install Visual Web Developer 2010 Express from  http://www.microsoft.com/express/Downloads/#
+  * From the installer choose Web Server, Frameworks and Runtime, Database and Tools and then click install
+  * Install a subversion client, e.g. TortoiseSVN from http://tortoisesvn.net/downloads
+  * Checkout with your SVN client. With a commandline client use this:
+```
+        svn checkout https://virtualwearhous.googlecode.com/svn/trunk/ virtualwearhous --username <your email address>
+```
+  * Open the web.config and the nlog.config files and setup the connection string to your SQLExpress database (hint its probably called .\SQLExpress)
+  * Open the UnicefVirtualWarehouse\\UnicefVirtualWarehouse.sln file in Visual Studio
+  * To run and debug the web app in locally press F5
+  * To seed the database with real data do a database restore from UnicefVirtualWarehouse\\UnicefVirtualWarehouse\\Models\\Scripts\\Demo data\\DemoData.bak
+  * To run all unit test use the NUnit console from the UnicefVirtualWarehouse directory:
+```
+ .\Tools\NUnit-2.5.8.10295\bin\net-2.0\nunit-console.exe .\UnicefVirtualWarehouse\UnicefVirtualWarehouseTest\bin\Debug\UnicefVirtualWarehouseTest.dll
+```
+All tests should run.
+  * To run unit tests from Visual Studio use [TestDriven.NET](http://testdriven.net/) or some other plugin like resharper or code rush.
+  * To commit changes contact Unicef and the administrator of this repository.

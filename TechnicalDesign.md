@@ -1,0 +1,47 @@
+# This page briefly describes the technical design of the code of the application
+
+# Introduction #
+
+The application follows the [Model-View-Controller](http://en.wikipedia.org/wiki/Model%E2%80%93view%E2%80%93controller) (aka MVC) pattern via the [ASP.NET MVC 2](http://www.asp.net/mvc) framework. To understand the application it is recommended to understand MVC and at least the basics of [ASP.NET MVC](http://www.asp.net/mvc).
+
+# Logical view #
+
+## Domain Model ##
+
+The core of the application is the domain model shown in this image:
+![http://virtualwearhous.googlecode.com/svn/trunk/Documentation/Data%20Model.png](http://virtualwearhous.googlecode.com/svn/trunk/Documentation/Data%20Model.png)
+
+This model is defined in code in pure [POCOs](http://virtualwearhous.googlecode.com/svn/trunk/Documentation/Data%20Model.png) in the namespace 'UnicefVirtualWarehouse.Models'.
+
+The domain model is mirrored directly in the database, following the Active Record pattern. This is implemented with Entity Framwork Code First. The entity context is the class ' UnicefVirtualWarehouse.UnicefContext', and is the class the defines the mapping between the domain model and the database.
+
+## Additional Database Tables ##
+
+In addition to the domain model the database contains a logs table and some user handling tables.
+
+The user handling tables are addressed in the security section below.
+
+The logs table is used for error logging. This table contains all logging output of the application. This table is not automatically pruned, so it must be manually cleaned up if necessary. The input to the logs table is controlled in the 'nlog.config' file.
+
+# Process view #
+
+As most web apps, the application is stateless, and indeed it uses no session data apart from the authentication cookie mentioned below in the security section.
+
+# Implementation view #
+
+The application itself is a single Visual Studio project. Along side that project is a unit test project, providing a high level of coverage of the application code.
+
+The application consists of controllers in the controllers folder, views in the views folder and a model in the models folder. The model consists of the domain classes shown above, and a corresponding set of [repository](http://martinfowler.com/eaaCatalog/repository.html) classes.
+
+
+# Deployment view #
+
+The application is deployed to one or more IIS web servers. The database is deployed to one MS SQL Server, possibly in a clustered setup. Database sharding is not supported.
+
+# Security #
+
+The security in the application is based on the [forms authentication](http://msdn.microsoft.com/en-us/library/yh26yfzy.aspx) implementation that comes out of the box with a default ASP.NET MVC 2 project. This comes with its own set of database tables. This means that pages protected from unauthorized access is protected by standard forms authentication using an encrypted cookie with an associated server side timeout.
+
+Administrator user can create new user with any role. The roles are Administrator, Unicef, Manufacturer.
+
+The application as deployed to the staging environment run http, not https. This may opens for man-in-the-middle attacks, and possibly replay-attacks.
